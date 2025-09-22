@@ -96,11 +96,290 @@
 
 <!-- ===== 2. HERO ===== -->
 <section id="hero" class="hero" aria-label="Section d’introduction HyperConvo">
-  <!-- Contenu de la hero section -->
+  <style>
+  :root{
+    --blue:#2563EB;        /* primaire */
+    --blue2:#3B82F6;       /* accent */
+    --green:#16A34A;       /* secondaire */
+    --text:#0F172A;        /* slate-900 */
+    --muted:#64748B;       /* slate-500 */
+    --bg:#F8FAFC;          /* slate-50 */
+    --card:#FFFFFF;
+    --chip:#EEF2FF;        /* indigo-50 */
+    --line:#E2E8F0;        /* slate-200 */
+    --warning:#F59E0B;     /* orange pour étoiles */
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif}
+
+  .hero{
+    padding:72px 20px;
+  }
+  .container{
+    max-width:1200px;margin:0 auto;
+    display:grid;grid-template-columns:1.15fr 0.85fr;gap:40px;align-items:center;
+  }
+  @media (max-width: 980px){
+    .container{grid-template-columns:1fr;gap:28px}
+  }
+
+  /* Left */
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(22,163,74,.12);color:var(--green);
+    border:1px solid rgba(22,163,74,.25);
+    font-weight:700;font-size:14px;padding:6px 12px;border-radius:999px;margin-bottom:18px
+  }
+  .title{
+    font-size:48px;line-height:1.1;font-weight:900;margin:0 0 16px;
+    letter-spacing:-.02em;
+  }
+  .title .em1{color:var(--blue2)}
+  .subtitle{
+    font-size:18px;line-height:1.55;color:var(--muted);margin:0 0 28px;max-width:680px
+  }
+  .pills{
+    display:flex;flex-wrap:wrap;gap:14px;margin:0 0 24px
+  }
+  .pill{
+    background:#EDF2F7;border:1px solid var(--line);color:var(--text);
+    padding:10px 14px;border-radius:14px;font-weight:600;display:flex;align-items:center;gap:8px
+  }
+  .proof{
+    display:flex;align-items:center;gap:18px;color:var(--muted);font-size:15px
+  }
+  .stars{color:var(--warning)}
+
+  .cta-row{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    height:52px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;
+    padding:0 18px;font-weight:800;text-decoration:none;transition:.15s ease;will-change:transform,opacity
+  }
+  .btn:hover{transform:translateY(-2px);opacity:.95}
+  .btn-primary{color:#fff;background:linear-gradient(90deg,var(--blue),var(--green))}
+  .btn-ghost{color:var(--blue);background:#fff;border:2px solid var(--blue2)}
+
+  /* Right card (preview) */
+  .preview{
+    position:relative;
+    background:var(--card);border:1px solid var(--line);border-radius:20px;
+    padding:26px;box-shadow:0 10px 30px rgba(2,6,23,.06);
+    overflow:hidden;
+  }
+  .blob{
+    position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, rgba(37,99,235,.15), transparent 55%),
+               radial-gradient(circle at 70% 70%, rgba(22,163,74,.12), transparent 60%);
+    pointer-events:none;
+  }
+  .preview h3{margin:0 0 12px;font-size:18px;color:var(--muted);font-weight:800;letter-spacing:.02em}
+  .score-wrap{
+    display:flex;align-items:center;gap:16px;margin:10px 0 18px
+  }
+  .score-labels{
+    display:flex;flex-direction:column;gap:4px
+  }
+  .score-title{font-weight:900}
+  .score-sub{font-size:13px;color:var(--muted)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 16px}
+  .chip{
+    padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;
+    border:1px solid rgba(37,99,235,.25);color:var(--blue);
+    background:rgba(37,99,235,.08)
+  }
+  .chip.green{
+    border-color:rgba(22,163,74,.25);color:var(--green);background:rgba(22,163,74,.08)
+  }
+  .list{list-style:none;margin:8px 0 18px;padding:0}
+  .list li{
+    display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:flex-start;margin:10px 0
+  }
+  .tick{
+    width:18px;height:18px;border-radius:50%;
+    background:linear-gradient(90deg,var(--blue),var(--green));position:relative;margin-top:2px
+  }
+  .tick:after{
+    content:"";position:absolute;left:5px;top:3px;width:6px;height:10px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)
+  }
+  .mini-note{font-size:12px;color:var(--muted)}
+  .divider{height:1px;background:var(--line);margin:14px 0}
+
+  /* SVG gauge sizing */
+  .gauge{width:86px;height:86px}
+  </style>
+
+  <div class="container">
+
+    <!-- LEFT -->
+    <div>
+      <div class="badge">⚡ Audit instantané</div>
+      <h1 class="title">Votre audit SEO local <span class="em1">en 3 minutes</span></h1>
+      <p class="subtitle">Découvrez exactement ce qui empêche votre site d’apparaître en première page des recherches locales. Rapport détaillé avec <strong>5 actions prioritaires</strong>.</p>
+
+      <div class="pills">
+        <div class="pill">⏱️ Analyse en 3 min</div>
+        <div class="pill">🔒 Paiement sécurisé</div>
+        <div class="pill">✅ Actions concrètes</div>
+        <div class="pill">🏆 Résultats garantis</div>
+      </div>
+
+      <div class="proof">
+        <div>🌐 Plus de 500 entreprises nous font confiance</div>
+        <div class="stars">★★★★★</div>
+        <div>4,9/5 (127 avis)</div>
+      </div>
+
+      <div class="cta-row">
+        <a href="#pricing" class="btn btn-primary">Commencer mon audit</a>
+        <a href="#pricing" class="btn btn-ghost">Voir les tarifs</a>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <aside class="preview" aria-label="Aperçu du rapport généré">
+      <div class="blob" aria-hidden="true"></div>
+      <h3>Aperçu du rapport</h3>
+
+      <!-- Score gauge + labels -->
+      <div class="score-wrap">
+        <!-- Circular gauge (SVG) -->
+        <svg class="gauge" viewBox="0 0 120 120" role="img" aria-label="Score global 86 sur 100">
+          <defs>
+            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#2563EB"/>
+              <stop offset="100%" stop-color="#16A34A"/>
+            </linearGradient>
+          </defs>
+          <!-- background circle -->
+          <circle cx="60" cy="60" r="50" fill="none" stroke="#E2E8F0" stroke-width="12" />
+          <!-- progress -->
+          <!-- circumference = 2πr ≈ 314 ; 86% => stroke-dasharray 270,314 -->
+          <circle cx="60" cy="60" r="50" fill="none" stroke="url(#grad)" stroke-width="12"
+                  stroke-linecap="round"
+                  stroke-dasharray="270 314" transform="rotate(-90 60 60)"/>
+          <!-- center text -->
+          <text x="60" y="65" text-anchor="middle" font-size="28" font-weight="800" fill="#0F172A">86</text>
+        </svg>
+
+        <div class="score-labels">
+          <div class="score-title">Score global</div>
+          <div class="score-sub">5 priorités à corriger</div>
+        </div>
+      </div>
+
+      <!-- Chips metrics -->
+      <div class="chips">
+        <span class="chip">PageSpeed Mobile: 78</span>
+        <span class="chip green">PageSpeed Desktop: 92</span>
+        <span class="chip green">Google Business: trouvé</span>
+      </div>
+
+      <!-- Checklist -->
+      <ul class="list">
+        <li><span class="tick"></span><span>Balise <strong>Title</strong> trop longue — suggestion fournie</span></li>
+        <li><span class="tick"></span><span>Méta description manquante sur 2 pages</span></li>
+        <li><span class="tick"></span><span>Améliorer <strong>H1</strong> & structure Hn</span></li>
+        <li><span class="tick"></span><span>NAP incohérent entre site & Google Business</span></li>
+      </ul>
+
+      <div class="divider"></div>
+      <div class="mini-note">Exemple d’aperçu. Le score et les priorités sont générés automatiquement pour votre site réel.</div>
+    </aside>
+
+  </div>
 </section>
 
 <!-- ===== 3. PRICING ===== -->
 <section id="pricing" class="pricing" aria-labelledby="pricing-title">
+  <style>
+  :root{
+    --blue:#2563EB;
+    --blue2:#3B82F6;
+    --green:#16A34A;
+    --text:#1F2937;
+    --muted:#6B7280;
+    --bg:#F9FAFB;
+    --card:#FFFFFF;
+    --line:#E5E7EB;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;color:var(--text);background:transparent}
+
+  .pricing{padding:64px 20px;background:var(--bg)}
+  .wrap{max-width:1100px;margin:0 auto}
+
+  .head{text-align:center;margin-bottom:40px}
+  .head h2{margin:0 0 10px;font-size:32px;line-height:1.2;font-weight:800}
+  .head p{margin:0;color:var(--muted);font-size:16px}
+
+  .pricing .grid{
+    display:grid;gap:22px;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    align-items:stretch;
+  }
+  @media (max-width: 960px){
+    .pricing .grid{grid-template-columns:1fr}
+    /* Mettre Performance en premier sur mobile */
+    .pricing .card.reco{order:-1}
+  }
+
+  .card{
+    position:relative;
+    display:flex;flex-direction:column;justify-content:space-between;
+    border-radius:20px;background:var(--card);
+    border:1px solid var(--line);
+    padding:28px;
+    box-shadow:0 2px 10px rgba(0,0,0,.04);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.08)}
+  .card.reco{border:2px solid var(--blue2)}
+  .badge{
+    position:absolute;top:14px;right:14px;
+    background:linear-gradient(90deg,var(--blue),var(--green));color:#fff;
+    font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px
+  }
+  .chip{
+    display:inline-block;margin-top:6px;
+    font-size:12px;font-weight:700;color:var(--blue);
+    background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.25);
+    padding:4px 8px;border-radius:999px
+  }
+  .plan{font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.2px}
+  .price{margin:0 0 16px;font-size:40px;font-weight:900}
+  .period{font-size:14px;color:var(--muted);font-weight:600}
+
+  ul.features{list-style:none;margin:12px 0 24px;padding:0}
+  ul.features li{
+    display:grid;grid-template-columns:20px 1fr;gap:10px;
+    align-items:flex-start;margin:10px 0
+  }
+  .tick{
+    width:18px;height:18px;border-radius:50%;
+    background:linear-gradient(90deg,var(--blue),var(--green));
+    position:relative;margin-top:2px
+  }
+  .tick:after{
+    content:"";position:absolute;left:5px;top:3px;width:6px;height:10px;
+    border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)
+  }
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    height:50px;border-radius:12px;font-weight:800;font-size:16px;
+    text-decoration:none;transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+    will-change:transform; margin-top:auto;
+  }
+  .btn:hover{transform:translateY(-2px);opacity:.95}
+  .btn-primary{color:#fff;background:linear-gradient(90deg,var(--blue),var(--green));box-shadow:0 6px 18px rgba(37,99,235,.25)}
+  .btn-outline{color:#2563EB;background:#fff;border:2px solid #3B82F6}
+  .note{margin-top:12px;font-size:13px;color:#6B7280;text-align:center}
+
+  /* Empêcher les coupures moches sur certaines expressions FR */
+  .nowrap{white-space:nowrap}
+  </style>
+
   <div class="wrap">
     <header class="head">
       <h2 id="pricing-title">Tarifs simples. Résultats immédiats.</h2>
@@ -121,9 +400,7 @@
             <li><span class="tick"></span><span><strong>Score global</strong> + <strong>5 actions prioritaires</strong></span></li>
           </ul>
         </div>
-        <a class="btn btn-outline" href="https://buy.stripe.com/4gM4gzaw3bPXfqG7h65gc00" target="_blank" rel="noopener">
-          Choisir Essentiel — 19&nbsp;€
-        </a>
+        <a class="btn btn-outline" href="https://buy.stripe.com/4gM4gzaw3bPXfqG7h65gc00" target="_blank" rel="noopener"$1>Choisir Essentiel — 19&nbsp;€</a>
       </article>
 
       <!-- 49 € Performance (reco) -->
@@ -140,9 +417,7 @@
             <li><span class="tick"></span><span>Conseils classés par <strong>impact</strong> et <strong>effort</strong></span></li>
           </ul>
         </div>
-        <a class="btn btn-primary" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01" target="_blank" rel="noopener">
-          Choisir Performance — 49&nbsp;€
-        </a>
+        <a class="btn btn-primary" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01" target="_blank" rel="noopener"$1>Choisir Performance — 49&nbsp;€</a>
       </article>
 
       <!-- 99 € Expert Local -->
@@ -158,13 +433,12 @@
             <li><span class="tick"></span><span>Synthèse priorisée + <strong>plan d’action local</strong></span></li>
           </ul>
         </div>
-        <a class="btn btn-outline" href="https://buy.stripe.com/7sY9ATeMjbPX2DUgRG5gc02" target="_blank" rel="noopener">
-          Choisir Expert — 99&nbsp;€
-        </a>
+        <a class="btn btn-outline" href="https://buy.stripe.com/7sY9ATeMjbPX2DUgRG5gc02" target="_blank" rel="noopener"$1>Choisir Expert — 99&nbsp;€</a>
       </article>
 
     </div>
 
+    <!-- Rassurance globale -->
     <p class="note" style="text-align:center;margin-top:16px">
       Paiement sécurisé par Stripe • Rapport ~3&nbsp;min • Facture envoyée par e-mail
     </p>
@@ -173,22 +447,457 @@
 
 <!-- ===== 4. HOW IT WORKS / STEPS ===== -->
 <section id="how-it-works" class="steps" aria-labelledby="steps-title">
-  <!-- Contenu -->
+  <style>
+  :root{
+    --blue:#2563EB;
+    --blue2:#3B82F6;
+    --green:#16A34A;
+    --text:#0F172A;
+    --muted:#64748B;
+    --bg:#F8FAFC;
+    --card:#FFFFFF;
+    --line:#E2E8F0;
+  }
+  body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--bg)}
+
+  .steps{padding:70px 20px}
+  .wrap{max-width:1100px;margin:0 auto}
+
+  .head{text-align:center;margin-bottom:40px}
+  .head h2{margin:0 0 10px;font-size:32px;font-weight:900;letter-spacing:-.02em}
+  .head p{margin:0;color:var(--muted);font-size:16px}
+
+  .steps .grid{display:grid;gap:24px;grid-template-columns:repeat(3,1fr)}
+  @media(max-width:900px){.steps .grid{grid-template-columns:1fr}}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:18px;padding:28px;
+    box-shadow:0 6px 20px rgba(2,6,23,.06);
+    transition:.2s ease;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(2,6,23,.08)}
+
+  .num{
+    width:46px;height:46px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:900;color:#fff;margin-bottom:14px;
+    background:linear-gradient(135deg,var(--blue),var(--green));
+    font-size:18px;
+  }
+  .title{margin:0;font-size:18px;font-weight:800;color:var(--blue2)}
+  .desc{margin:10px 0 0;color:var(--muted);line-height:1.55;font-size:15px}
+
+  .cta{margin-top:40px;text-align:center}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    height:52px;padding:0 24px;
+    border-radius:12px;font-weight:800;font-size:16px;
+    text-decoration:none;color:#fff;
+    background:linear-gradient(90deg,var(--blue),var(--green));
+    box-shadow:0 6px 18px rgba(37,99,235,.25);
+    transition:.15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);opacity:.95}
+  .note{margin-top:12px;font-size:13px;color:var(--muted)}
+  </style>
+
+  <div class="wrap">
+    <header class="head">
+      <h2 id="steps-title">Comment ça marche</h2>
+      <p>Zéro jargon, zéro attente. Vous savez quoi corriger en moins de 5 minutes.</p>
+    </header>
+
+    <div class="grid">
+      <!-- Étape 1 -->
+      <article class="card">
+        <div class="num">1</div>
+        <h3 class="title">Entrez votre site</h3>
+        <p class="desc">Indiquez l’URL de votre page d’accueil. Nous détectons automatiquement les éléments clés : balises Title, méta description et structure H1.</p>
+      </article>
+
+      <!-- Étape 2 -->
+      <article class="card">
+        <div class="num">2</div>
+        <h3 class="title">Recevez un score détaillé</h3>
+        <p class="desc">Un rapport complet avec score global, PageSpeed mobile & desktop, aperçu Google Business si disponible. Généré et envoyé par e-mail en quelques minutes.</p>
+      </article>
+
+      <!-- Étape 3 -->
+      <article class="card">
+        <div class="num">3</div>
+        <h3 class="title">Appliquez vos 5 priorités</h3>
+        <p class="desc">Liste d’actions claires classées par impact et effort. Corrigez l’essentiel en premier et gagnez rapidement en visibilité locale.</p>
+      </article>
+    </div>
+
+    <div class="cta">
+      <a href="#pricing" class="btn">Voir les tarifs et lancer l’audit</a>
+      <div class="note">Paiement sécurisé par Stripe • Rapport envoyé automatiquement par e-mail</div>
+    </div>
+  </div>
 </section>
 
 <!-- ===== 5. REVIEWS / TESTIMONIALS ===== -->
 <section id="reviews" class="testimonials" aria-labelledby="testimonials-title">
-  <!-- Contenu -->
+  <style>
+  :root{
+    --blue:#2563EB;
+    --green:#16A34A;
+    --text:#0F172A;
+    --muted:#64748B;
+    --bg:#F8FAFC;
+    --card:#FFFFFF;
+    --line:#E2E8F0;
+    --star:#F59E0B;
+  }
+  body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text)}
+
+  .testimonials{padding:70px 20px}
+  .wrap{max-width:1100px;margin:0 auto}
+
+  .head{text-align:center;margin-bottom:40px}
+  .head h2{margin:0 0 12px;font-size:32px;font-weight:900;letter-spacing:-.02em}
+  .head p{margin:0;color:var(--muted);font-size:16px}
+
+  .testimonials .grid{
+    display:grid;gap:24px;
+    grid-template-columns:repeat(2,1fr);
+  }
+  @media(max-width:900px){.steps .grid{grid-template-columns:1fr}}
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:24px;
+    box-shadow:0 6px 20px rgba(2,6,23,.06);
+    transition:.2s ease;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(2,6,23,.08)}
+
+  .stars{color:var(--star);font-size:16px;margin-bottom:12px}
+  .text{margin:0 0 16px;color:var(--text);line-height:1.6;font-size:15px}
+  .user{display:flex;align-items:center;gap:12px}
+  .avatar{
+    width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--green));
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-weight:800;font-size:18px;flex-shrink:0
+  }
+  .info{display:flex;flex-direction:column}
+  .name{font-weight:700;font-size:15px}
+  .role{font-size:13px;color:var(--muted)}
+  </style>
+
+  <div class="wrap">
+    <header class="head">
+      <h2 id="testimonials-title">Ils ont testé, ils recommandent</h2>
+      <p>Plus de 500 entreprises locales utilisent déjà HyperConvo pour booster leur visibilité.</p>
+    </header>
+
+    <div class="grid">
+
+      <!-- Témoignage 1 -->
+      <article class="card">
+        <div>
+          <div class="stars">★★★★★</div>
+          <p class="text">“Rapide, clair et actionnable. En moins de 10 minutes j’avais compris pourquoi mon site ne ressortait pas dans ma ville.”</p>
+        </div>
+        <div class="user">
+          <div class="avatar">A</div>
+          <div class="info">
+            <div class="name">Amélie R.</div>
+            <div class="role">Coiffeuse à Lyon</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Témoignage 2 -->
+      <article class="card">
+        <div>
+          <div class="stars">★★★★★</div>
+          <p class="text">“Le rapport m’a évité de payer une agence 500 €. J’ai corrigé les 5 points indiqués et mon site apparaît enfin sur Google Maps.”</p>
+        </div>
+        <div class="user">
+          <div class="avatar">B</div>
+          <div class="info">
+            <div class="name">Benoît L.</div>
+            <div class="role">Boulanger à Toulouse</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Témoignage 3 -->
+      <article class="card">
+        <div>
+          <div class="stars">★★★★★</div>
+          <p class="text">“J’ai pris l’offre Performance, les insights PageSpeed étaient hyper utiles. Mon site charge plus vite et mes clients restent plus longtemps.”</p>
+        </div>
+        <div class="user">
+          <div class="avatar">C</div>
+          <div class="info">
+            <div class="name">Caroline M.</div>
+            <div class="role">Architecte à Bordeaux</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Témoignage 4 -->
+      <article class="card">
+        <div>
+          <div class="stars">★★★★★</div>
+          <p class="text">“Très bon rapport qualité/prix. Le rapport Expert m’a permis d’améliorer mes avis Google et d’attirer plus de clients.”</p>
+        </div>
+        <div class="user">
+          <div class="avatar">D</div>
+          <div class="info">
+            <div class="name">David P.</div>
+            <div class="role">Médecin à Marseille</div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
 </section>
 
 <!-- ===== 6. FAQ ===== -->
 <section id="faq" class="hc-faq" aria-labelledby="faq-title">
-  <!-- Contenu -->
+  <style>
+    :root{
+      --blue:#2563EB; --blue2:#3B82F6; --green:#16A34A;
+      --text:#0F172A; --muted:#64748B;
+      --bg:#F8FAFC; --card:#FFFFFF; --line:#E2E8F0; --maxw:1100px;
+    }
+    .hc-faq, .hc-faq *{ box-sizing:border-box; font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Arial,sans-serif }
+    .hc-faq{ background:var(--bg); padding:70px 20px }
+    .hc-faq .wrap{ max-width:var(--maxw); margin:0 auto }
+    .hc-faq .head{ text-align:center; margin-bottom:36px }
+    .hc-faq h2{ margin:0 0 8px; font-size:32px; font-weight:900; letter-spacing:-.02em; color:var(--text) }
+    .hc-faq .sub{ margin:0; color:var(--muted); font-size:16px }
+
+    .hc-qa{ display:flex; flex-direction:column; gap:14px; margin-top:22px }
+    details.hc-item{
+      background:var(--card); border:1px solid var(--line); border-radius:16px; padding:0;
+      box-shadow:0 6px 18px rgba(2,6,23,.06); overflow:hidden;
+      transition:box-shadow .2s ease, border-color .2s ease;
+    }
+    details.hc-item[open]{ border-color:rgba(37,99,235,.35); box-shadow:0 10px 28px rgba(2,6,23,.08) }
+    summary.hc-sum{
+      list-style:none; cursor:pointer; padding:18px 20px; display:flex; align-items:flex-start; gap:12px;
+      font-weight:800; color:var(--text); font-size:16px
+    }
+    summary.hc-sum::-webkit-details-marker{ display:none }
+    .hc-dot{
+      flex:0 0 18px; width:18px; height:18px; border-radius:50%;
+      background:linear-gradient(90deg,var(--blue),var(--green)); position:relative; margin-top:2px;
+    }
+    .hc-chevron{ margin-left:auto; width:18px; height:18px; position:relative; }
+    .hc-chevron:before, .hc-chevron:after{
+      content:""; position:absolute; left:4px; right:4px; height:2px; background:#334155; top:8px;
+      transition:transform .2s ease, opacity .2s ease;
+    }
+    .hc-chevron:after{ transform:rotate(90deg) }
+    details[open] .hc-chevron:after{ opacity:0 }
+    .hc-content{ padding:0 20px 18px 50px; color:#334155; line-height:1.6 }
+
+    .hc-cta-row{ text-align:center; margin-top:22px }
+    .hc-btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      height:48px; padding:0 20px; border-radius:12px; color:#fff; font-weight:800; text-decoration:none;
+      background:linear-gradient(90deg,var(--blue),var(--green)); box-shadow:0 6px 18px rgba(37,99,235,.25);
+      transition:.15s ease;
+    }
+    .hc-btn:hover{ transform:translateY(-2px); opacity:.95 }
+    .hc-legal-note{ margin-top:14px; text-align:center; color:#94A3B8; font-size:12px }
+  </style>
+
+  <div class="wrap">
+    <header class="head">
+      <h2 id="faq-title">Questions fréquentes</h2>
+      <p class="sub">Tout ce que vous devez savoir avant de lancer votre audit.</p>
+    </header>
+
+    <div class="hc-qa">
+      <details class="hc-item">
+        <summary class="hc-sum">
+          <span class="hc-dot" aria-hidden="true"></span>
+          ⏱️ Combien de temps pour recevoir mon audit ?
+          <span class="hc-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="hc-content">
+          Environ 3&nbsp;minutes après le paiement. Le rapport détaillé est généré automatiquement et envoyé par e-mail.
+        </div>
+      </details>
+
+      <details class="hc-item">
+        <summary class="hc-sum">
+          <span class="hc-dot" aria-hidden="true"></span>
+          💳 Est-ce un abonnement ?
+          <span class="hc-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="hc-content">
+          Non. Chaque audit est un achat unique, sans engagement ni frais cachés.
+        </div>
+      </details>
+
+      <details class="hc-item">
+        <summary class="hc-sum">
+          <span class="hc-dot" aria-hidden="true"></span>
+          🌐 Mon site est-il analysé entièrement ?
+          <span class="hc-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="hc-content">
+          Oui. Nous commençons par la page d’accueil et élargissons l’analyse selon la formule&nbsp;: <em>Performance</em> ajoute
+          PageSpeed mobile/desktop et pages clés; <em>Expert</em> ajoute l’analyse Google Business Profile (profil, NAP, avis).
+        </div>
+      </details>
+
+      <!-- Politique de remboursement mise à jour -->
+      <details class="hc-item">
+        <summary class="hc-sum">
+          <span class="hc-dot" aria-hidden="true"></span>
+          💸 Proposez-vous des remboursements ?
+          <span class="hc-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="hc-content">
+          <strong>Non.</strong> Le paiement déclenche immédiatement une <strong>automatisation</strong> et la génération du rapport,
+          qui constitue un <strong>contenu numérique fourni sans support matériel</strong>. En validant le paiement, vous consentez à
+          l’exécution immédiate du service et reconnaissez <strong>renoncer au droit de rétractation</strong>. En cas de problème
+          (ex.&nbsp;non-réception), <a href="mailto:support@hyperconvo.ai">contactez le support</a> pour une ré-exécution ou une correction.
+        </div>
+      </details>
+
+      <details class="hc-item">
+        <summary class="hc-sum">
+          <span class="hc-dot" aria-hidden="true"></span>
+          🚀 Que faire après avoir reçu l’audit ?
+          <span class="hc-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="hc-content">
+          Appliquez les <strong>5 actions prioritaires</strong> classées par impact&nbsp;/&nbsp;effort. Vous pouvez les faire vous-même
+          ou les confier à un pro. (Option d’accompagnement disponible.)
+        </div>
+      </details>
+    </div>
+
+    <div class="hc-cta-row">
+      <a href="#pricing" class="hc-btn" aria-label="Voir les tarifs">Voir les tarifs</a>
+    </div>
+
+    <!-- Note informative (facultative) -->
+    <div class="hc-legal-note">
+      Info UE&nbsp;: l’exception au droit de rétractation s’applique aux contenus numériques fournis immédiatement avec votre accord
+      (transposition&nbsp;: Code de la consommation, art. L221-28). Pour les achats professionnels (B2B), le droit de rétractation ne s’applique pas.
+    </div>
+  </div>
 </section>
 
 <!-- ===== 7. FOOTER ===== -->
 <footer class="hc-footer" aria-labelledby="footer-title">
-  <!-- Contenu -->
+  <style>
+    :root{
+      --blue:#2563EB; --blue2:#3B82F6; --green:#16A34A;
+      --text:#0F172A; --muted:#64748B;
+      --bg:#F8FAFC; --card:#FFFFFF; --line:#E2E8F0;
+      --star:#F59E0B;
+      --maxw:1100px;
+    }
+    .hc-footer{
+      background:var(--bg);
+      border-top:1px solid var(--line);
+      padding:48px 20px 22px;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+      color:var(--text);
+    }
+    .hc-footer .container{
+      max-width:var(--maxw);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:32px;
+    }
+    @media (max-width:900px){
+      .hc-footer .container{grid-template-columns:1fr}
+    }
+
+    /* Colonne marque */
+    .hc-brand h3{margin:0 0 8px;font-size:20px;font-weight:900;letter-spacing:-.01em;color:var(--text)}
+    .hc-brand p{margin:0 10px 10px 0;color:var(--muted);font-size:14px}
+    .hc-rating{display:flex;align-items:center;gap:10px;margin:6px 0 10px}
+    .hc-stars{color:var(--star);font-size:15px;letter-spacing:1px}
+    .hc-brand small{color:#94A3B8;font-size:12px}
+
+    /* Colonnes liens */
+    .hc-col h4{
+      margin:0 0 10px;font-size:13px;color:#94A3B8;
+      text-transform:uppercase;letter-spacing:.06em;font-weight:800;
+    }
+    .hc-links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+    .hc-links a{color:#334155;text-decoration:none}
+    .hc-links a:hover{color:var(--blue)}
+
+    /* Badges rassurance */
+    .hc-badges{margin-top:12px;font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+    .hc-dot{
+      width:8px;height:8px;border-radius:50%;
+      background:linear-gradient(90deg,var(--blue),var(--green));
+      display:inline-block;margin-right:8px;vertical-align:middle;
+    }
+
+    /* Barre du bas */
+    .hc-footbar{
+      max-width:var(--maxw);
+      margin:26px auto 0;
+      border-top:1px solid var(--line);
+      padding-top:14px;
+      text-align:center;
+      color:#94A3B8;font-size:13px;
+    }
+  </style>
+
+  <div class="container">
+    <!-- Colonne 1 : Marque + rating -->
+    <div class="hc-brand">
+      <h3 id="footer-title">HyperConvo</h3>
+      <p>Audit SEO local automatisé en 3 minutes.</p>
+      <div class="hc-rating" aria-label="Note moyenne 4,9 sur 5 basée sur 127 avis">
+        <div class="hc-stars">★★★★★</div>
+        <div style="color:var(--muted);font-size:14px">4,9/5 <span style="color:#94A3B8">(127 avis)</span></div>
+      </div>
+      <small>© 2025 HyperConvo. Tous droits réservés.</small>
+    </div>
+
+    <!-- Colonne 2 : Navigation -->
+    <nav class="hc-col" aria-label="Navigation de pied de page">
+      <h4>Navigation</h4>
+      <ul class="hc-links">
+        <li><a href="#pricing">Tarifs</a></li>
+        <li><a href="#how-it-works">Comment ça marche</a></li>
+        <li><a href="#reviews">Avis clients</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <!-- Colonne 3 : Support & Legal -->
+    <div class="hc-col">
+      <h4>Support & Legal</h4>
+      <ul class="hc-links">
+        <li><a href="mailto:support@hyperconvo.ai">support@hyperconvo.ai</a></li>
+        <li><a href="#">CGV</a></li>
+        <li><a href="#">Politique de confidentialité</a></li>
+      </ul>
+      <div class="hc-badges">
+        <div><span class="hc-dot"></span>Paiement sécurisé par Stripe</div>
+        <div><span class="hc-dot"></span>Données hébergées en Europe (RGPD)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hc-footbar">
+    Made in 🇪🇺 • Paiements sécurisés • Hébergement UE compliant RGPD
+  </div>
 </footer>
 
 </body>
