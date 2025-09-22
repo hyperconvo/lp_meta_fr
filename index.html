@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <style>html{scroll-behavior:smooth}</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HyperConvo — Audit SEO local</title>
+
+<style>
+@media(max-width: 640px){
+  /* Hero pills + proof centered */
+  .hero .pills,
+  .hero .proof,
+  .hero .cta-row{justify-content:center;text-align:center}
+  .hero .cta-row{flex-direction:column;align-items:center}
+  .hero .cta-row .btn{width:80%;max-width:280px}
+
+  /* Testimonials stacked */
+  .testimonials .grid{grid-template-columns:1fr !important}
+}
+</style>
+
+</head>
+<body>
+
+<!-- ===== 1. HEADER ===== -->
+<header class="hc-header" aria-label="En-tête HyperConvo">
+  <style>
+    :root{
+      --blue:#2563EB; --green:#16A34A;
+      --text:#0F172A; --line:#E2E8F0; --bg:#FFFFFF;
+      --maxw:1100px;
+    }
+
+    .hc-header, .hc-header *{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif !important;
+      box-sizing: border-box;
+    }
+
+    .hc-header{
+      background:var(--bg);
+      border-bottom:1px solid var(--line);
+      position:sticky; top:0; z-index:1000;
+    }
+    .hc-header .container{
+      max-width:var(--maxw);
+      margin:0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 20px;
+    }
+
+    /* Logo */
+    .hc-logo{
+      text-decoration:none; color:var(--text);
+      font-size:20px; font-weight:900; letter-spacing:-.01em;
+    }
+
+    /* Nav desktop uniquement */
+    .hc-nav{
+      display:flex; align-items:center; gap:28px;
+    }
+    .hc-nav a{
+      text-decoration:none; color:#334155;
+      font-size:14px; font-weight:600; transition:.15s ease;
+    }
+    .hc-nav a:hover{ color:var(--blue); }
+
+    /* CTA */
+    .hc-cta{
+      display:inline-flex; align-items:center; justify-content:center;
+      height:40px; padding:0 18px; border-radius:10px;
+      color:#fff; font-weight:800; font-size:14px; text-decoration:none;
+      background:linear-gradient(90deg,var(--blue),var(--green));
+      box-shadow:0 4px 12px rgba(37,99,235,.25);
+      transition:.15s ease;
+    }
+    .hc-cta:hover{ transform:translateY(-2px); opacity:.95; }
+
+    /* Responsive : cacher nav sur mobile */
+    @media(max-width: 900px){
+      .hc-nav{ display:none; }
+    }
+  </style>
+
+  <div class="container">
+    <a href="#hero" target="_top" class="hc-logo">HyperConvo</a>
+    <nav class="hc-nav" aria-label="Navigation principale">
+      <a href="#pricing" target="_top">Tarifs</a>
+      <a href="#how-it-works" target="_top">Comment ça marche</a>
+      <a href="#reviews" target="_top">Avis</a>
+      <a href="#faq" target="_top">FAQ</a>
+    </nav>
+    <a href="#pricing" target="_top" class="hc-cta">Commencer mon audit</a>
+  </div>
+</header>
+
+<!-- ===== 2. HERO ===== -->
+<section id="hero" class="hero" aria-label="Section d’introduction HyperConvo">
+  <!-- Contenu de la hero section -->
+</section>
+
+<!-- ===== 3. PRICING ===== -->
+<section id="pricing" class="pricing" aria-labelledby="pricing-title">
+  <div class="wrap">
+    <header class="head">
+      <h2 id="pricing-title">Tarifs simples. Résultats immédiats.</h2>
+      <p>Choisissez l’audit qui vous convient — rapport livré par e-mail en ~3&nbsp;minutes.</p>
+    </header>
+
+    <div class="grid">
+
+      <!-- 19 € Essentiel -->
+      <article class="card" aria-label="Offre Essentiel 19 euros">
+        <div>
+          <div class="plan">Essentiel</div>
+          <h3 class="price">19&nbsp;€ <span class="period">/ audit</span></h3>
+          <ul class="features">
+            <li><span class="tick"></span><span>Audit IA de la <strong>page d’accueil</strong> (URL fournie)</span></li>
+            <li><span class="tick"></span><span>Vérification des <strong>balises Title</strong> &amp; <strong>Méta description</strong></span></li>
+            <li><span class="tick"></span><span>Analyse <strong>H1</strong> &amp; <strong>contenu de base</strong></span></li>
+            <li><span class="tick"></span><span><strong>Score global</strong> + <strong>5 actions prioritaires</strong></span></li>
+          </ul>
+        </div>
+        <a class="btn btn-outline" href="https://buy.stripe.com/4gM4gzaw3bPXfqG7h65gc00" target="_blank" rel="noopener">
+          Choisir Essentiel — 19&nbsp;€
+        </a>
+      </article>
+
+      <!-- 49 € Performance (reco) -->
+      <article class="card reco" aria-label="Offre Performance 49 euros">
+        <div class="badge">⚡ Recommandé</div>
+        <div>
+          <div class="plan">Performance</div>
+          <h3 class="price">49&nbsp;€ <span class="period">/ audit</span></h3>
+          <span class="chip">Inclut&nbsp;Essentiel</span>
+          <ul class="features">
+            <li><span class="tick"></span><span>Toutes les features <strong>Essentiel</strong></span></li>
+            <li><span class="tick"></span><span><strong>PageSpeed</strong> <span class="nowrap">mobile &amp; desktop</span> (0-100)</span></li>
+            <li><span class="tick"></span><span>Analyse IA des <strong>pages clés supplémentaires</strong></span></li>
+            <li><span class="tick"></span><span>Conseils classés par <strong>impact</strong> et <strong>effort</strong></span></li>
+          </ul>
+        </div>
+        <a class="btn btn-primary" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01" target="_blank" rel="noopener">
+          Choisir Performance — 49&nbsp;€
+        </a>
+      </article>
+
+      <!-- 99 € Expert Local -->
+      <article class="card" aria-label="Offre Expert Local 99 euros">
+        <div>
+          <div class="plan">Expert Local</div>
+          <h3 class="price">99&nbsp;€ <span class="period">/ audit</span></h3>
+          <span class="chip">Inclut&nbsp;Performance</span>
+          <ul class="features">
+            <li><span class="tick"></span><span>Toutes les features <strong>Performance</strong></span></li>
+            <li><span class="tick"></span><span>Analyse <strong>Google Business Profile</strong> (profil, NAP, catégories)</span></li>
+            <li><span class="tick"></span><span>Étude des <strong>avis</strong> (<span class="nowrap">volume</span>, <span class="nowrap">note</span>, <span class="nowrap">récence</span>)</span></li>
+            <li><span class="tick"></span><span>Synthèse priorisée + <strong>plan d’action local</strong></span></li>
+          </ul>
+        </div>
+        <a class="btn btn-outline" href="https://buy.stripe.com/7sY9ATeMjbPX2DUgRG5gc02" target="_blank" rel="noopener">
+          Choisir Expert — 99&nbsp;€
+        </a>
+      </article>
+
+    </div>
+
+    <p class="note" style="text-align:center;margin-top:16px">
+      Paiement sécurisé par Stripe • Rapport ~3&nbsp;min • Facture envoyée par e-mail
+    </p>
+  </div>
+</section>
+
+<!-- ===== 4. HOW IT WORKS / STEPS ===== -->
+<section id="how-it-works" class="steps" aria-labelledby="steps-title">
+  <!-- Contenu -->
+</section>
+
+<!-- ===== 5. REVIEWS / TESTIMONIALS ===== -->
+<section id="reviews" class="testimonials" aria-labelledby="testimonials-title">
+  <!-- Contenu -->
+</section>
+
+<!-- ===== 6. FAQ ===== -->
+<section id="faq" class="hc-faq" aria-labelledby="faq-title">
+  <!-- Contenu -->
+</section>
+
+<!-- ===== 7. FOOTER ===== -->
+<footer class="hc-footer" aria-labelledby="footer-title">
+  <!-- Contenu -->
+</footer>
+
+</body>
+</html>
