@@ -466,22 +466,23 @@
     }
     .viewport{
       position:relative;overflow:hidden;border-radius:18px;
-      max-height:520px; /* aperçu compact desktop */
+      max-height:480px; /* aperçu compact desktop */
       transition:max-height .25s ease;
     }
     .viewport[data-unlocked="true"]{max-height:none}
 
-    /* Overlay flouté + bouton centré */
+    /* Overlay flouté + bouton centré (au-dessus des CTA internes) */
     .lock{
       position:absolute;inset:0;pointer-events:auto;
-      display:flex;align-items:center;justify-content:center;
-      padding:24px;transition:opacity .25s ease;
+      display:flex;align-items:flex-start;justify-content:center;
+      padding:clamp(120px, 22vh, 260px) 24px 24px; /* pousse le bouton plus haut */
+      transition:opacity .25s ease;
       background:
         linear-gradient(to bottom,
           rgba(255,255,255,0) 0%,
-          rgba(255,255,255,.15) 35%,
-          rgba(255,255,255,.55) 60%,
-          rgba(255,255,255,.85) 78%,
+          rgba(255,255,255,.18) 32%,
+          rgba(255,255,255,.55) 58%,
+          rgba(255,255,255,.85) 76%,
           #fff 100%);
       -webkit-backdrop-filter: blur(5px);
       backdrop-filter: blur(5px);
@@ -494,12 +495,19 @@
       border:none;cursor:pointer
     }
 
-    /* Styles internes du rapport (reprennent la version HTML complète) */
+    /* Styles internes du rapport */
     .report{padding:18px}
-    .r-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:10px}
+    .r-header{
+      display:flex;align-items:center;gap:10px;justify-content:space-between;
+      flex-wrap:wrap; /* évite le badge rogné sur mobile */
+      margin-bottom:10px
+    }
     .r-brand{font-weight:900;letter-spacing:-.01em}
-    .r-badge{font-size:12px;color:#0f172a;background:#FEF3C7;border:1px solid #F59E0B;padding:6px 10px;border-radius:999px;white-space:nowrap}
-    .r-title{font-size:24px;font-weight:900;margin:0 0 4px}
+    .r-badge{
+      font-size:12px;color:#0f172a;background:#FEF3C7;border:1px solid #F59E0B;
+      padding:6px 10px;border-radius:999px;white-space:nowrap;margin-left:auto;max-width:75%
+    }
+    .r-title{font-size:24px;font-weight:900;margin:0 0 4px;line-height:1.2}
     .r-sub{color:var(--muted);margin:0 0 14px;font-size:14px}
     .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:10px}
     .kpi{background:#F8FAFF;border:1px solid var(--line);border-radius:12px;padding:12px}
@@ -522,28 +530,36 @@
 
     /* Table -> mobile-friendly */
     .table{width:100%;border-collapse:separate;border-spacing:0}
-    .table th,.table td{border-bottom:1px solid var(--line);padding:10px 0;text-align:left;font-size:14px}
+    .table th,.table td{border-bottom:1px solid var(--line);padding:10px 0;text-align:left;font-size:14px;vertical-align:top}
     .table th:first-child,.table td:first-child{padding-right:16px;width:220px}
+
+    /* Cache les CTA internes tant que l’aperçu est verrouillé */
+    .viewport:not([data-unlocked="true"]) .btns{display:none}
 
     /* Mobile tweaks */
     @media(max-width: 980px){
       .kpis{grid-template-columns:1fr 1fr}
     }
     @media(max-width: 880px){
+      .demo-head h2#demo-title{font-size:26px}
       .r-title{font-size:20px}
       .btns .btn{width:100%}
       .grid2{grid-template-columns:1fr}
-      .r-badge{font-size:11px;padding:5px 8px}
+      .r-badge{font-size:11px;padding:5px 8px;max-width:100%}
       .kv{grid-template-columns:1fr}
       .viewport{max-height:420px} /* aperçu plus petit sur mobile */
+      .chips{gap:6px}
     }
     @media(max-width: 640px){
+      .demo-head h2#demo-title{font-size:24px}
+      .demo-head p{font-size:14px}
       .table thead{display:none}
       .table tr{display:block;border-bottom:1px solid var(--line);padding:10px 0}
       .table td{display:grid;grid-template-columns:120px 1fr;gap:8px;border:none;padding:6px 0}
       .table td::before{content:attr(data-label);font-weight:700;color:#475569}
       .table td:first-child{padding-top:0}
       .table td:last-child{padding-bottom:0}
+      a{word-break:break-word}
     }
   </style>
 
@@ -730,7 +746,6 @@
       btn.addEventListener('click', function(){
         vp.setAttribute('data-unlocked','true');
         btn.setAttribute('aria-expanded','true');
-        // Scroll léger pour replacer l’utilisateur au-dessus du pli si besoin
         const top = vp.getBoundingClientRect().top + window.scrollY - 20;
         window.scrollTo({top, behavior:'smooth'});
       }, {passive:true});
