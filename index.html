@@ -56,8 +56,12 @@
 .hc-d-body p, .hc-d-body li{color:#334155;line-height:1.6}
 .hc-legal-links{margin:28px auto 10px;text-align:center;font-size:14px;color:#64748B}
 .hc-legal-links a{color:#2563EB}
-</style>
 
+/* Footer legal inline links */
+.hc-legal-inline{margin:12px auto 0;text-align:center;font-size:14px;color:#64748B}
+.hc-legal-inline a{color:#2563EB}
+
+</style>
 </head>
 <body>
 <!-- === Cookie banner === -->
@@ -71,15 +75,6 @@
     <button class="hc-btn hc-btn--manage" id="hcManage">Gérer plus tard</button>
   </div>
 </div>
-
-<!-- === Legal quick links (if footer lacks them) -->
-<div class="hc-legal-links" id="hcLegalLinks">
-  <a href="/cgv.html" data-modal="cgv">CGV</a> ·
-  <a href="/privacy.html" data-modal="privacy">Confidentialité</a> ·
-  <a href="/mentions-legales.html" data-modal="mentions">Mentions légales</a> ·
-  <a href="#" id="openCookie">Gérer les cookies</a>
-</div>
-
 <!-- === Modals markup (CGV / Privacy / Mentions) -->
 <div class="hc-modal" id="modal-cgv" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="title-cgv">
   <div class="hc-dialog">
@@ -1358,6 +1353,14 @@
   <div class="hc-footbar">
     Made in 🇪🇺 • Paiements sécurisés • Hébergement UE compliant RGPD
   </div>
+
+  <div class="hc-legal-inline">
+    <a href="/cgv.html" data-modal="cgv">CGV</a> ·
+    <a href="/privacy.html" data-modal="privacy">Confidentialité</a> ·
+    <a href="/mentions-legales.html" data-modal="mentions">Mentions légales</a> ·
+    <a href="#" id="openCookieFooter">Gérer les cookies</a>
+  </div>
+
 </footer>
 
 
@@ -1370,6 +1373,7 @@
   const reject = document.getElementById('hcReject');
   const manage = document.getElementById('hcManage');
   const openCookie = document.getElementById('openCookie');
+  const openCookieFooter = document.getElementById('openCookieFooter');
 
   function hasDecision(){ return localStorage.getItem(CKEY) !== null }
   function showBanner(){ banner.style.display = 'flex' }
@@ -1380,6 +1384,7 @@
   if (reject) reject.addEventListener('click', ()=>{ localStorage.setItem(CKEY,'rejected'); hideBanner(); });
   if (manage) manage.addEventListener('click', ()=>{ hideBanner(); setTimeout(()=>showBanner(), 15000); });
   if (openCookie) openCookie.addEventListener('click', (e)=>{ e.preventDefault(); showBanner(); });
+  if (openCookieFooter) openCookieFooter.addEventListener('click', (e)=>{ e.preventDefault(); showBanner(); });
 
   // Modals
   function qs(sel){ return document.querySelector(sel) }
