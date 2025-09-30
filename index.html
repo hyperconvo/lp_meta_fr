@@ -482,14 +482,8 @@
 <section id="pricing" class="pricing" aria-labelledby="pricing-title">
   <style>
   :root{
-    --blue:#2563EB;
-    --blue2:#3B82F6;
-    --green:#16A34A;
-    --text:#1F2937;
-    --muted:#6B7280;
-    --bg:#F9FAFB;
-    --card:#FFFFFF;
-    --line:#E5E7EB;
+    --blue:#2563EB; --blue2:#3B82F6; --green:#16A34A;
+    --text:#1F2937; --muted:#6B7280; --bg:#F9FAFB; --card:#FFFFFF; --line:#E5E7EB;
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;color:var(--text);background:transparent}
@@ -501,70 +495,28 @@
   .head h2{margin:0 0 10px;font-size:32px;line-height:1.2;font-weight:800}
   .head p{margin:0;color:var(--muted);font-size:16px}
 
-  .pricing .grid{
-    display:grid;gap:22px;
-    grid-template-columns:repeat(3,minmax(0,1fr));
-    align-items:stretch;
-  }
-  @media (max-width: 960px){
-    .pricing .grid{grid-template-columns:1fr}
-    /* Mettre Performance en premier sur mobile */
-    .pricing .card.reco{order:-1}
-  }
+  .pricing .grid{display:grid;gap:22px;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
+  @media (max-width: 960px){.pricing .grid{grid-template-columns:1fr}.pricing .card.reco{order:-1}}
 
-  .card{
-    position:relative;
-    display:flex;flex-direction:column;justify-content:space-between;
-    border-radius:20px;background:var(--card);
-    border:1px solid var(--line);
-    padding:28px;
-    box-shadow:0 2px 10px rgba(0,0,0,.04);
-    transition:transform .2s ease, box-shadow .2s ease;
-  }
+  .card{position:relative;display:flex;flex-direction:column;justify-content:space-between;border-radius:20px;background:var(--card);border:1px solid var(--line);padding:28px;box-shadow:0 2px 10px rgba(0,0,0,.04);transition:transform .2s ease, box-shadow .2s ease}
   .card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.08)}
   .card.reco{border:2px solid var(--blue2)}
-  .badge{
-    position:absolute;top:14px;right:14px;
-    background:linear-gradient(90deg,var(--blue),var(--green));color:#fff;
-    font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px
-  }
-  .chip{
-    display:inline-block;margin-top:6px;
-    font-size:12px;font-weight:700;color:var(--blue);
-    background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.25);
-    padding:4px 8px;border-radius:999px
-  }
+  .badge{position:absolute;top:14px;right:14px;background:linear-gradient(90deg,var(--blue),var(--green));color:#fff;font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px}
+  .chip{display:inline-block;margin-top:6px;font-size:12px;font-weight:700;color:var(--blue);background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.25);padding:4px 8px;border-radius:999px}
   .plan{font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.2px}
   .price{margin:0 0 16px;font-size:40px;font-weight:900}
   .period{font-size:14px;color:var(--muted);font-weight:600}
 
   ul.features{list-style:none;margin:12px 0 24px;padding:0}
-  ul.features li{
-    display:grid;grid-template-columns:20px 1fr;gap:10px;
-    align-items:flex-start;margin:10px 0
-  }
-  .tick{
-    width:18px;height:18px;border-radius:50%;
-    background:linear-gradient(90deg,var(--blue),var(--green));
-    position:relative;margin-top:2px
-  }
-  .tick:after{
-    content:"";position:absolute;left:5px;top:3px;width:6px;height:10px;
-    border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)
-  }
+  ul.features li{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:flex-start;margin:10px 0}
+  .tick{width:18px;height:18px;border-radius:50%;background:linear-gradient(90deg,var(--blue),var(--green));position:relative;margin-top:2px}
+  .tick:after{content:"";position:absolute;left:5px;top:3px;width:6px;height:10px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
 
-  .btn{
-    display:inline-flex;align-items:center;justify-content:center;
-    height:50px;border-radius:12px;font-weight:800;font-size:16px;
-    text-decoration:none;transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
-    will-change:transform; margin-top:auto;
-  }
+  .btn{display:inline-flex;align-items:center;justify-content:center;height:50px;border-radius:12px;font-weight:800;font-size:16px;text-decoration:none;transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;will-change:transform;margin-top:auto}
   .btn:hover{transform:translateY(-2px);opacity:.95}
   .btn-primary{color:#fff;background:linear-gradient(90deg,var(--blue),var(--green));box-shadow:0 6px 18px rgba(37,99,235,.25)}
   .btn-outline{color:#2563EB;background:#fff;border:2px solid #3B82F6}
   .note{margin-top:12px;font-size:13px;color:#6B7280;text-align:center}
-
-  /* Empêcher les coupures moches sur certaines expressions FR */
   .nowrap{white-space:nowrap}
   </style>
 
@@ -588,7 +540,10 @@
             <li><span class="tick"></span><span><strong>Score global</strong> + <strong>5 actions prioritaires</strong></span></li>
           </ul>
         </div>
-        <a class="btn btn-outline" href="https://buy.stripe.com/4gM4gzaw3bPXfqG7h65gc00" target="_blank" rel="noopener noreferrer">Choisir Essentiel — 19&nbsp;€</a>
+        <a class="btn btn-outline js-stripe-btn"
+           data-plan="Essentiel"
+           href="https://buy.stripe.com/4gM4gzaw3bPXfqG7h65gc00?utm_source=meta&utm_medium=ads&utm_campaign=hc_audit"
+           target="_blank" rel="noopener noreferrer">Choisir Essentiel — 19&nbsp;€</a>
       </article>
 
       <!-- 49 € Performance (reco) -->
@@ -605,7 +560,10 @@
             <li><span class="tick"></span><span>Conseils classés par <strong>impact</strong> et <strong>effort</strong></span></li>
           </ul>
         </div>
-        <a class="btn btn-primary" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01" target="_blank" rel="noopener noreferrer">Choisir Performance — 49&nbsp;€</a>
+        <a class="btn btn-primary js-stripe-btn"
+           data-plan="Performance"
+           href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?utm_source=meta&utm_medium=ads&utm_campaign=hc_audit"
+           target="_blank" rel="noopener noreferrer">Choisir Performance — 49&nbsp;€</a>
       </article>
 
       <!-- 99 € Expert Local -->
@@ -621,12 +579,14 @@
             <li><span class="tick"></span><span>Synthèse priorisée + <strong>plan d’action local</strong></span></li>
           </ul>
         </div>
-        <a class="btn btn-outline" href="https://buy.stripe.com/7sY9ATeMjbPX2DUgRG5gc02" target="_blank" rel="noopener noreferrer">Choisir Expert — 99&nbsp;€</a>
+        <a class="btn btn-outline js-stripe-btn"
+           data-plan="Expert Local"
+           href="https://buy.stripe.com/7sY9ATeMjbPX2DUgRG5gc02?utm_source=meta&utm_medium=ads&utm_campaign=hc_audit"
+           target="_blank" rel="noopener noreferrer">Choisir Expert — 99&nbsp;€</a>
       </article>
 
     </div>
 
-    <!-- Rassurance globale -->
     <p class="note" style="text-align:center;margin-top:16px">
       Paiement sécurisé par Stripe • Rapport ~3&nbsp;min • Assisté par IA • Facture envoyée par e-mail
     </p>
@@ -1490,6 +1450,34 @@
   });
 
   qsa('.hc-d-close').forEach(btn => btn.addEventListener('click', ()=> closeModal(btn.dataset.close)));
+})();
+</script>
+
+<script>
+(function(){
+  // Map des prix pour les events
+  const price = { 'Essentiel': 19, 'Performance': 49, 'Expert Local': 99 };
+
+  document.querySelectorAll('.js-stripe-btn').forEach(function(a){
+    a.addEventListener('click', function(){
+      const plan = a.getAttribute('data-plan') || 'Unknown';
+      const value = price[plan] || 0;
+
+      // Event standard pour l’entonnoir
+      fbq('track', 'InitiateCheckout', {
+        content_name: plan,
+        value: value,
+        currency: 'EUR'
+      });
+
+      // Event custom pour suivi plus granulaire
+      fbq('trackCustom', 'StripeCTA', {
+        plan: plan,
+        value: value,
+        currency: 'EUR'
+      });
+    }, {passive:true});
+  });
 })();
 </script>
 
