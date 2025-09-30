@@ -408,6 +408,59 @@
 
   /* SVG gauge sizing */
   .gauge{width:86px;height:86px}
+
+  /* === HERO — Mobile overrides only === */
+  @media (max-width: 640px){
+
+    /* 1) Titre plus grand + meilleur wrap */
+    #hero .title{
+      font-size: clamp(34px, 8.5vw, 56px);
+      line-height: 1.05;
+      text-wrap: balance;
+      letter-spacing: -.02em;
+    }
+
+    /* 2) Pills en grille 2x2 (centrées) */
+    #hero .pills{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    #hero .pill{
+      flex: 1 1 calc(50% - 12px); /* deux par ligne */
+      max-width: calc(50% - 12px);
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* 3) Preuve sociale sur 2 lignes :
+          - ligne 1 : "Plus de 500 entreprises..."
+          - ligne 2 : étoiles + "4,9/5 (127 avis)" */
+    #hero .proof{
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;         /* autorise le retour à la ligne */
+      font-size: 14px;
+      text-align: center;
+    }
+    #hero .proof > :first-child{
+      flex: 0 0 100%;          /* occupe toute la ligne 1 */
+      white-space: nowrap;     /* reste sur une seule ligne */
+    }
+    #hero .proof .stars,
+    #hero .proof > :nth-child(3){
+      white-space: nowrap;     /* étoiles + note restent sur la même ligne */
+    }
+
+    /* Optionnel (confort) : CTA plus larges sur mobile */
+    #hero .cta-row{
+      justify-content: center;
+    }
+    #hero .cta-row .btn{
+      width: min(320px, 100%);
+    }
+  }
   </style>
 
   <div class="container">
@@ -490,6 +543,7 @@
 
   </div>
 </section>
+  
 
 <!-- ===== 3. PRICING ===== -->
 <section id="pricing" class="pricing" aria-labelledby="pricing-title">
