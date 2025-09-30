@@ -295,145 +295,84 @@
   </div>
 </header>
 
-<!-- ===== 2. HERO ===== -->
+<!-- ===== 2. HERO (MOBILE OPTIMIZED) ===== -->
 <section id="hero" class="hero" aria-label="Section d’introduction HyperConvo">
   <style>
-  :root{
-    --blue:#2563EB;        /* primaire */
-    --blue2:#3B82F6;       /* accent */
-    --green:#16A34A;       /* secondaire */
-    --text:#0F172A;        /* slate-900 */
-    --muted:#64748B;       /* slate-500 */
-    --bg:#F8FAFC;          /* slate-50 */
-    --card:#FFFFFF;
-    --chip:#EEF2FF;        /* indigo-50 */
-    --line:#E2E8F0;        /* slate-200 */
-    --warning:#F59E0B;     /* orange pour étoiles */
-  }
+    :root{
+      --blue:#2563EB; --blue2:#3B82F6; --green:#16A34A;
+      --text:#0F172A; --muted:#64748B; --bg:#F8FAFC; --card:#FFFFFF;
+      --line:#E2E8F0; --warning:#F59E0B;
+    }
+    .hero{padding:72px 20px}
+    .hero .container{
+      max-width:1200px;margin:0 auto;
+      display:grid;grid-template-columns:1.15fr 0.85fr;gap:40px;align-items:center;
+    }
+    @media(max-width:980px){.hero .container{grid-template-columns:1fr;gap:28px}}
 
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(22,163,74,.12);color:var(--green);
+      border:1px solid rgba(22,163,74,.25);font-weight:700;font-size:14px;padding:6px 12px;border-radius:999px;margin-bottom:18px}
+    .title{font-size:48px;line-height:1.1;font-weight:900;margin:0 0 16px;letter-spacing:-.02em}
+    .title .em1{color:var(--blue2)}
+    .subtitle{font-size:18px;line-height:1.55;color:var(--muted);margin:0 0 28px;max-width:680px}
 
-  .hero{
-    padding:72px 20px;
-  }
-  .container{
-    max-width:1200px;margin:0 auto;
-    display:grid;grid-template-columns:1.15fr 0.85fr;gap:40px;align-items:center;
-  }
-  @media (max-width: 980px){
-    .container{grid-template-columns:1fr;gap:28px}
-  }
+    /* Pills */
+    .pills{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 24px}
+    .pill{background:#EDF2F7;border:1px solid var(--line);color:var(--text);padding:10px 14px;border-radius:14px;font-weight:600;display:flex;align-items:center;gap:8px}
 
-  /* Left */
-  .badge{
-    display:inline-flex;align-items:center;gap:8px;
-    background:rgba(22,163,74,.12);color:var(--green);
-    border:1px solid rgba(22,163,74,.25);
-    font-weight:700;font-size:14px;padding:6px 12px;border-radius:999px;margin-bottom:18px
-  }
-  .title{
-    font-size:48px;line-height:1.1;font-weight:900;margin:0 0 16px;
-    letter-spacing:-.02em;
-  }
-  .title .em1{color:var(--blue2)}
-  .subtitle{
-    font-size:18px;line-height:1.55;color:var(--muted);margin:0 0 28px;max-width:680px
-  }
-  .pills{
-    display:flex;flex-wrap:wrap;gap:14px;margin:0 0 24px
-  }
-  .pill{
-    background:#EDF2F7;border:1px solid var(--line);color:var(--text);
-    padding:10px 14px;border-radius:14px;font-weight:600;display:flex;align-items:center;gap:8px
-  }
-  .proof{
-    display:flex;align-items:center;gap:18px;color:var(--muted);font-size:15px
-  }
-  .stars{color:var(--warning)}
+    /* Proof / reviews strip */
+    .proof{display:flex;align-items:center;gap:18px;color:var(--muted);font-size:15px;margin-bottom:20px}
+    .stars{color:var(--warning)}
 
-  .cta-row{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
-  .btn{
-    height:52px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;
-    padding:0 18px;font-weight:800;text-decoration:none;transition:.15s ease;will-change:transform,opacity
-  }
-  .btn:hover{transform:translateY(-2px);opacity:.95}
-  .btn-primary{color:#fff;background:linear-gradient(90deg,var(--blue),var(--green))}
-  .btn-ghost{color:var(--blue);background:#fff;border:2px solid var(--blue2)}
+    /* CTA row - mobile centric */
+    .cta-row{margin-top:26px;display:flex;flex-direction:column;gap:12px;align-items:center}
+    .btn{height:56px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;
+      width:100%;max-width:320px;padding:0 18px;font-weight:800;font-size:16px;text-decoration:none;transition:.15s ease}
+    .btn:hover{transform:translateY(-2px);opacity:.95}
+    .btn-primary{color:#fff;background:linear-gradient(90deg,var(--blue),var(--green))}
+    .btn-ghost{color:var(--blue);background:#fff;border:2px solid var(--blue2)}
 
-  /* Right card (preview) */
-  .preview{
-    position:relative;
-    background:var(--card);border:1px solid var(--line);border-radius:20px;
-    padding:26px;box-shadow:0 10px 30px rgba(2,6,23,.06);
-    overflow:hidden;
-  }
-  .blob{
-    position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;
-    background:radial-gradient(circle at 30% 30%, rgba(37,99,235,.15), transparent 55%),
-               radial-gradient(circle at 70% 70%, rgba(22,163,74,.12), transparent 60%);
-    pointer-events:none;
-  }
-  .preview h3{margin:0 0 12px;font-size:18px;color:var(--muted);font-weight:800;letter-spacing:.02em}
-  .score-wrap{
-    display:flex;align-items:center;gap:16px;margin:10px 0 18px
-  }
-  .score-labels{
-    display:flex;flex-direction:column;gap:4px
-  }
-  .score-title{font-weight:900}
-  .score-sub{font-size:13px;color:var(--muted)}
-  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 16px}
-  .chip{
-    padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;
-    border:1px solid rgba(37,99,235,.25);color:var(--blue);
-    background:rgba(37,99,235,.08)
-  }
-  .chip.green{
-    border-color:rgba(22,163,74,.25);color:var(--green);background:rgba(22,163,74,.08)
-  }
-  .list{list-style:none;margin:8px 0 18px;padding:0}
-  .list li{
-    display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:flex-start;margin:10px 0
-  }
-  .tick{
-    width:18px;height:18px;border-radius:50%;
-    background:linear-gradient(90deg,var(--blue),var(--green));position:relative;margin-top:2px
-  }
-  .tick:after{
-    content:"";position:absolute;left:5px;top:3px;width:6px;height:10px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)
-  }
-  .mini-note{font-size:12px;color:var(--muted)}
-  .divider{height:1px;background:var(--line);margin:14px 0}
+    /* Right preview card */
+    .preview{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;
+      padding:26px;box-shadow:0 10px 30px rgba(2,6,23,.06);overflow:hidden}
+    .blob{position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, rgba(37,99,235,.15), transparent 55%),
+                 radial-gradient(circle at 70% 70%, rgba(22,163,74,.12), transparent 60%);
+      pointer-events:none}
+    .preview h3{margin:0 0 12px;font-size:18px;color:var(--muted);font-weight:800;letter-spacing:.02em}
 
-  /* SVG gauge sizing */
-  .gauge{width:86px;height:86px}
+    /* Mobile tweaks */
+    @media(max-width:640px){
+      .title{font-size:34px}
+      .subtitle{font-size:16px}
+      .pills{justify-content:center}
+      .proof{flex-direction:column;text-align:center;gap:6px}
+    }
   </style>
 
   <div class="container">
-
     <!-- LEFT -->
     <div>
       <div class="badge">🤖 Audit SEO automatisé</div>
-      <h1 class="title">Votre audit SEO local <span class="em1">automatisé en 3 minutes</span></h1>
-      <p class="subtitle">Découvrez exactement ce qui empêche votre site d’apparaître en première page des recherches locales. Rapport détaillé avec <strong>5 actions prioritaires</strong>. Analyse assistée par IA, 100 % automatisée et basée sur des données réelles.</p>
+      <h1 class="title">Votre <span class="em1">audit SEO local</span><br> livré en 3&nbsp;minutes</h1>
+      <p class="subtitle">Identifiez immédiatement ce qui bloque votre site dans Google Local. Recevez un rapport clair avec <strong>5 actions prioritaires</strong> à corriger.</p>
 
       <div class="pills">
-        <div class="pill">⏱️ Analyse en 3 min</div>
+        <div class="pill">⏱️ Analyse rapide</div>
         <div class="pill">🔒 Paiement sécurisé</div>
         <div class="pill">✅ Actions concrètes</div>
-        <div class="pill">🏆 Résultats garantis</div>
+        <div class="pill">🏆 Résultats prouvés</div>
       </div>
 
       <div class="proof">
-        <div>🌐 Plus de 500 entreprises nous font confiance</div>
         <div class="stars">★★★★★</div>
         <div>4,9/5 (127 avis)</div>
+        <div>+500 entreprises satisfaites</div>
       </div>
 
       <div class="cta-row">
-        <a href="#pricing" class="btn btn-primary">Commencer mon audit</a>
-        <a href="#pricing" class="btn btn-ghost">Voir les tarifs</a>
+        <a href="#pricing" class="btn btn-primary">🚀 Commencer mon audit</a>
+        <a href="#pricing" class="btn btn-ghost">Voir les formules</a>
       </div>
     </div>
 
@@ -441,53 +380,8 @@
     <aside class="preview" aria-label="Aperçu du rapport généré">
       <div class="blob" aria-hidden="true"></div>
       <h3>Aperçu du rapport</h3>
-
-      <!-- Score gauge + labels -->
-      <div class="score-wrap">
-        <!-- Circular gauge (SVG) -->
-        <svg class="gauge" viewBox="0 0 120 120" role="img" aria-label="Score global 86 sur 100">
-          <defs>
-            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#2563EB"/>
-              <stop offset="100%" stop-color="#16A34A"/>
-            </linearGradient>
-          </defs>
-          <!-- background circle -->
-          <circle cx="60" cy="60" r="50" fill="none" stroke="#E2E8F0" stroke-width="12" />
-          <!-- progress -->
-          <!-- circumference = 2πr ≈ 314 ; 86% => stroke-dasharray 270,314 -->
-          <circle cx="60" cy="60" r="50" fill="none" stroke="url(#grad)" stroke-width="12"
-                  stroke-linecap="round"
-                  stroke-dasharray="270 314" transform="rotate(-90 60 60)"/>
-          <!-- center text -->
-          <text x="60" y="65" text-anchor="middle" font-size="28" font-weight="800" fill="#0F172A">86</text>
-        </svg>
-
-        <div class="score-labels">
-          <div class="score-title">Score global</div>
-          <div class="score-sub">5 priorités à corriger</div>
-        </div>
-      </div>
-
-      <!-- Chips metrics -->
-      <div class="chips">
-        <span class="chip">PageSpeed Mobile: 78</span>
-        <span class="chip green">PageSpeed Desktop: 92</span>
-        <span class="chip green">Google Business: trouvé</span>
-      </div>
-
-      <!-- Checklist -->
-      <ul class="list">
-        <li><span class="tick"></span><span>Balise <strong>Title</strong> trop longue — suggestion fournie</span></li>
-        <li><span class="tick"></span><span>Méta description manquante sur 2 pages</span></li>
-        <li><span class="tick"></span><span>Améliorer <strong>H1</strong> & structure Hn</span></li>
-        <li><span class="tick"></span><span>NAP incohérent entre site & Google Business</span></li>
-      </ul>
-
-      <div class="divider"></div>
-      <div class="mini-note">Exemple d’aperçu. Le score et les priorités sont générés automatiquement par IA pour votre site réel.</div>
+      <!-- tu gardes ici ton code gauge/score déjà existant -->
     </aside>
-
   </div>
 </section>
 
