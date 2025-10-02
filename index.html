@@ -1616,36 +1616,51 @@
 
 <script>
 (function(){
-  // ===== Config =====
+  // ===== Config globale =====
   const PROMO_CODE = 'HC30';
   const PROMO_PARAM = 'promo=' + PROMO_CODE;
   const ELIGIBLE = new Set(['Performance','Expert Local']); // -30% réservé à ces plans
-  const LS_KEY = 'hc_promo_end_at_v1';                      // stockage end date
-  const PERIOD_MS = 7 * 24 * 60 * 60 * 1000;               // 7 jours
 
   const el   = document.getElementById('hcPromo');
   const cta  = document.getElementById('hcPromoCta');
   const cd2  = document.getElementById('hcPromoCountdownLive');
   if(!el) return;
 
-  // ===== End date evergreen (7j) =====
-  function getEndAt(){
-    const raw = localStorage.getItem(LS_KEY);
-    let t = raw ? parseInt(raw, 10) : NaN;
-    if (!t || isNaN(t) || t < Date.now()) {
-      t = Date.now() + PERIOD_MS;
-      localStorage.setItem(LS_KEY, String(t));
-    }
-    return new Date(t);
-  }
-  function renewEndAt(){
-    const t = Date.now() + PERIOD_MS;
-    localStorage.setItem(LS_KEY, String(t));
-    return new Date(t);
-  }
-  let END_AT = getEndAt();
+  // Brisbane n'a pas de DST (UTC+10 toute l'année)
+  const BRISBANE_OFFSET_MS = 10 * 60 * 60 * 1000; // +10:00
 
-  // ===== Compense la hauteur de la bannière =====
+  // Retourne le timestamp (Date) du PROCHAIN dimanche 23:59:59 en heure de Brisbane
+  function nextSunday2359Brisbane(){
+    const nowUTC = new Date();
+    // Représentation "locale Brisbane" en ajoutant l'offset
+    const nowBris = new Date(nowUTC.getTime() + BRISBANE_OFFSET_MS);
+
+    const y = nowBris.getUTCFullYear();
+    const m = nowBris.getUTCMonth();
+    const d = nowBris.getUTCDate();
+
+    // Dimanche = 0 dans getUTCDay()
+    const day = nowBris.getUTCDay();
+    let daysToSunday = (7 - day) % 7; // si on est dimanche => 0
+
+    // 23:59:59 "aujourd'hui" en Brisbane (toujours dans la représentation "brisbane")
+    const todayEndBris = new Date(Date.UTC(y, m, d, 23, 59, 59));
+
+    // Si on est dimanche et qu'il est déjà > 23:59:59, on prend dimanche prochain
+    if (daysToSunday === 0 && nowBris.getTime() > todayEndBris.getTime()){
+      daysToSunday = 7;
+    }
+
+    // Date "brisbane" du prochain dimanche 23:59:59
+    const targetBris = new Date(Date.UTC(y, m, d + daysToSunday, 23, 59, 59));
+
+    // Convertit en UTC réel en RETIRANT l'offset
+    return new Date(targetBris.getTime() - BRISBANE_OFFSET_MS);
+  }
+
+  let END_AT = nextSunday2359Brisbane();
+
+  // Compense la hauteur de la bannière (évite qu'elle masque le header)
   function applyPromoOffset(){
     const h = el.getBoundingClientRect().height || 0;
     document.body.style.paddingTop = h + 'px';
@@ -1654,7 +1669,7 @@
   window.addEventListener('resize', applyPromoOffset, {passive:true});
   window.addEventListener('load', applyPromoOffset, {once:true});
 
-  // ===== Countdown =====
+  // Countdown format
   function fmt(ms){
     if(ms <= 0) return '0 j 00:00:00';
     const s = Math.floor(ms/1000);
@@ -1664,17 +1679,20 @@
     const ss = (s%60).toString().padStart(2,'0');
     return `${d} j ${h}:${m}:${ss}`;
   }
+
+  // Tick: si on passe l'échéance, on repart sur le PROCHAIN dimanche (global)
   function tick(){
-    let left = END_AT - Date.now();
-    if(left <= 0){
-      END_AT = renewEndAt();       // 🔁 repart pour 7 jours
-      left = END_AT - Date.now();
+    const left = END_AT - Date.now();
+    if (left <= 0){
+      END_AT = nextSunday2359Brisbane(); // nouvelle échéance globale
+      cd2 && (cd2.textContent = fmt(END_AT - Date.now()));
+      return;
     }
-    if(cd2) cd2.textContent = fmt(left);
+    cd2 && (cd2.textContent = fmt(left));
   }
   const iv = setInterval(tick, 1000); tick();
 
-  // ===== CTA : tracking + ?promo=HC30 dans l’URL =====
+  // Tracking + ?promo=HC30 dans l’URL (utile pour Analytics)
   cta && cta.addEventListener('click', function(){
     try{ if(typeof fbq === 'function'){ fbq('trackCustom','PromoBannerClick', { promo: PROMO_CODE }); } }catch(_){}
     const loc = new URL(window.location.href);
@@ -1684,7 +1702,7 @@
     }
   }, {passive:true});
 
-  // ===== N’ajoute la promo QUE sur les boutons Stripe éligibles =====
+  // Ajoute le param promo UNIQUEMENT aux boutons Stripe éligibles
   function attachPromoToStripe(){
     document.querySelectorAll('.js-stripe-btn').forEach(function(a){
       const plan = a.getAttribute('data-plan') || '';
@@ -1692,7 +1710,7 @@
       try{
         const u = new URL(a.href);
         if(!u.searchParams.has('promo')){
-          u.search += (u.search ? '&' : '') + PROMO_PARAM;
+          u.search += (u.search ? '&' : '') + ('promo=' + PROMO_CODE);
           a.href = u.toString();
         }
       }catch(_){}
