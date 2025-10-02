@@ -100,8 +100,9 @@
 
 </style>
 
-<!-- === Promo Banner CSS (ajout) === -->
 <style>
+:root{ --promo-h:0px } /* hauteur bannière (maj par JS) */
+
 /* Promo banner */
 .hc-promo, .hc-promo *{ box-sizing:border-box; font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Arial,sans-serif }
 .hc-promo{
@@ -115,12 +116,7 @@
   display:grid; grid-template-columns:1fr auto; gap:10px; align-items:center;
   padding:10px 16px; position:relative;
 }
-.hc-promo__close{
-  position:absolute; right:10px; top:8px; width:32px; height:32px; border-radius:10px;
-  background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.3);
-  cursor:pointer; font-weight:800;
-}
-.hc-promo__close:hover{ background:rgba(255,255,255,.18) }
+/* on supprime complètement le bouton close */
 .hc-promo__marquee{
   overflow:hidden; mask-image:linear-gradient(to right,transparent 0,#000 8%,#000 92%,transparent 100%);
   height:24px; display:flex; align-items:center;
@@ -140,10 +136,13 @@
   box-shadow:0 6px 18px rgba(255,255,255,.25); border:2px solid rgba(255,255,255,.8);
 }
 .hc-promo__btn:hover{ transform:translateY(-1px); opacity:.95 }
-@media (max-width: 860px){ .hc-promo__inner{ grid-template-columns:1fr } .hc-promo__content{ justify-content:space-between } .hc-promo__close{ top:10px } }
+
+/* IMPORTANT: le header colle sous la bannière sans chevaucher */
+.hc-header{ top:var(--promo-h,0px) !important; z-index:1000; }
+
+@media (max-width: 860px){ .hc-promo__inner{ grid-template-columns:1fr } .hc-promo__content{ justify-content:space-between } }
 @media (max-width: 520px){ .hc-promo__text{ font-size:14px } .hc-promo__btn{ height:36px } }
 </style>
-<!-- === Fin Promo Banner CSS === -->
 
 <script type="application/ld+json">
 {
@@ -347,31 +346,30 @@
   </div>
 </header>
 
-<!-- === Promo Banner HTML (ajout) === -->
+<!-- === Promo Banner (HC30) — AVANT le header === -->
 <div class="hc-promo" id="hcPromo" role="region" aria-label="Promotion limitée">
   <div class="hc-promo__inner">
-    <button class="hc-promo__close" id="hcPromoClose" aria-label="Fermer l’annonce">✕</button>
+    <!-- Pas de bouton close -->
 
     <!-- Texte défilant -->
     <div class="hc-promo__marquee" aria-hidden="true">
       <div class="hc-promo__track">
-        <span>Il reste <b id="hcPromoCountdown">2 j 00:00:00</b> pour profiter de -30 % avec le code <b>HC30</b>.</span>
-        <span>Essentiel, Performance, Expert. Paiement sécurisé Stripe.</span>
-        <span>Rapport livré en ~3 minutes.</span>
+        <span>-30 % sur <b>Performance</b> & <b>Expert Local</b> avec <b>HC30</b></span>
+        <span>Rapport livré en ~3 minutes</span>
+        <span>Paiement sécurisé Stripe</span>
       </div>
     </div>
 
     <!-- Contenu accessible + CTA -->
     <div class="hc-promo__content">
       <div class="hc-promo__text">
-        <strong>-30 %</strong> sur tous les audits avec <b>HC30</b>. Se termine dans
+        <strong>-30 %</strong> sur <b>Performance</b> & <b>Expert Local</b> avec <b>HC30</b>. Se termine dans
         <b id="hcPromoCountdownLive" aria-live="polite">2 j 00:00:00</b>
       </div>
       <a href="#pricing" class="hc-promo__btn" id="hcPromoCta">Profiter de l’offre</a>
     </div>
   </div>
 </div>
-<!-- === Fin Promo Banner HTML === -->
 
 <!-- ===== 2. HERO ===== -->
 <section id="hero" class="hero" aria-label="Section d’introduction HyperConvo">
@@ -1618,31 +1616,32 @@
 })();
 </script>
 
-<!-- === JS Bannière promo HC30 (compte à rebours 2 jours) === -->
 <script>
 (function(){
-  // Config
-  const END_AT = new Date(Date.now() + 2*24*60*60*1000); // ou ex: new Date('2025-10-04T23:59:59+10:00')
+  // ===== Config =====
+  // 2 jours rolling, ou mets une date fixe Brisbane: new Date('2025-10-04T23:59:59+10:00')
+  const END_AT = new Date(Date.now() + 2*24*60*60*1000);
   const PROMO_CODE = 'HC30';
   const PROMO_PARAM = 'promo=' + PROMO_CODE;
-  const KEY_HIDE = 'hc_promo_hidden_until';
-  const HIDE_DAYS = 7;
+  const ELIGIBLE = new Set(['Performance','Expert Local']); // -30% seulement pour ces plans
 
   const el   = document.getElementById('hcPromo');
-  const xBtn = document.getElementById('hcPromoClose');
   const cta  = document.getElementById('hcPromoCta');
-  const cd1  = document.getElementById('hcPromoCountdown');
   const cd2  = document.getElementById('hcPromoCountdownLive');
 
   if(!el) return;
 
-  // Masquer si fermé récemment
-  try{
-    const hiddenUntil = localStorage.getItem(KEY_HIDE);
-    if(hiddenUntil && Date.now() < Number(hiddenUntil)){ el.style.display = 'none'; return; }
-  }catch(_){}
+  // ===== Ajuste l’offset du header pour ne jamais chevaucher =====
+  function setHeaderOffset(){
+    const h = el.getBoundingClientRect().height || 0;
+    document.documentElement.style.setProperty('--promo-h', h + 'px');
+  }
+  setHeaderOffset();
+  // re-calc sur resize et au prochain frame (pour police/FOIT)
+  window.addEventListener('resize', setHeaderOffset, {passive:true});
+  requestAnimationFrame(setHeaderOffset);
 
-  // Countdown
+  // ===== Countdown =====
   function fmt(ms){
     if(ms <= 0) return '0 j 00:00:00';
     const s = Math.floor(ms/1000);
@@ -1655,19 +1654,17 @@
   function tick(){
     const left = END_AT - Date.now();
     const val = fmt(left);
-    if(cd1) cd1.textContent = val;
     if(cd2) cd2.textContent = val;
-    if(left <= 0){ el.style.display = 'none'; clearInterval(iv); }
+    if(left <= 0){
+      // Fin promo: on masque la bannière et on remet le header à 0
+      el.style.display = 'none';
+      document.documentElement.style.setProperty('--promo-h', '0px');
+      clearInterval(iv);
+    }
   }
   const iv = setInterval(tick, 1000); tick();
 
-  // Close + persist
-  xBtn && xBtn.addEventListener('click', function(){
-    el.style.display = 'none';
-    try{ localStorage.setItem(KEY_HIDE, String(Date.now() + HIDE_DAYS*864e5)); }catch(_){}
-  }, {passive:true});
-
-  // CTA : tracking + ajout ?promo=HC30 à l'URL et aux liens Stripe
+  // ===== CTA bannière : tracking + ajoute ?promo=HC30 dans l’URL =====
   cta && cta.addEventListener('click', function(){
     try{ if(typeof fbq === 'function'){ fbq('trackCustom','PromoBannerClick', { promo: PROMO_CODE }); } }catch(_){}
     const loc = new URL(window.location.href);
@@ -1677,9 +1674,12 @@
     }
   }, {passive:true});
 
+  // ===== N’ajoute la promo que sur les boutons Stripe éligibles =====
   function attachPromoToStripe(){
     if(Date.now() >= END_AT.getTime()) return;
     document.querySelectorAll('.js-stripe-btn').forEach(function(a){
+      const plan = a.getAttribute('data-plan') || '';
+      if(!ELIGIBLE.has(plan)) return;
       try{
         const u = new URL(a.href);
         if(!u.searchParams.has('promo')){
@@ -1690,7 +1690,7 @@
     });
   }
   attachPromoToStripe();
-  setTimeout(attachPromoToStripe, 1500);
+  setTimeout(attachPromoToStripe, 1500); // au cas où le DOM se charge plus tard
 })();
 </script>
 
