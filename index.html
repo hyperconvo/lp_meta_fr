@@ -317,17 +317,6 @@
   </div>
 </header>
 
-<!-- === Promo Banner (HC30) — AVANT le header === -->
-<div class="hc-promo" id="hcPromo" role="region" aria-label="Promotion limitée">
-  <div class="hc-promo__inner">
-    <div class="hc-promo__text">
-      <strong>-30 %</strong> sur les offres <b>"Performance"</b> & <b>"Expert Local"</b> avec le code promo <b>HC30</b>.
-      Se termine dans <b id="hcPromoCountdownLive" aria-live="polite">7 j 00:00:00</b>.
-    </div>
-    <a href="#pricing" class="hc-promo__btn" id="hcPromoCta">Profiter de l’offre</a>
-  </div>
-</div>
-
 <style>
 :root{ --promo-h:0px }
 
@@ -369,6 +358,16 @@
   .hc-promo__text{ font-size:14px }
 }
 </style>
+
+<div id="hcPromo" class="hc-promo">
+  <div class="hc-promo__inner">
+    <div class="hc-promo__text">
+      🎉 <strong>-30 % sur toutes les formules</strong> avec le code <strong>HC30</strong> · Offre se termine dans 
+      <span id="hcPromoCountdownLive">--:--</span>
+    </div>
+    <a id="hcPromoCta" href="#pricing" class="hc-promo__btn">Profiter de l’offre</a>
+  </div>
+</div>
 
 <!-- ===== 2. HERO ===== -->
 <section id="hero" class="hero" aria-label="Section d’introduction HyperConvo">
@@ -1619,7 +1618,6 @@
   // ===== Config globale =====
   const PROMO_CODE = 'HC30';
   const PROMO_PARAM = 'promo=' + PROMO_CODE;
-  const ELIGIBLE = new Set(['Performance','Expert Local']); // -30% réservé à ces plans
 
   const el   = document.getElementById('hcPromo');
   const cta  = document.getElementById('hcPromoCta');
@@ -1632,35 +1630,27 @@
   // Retourne le timestamp (Date) du PROCHAIN dimanche 23:59:59 en heure de Brisbane
   function nextSunday2359Brisbane(){
     const nowUTC = new Date();
-    // Représentation "locale Brisbane" en ajoutant l'offset
     const nowBris = new Date(nowUTC.getTime() + BRISBANE_OFFSET_MS);
 
     const y = nowBris.getUTCFullYear();
     const m = nowBris.getUTCMonth();
     const d = nowBris.getUTCDate();
 
-    // Dimanche = 0 dans getUTCDay()
     const day = nowBris.getUTCDay();
-    let daysToSunday = (7 - day) % 7; // si on est dimanche => 0
+    let daysToSunday = (7 - day) % 7;
 
-    // 23:59:59 "aujourd'hui" en Brisbane (toujours dans la représentation "brisbane")
     const todayEndBris = new Date(Date.UTC(y, m, d, 23, 59, 59));
 
-    // Si on est dimanche et qu'il est déjà > 23:59:59, on prend dimanche prochain
     if (daysToSunday === 0 && nowBris.getTime() > todayEndBris.getTime()){
       daysToSunday = 7;
     }
 
-    // Date "brisbane" du prochain dimanche 23:59:59
     const targetBris = new Date(Date.UTC(y, m, d + daysToSunday, 23, 59, 59));
-
-    // Convertit en UTC réel en RETIRANT l'offset
     return new Date(targetBris.getTime() - BRISBANE_OFFSET_MS);
   }
 
   let END_AT = nextSunday2359Brisbane();
 
-  // Compense la hauteur de la bannière (évite qu'elle masque le header)
   function applyPromoOffset(){
     const h = el.getBoundingClientRect().height || 0;
     document.body.style.paddingTop = h + 'px';
@@ -1669,7 +1659,6 @@
   window.addEventListener('resize', applyPromoOffset, {passive:true});
   window.addEventListener('load', applyPromoOffset, {once:true});
 
-  // Countdown format
   function fmt(ms){
     if(ms <= 0) return '0 j 00:00:00';
     const s = Math.floor(ms/1000);
@@ -1680,11 +1669,10 @@
     return `${d} j ${h}:${m}:${ss}`;
   }
 
-  // Tick: si on passe l'échéance, on repart sur le PROCHAIN dimanche (global)
   function tick(){
     const left = END_AT - Date.now();
     if (left <= 0){
-      END_AT = nextSunday2359Brisbane(); // nouvelle échéance globale
+      END_AT = nextSunday2359Brisbane();
       cd2 && (cd2.textContent = fmt(END_AT - Date.now()));
       return;
     }
@@ -1692,7 +1680,6 @@
   }
   const iv = setInterval(tick, 1000); tick();
 
-  // Tracking + ?promo=HC30 dans l’URL (utile pour Analytics)
   cta && cta.addEventListener('click', function(){
     try{ if(typeof fbq === 'function'){ fbq('trackCustom','PromoBannerClick', { promo: PROMO_CODE }); } }catch(_){}
     const loc = new URL(window.location.href);
@@ -1702,11 +1689,9 @@
     }
   }, {passive:true});
 
-  // Ajoute le param promo UNIQUEMENT aux boutons Stripe éligibles
+  // Ajoute le param promo à TOUS les boutons Stripe (toutes formules éligibles)
   function attachPromoToStripe(){
     document.querySelectorAll('.js-stripe-btn').forEach(function(a){
-      const plan = a.getAttribute('data-plan') || '';
-      if(!ELIGIBLE.has(plan)) return;
       try{
         const u = new URL(a.href);
         if(!u.searchParams.has('promo')){
