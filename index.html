@@ -100,6 +100,51 @@
 
 </style>
 
+<!-- === Promo Banner CSS (ajout) === -->
+<style>
+/* Promo banner */
+.hc-promo, .hc-promo *{ box-sizing:border-box; font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Arial,sans-serif }
+.hc-promo{
+  position:sticky; top:0; z-index:1200;
+  background:linear-gradient(90deg,var(--blue,#2563EB),var(--green,#16A34A));
+  color:#fff; border-bottom:1px solid rgba(255,255,255,.25);
+  box-shadow:0 6px 18px rgba(2,6,23,.15);
+}
+.hc-promo__inner{
+  max-width:var(--maxw,1100px); margin:0 auto;
+  display:grid; grid-template-columns:1fr auto; gap:10px; align-items:center;
+  padding:10px 16px; position:relative;
+}
+.hc-promo__close{
+  position:absolute; right:10px; top:8px; width:32px; height:32px; border-radius:10px;
+  background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.3);
+  cursor:pointer; font-weight:800;
+}
+.hc-promo__close:hover{ background:rgba(255,255,255,.18) }
+.hc-promo__marquee{
+  overflow:hidden; mask-image:linear-gradient(to right,transparent 0,#000 8%,#000 92%,transparent 100%);
+  height:24px; display:flex; align-items:center;
+}
+.hc-promo__track{
+  display:inline-flex; gap:36px; white-space:nowrap; padding-right:36px;
+  animation:hc-marquee 22s linear infinite;
+}
+.hc-promo__track span{ opacity:.95 }
+@keyframes hc-marquee { from{ transform:translateX(0) } to{ transform:translateX(-50%) } }
+@media (prefers-reduced-motion: reduce){ .hc-promo__track{ animation:none } }
+.hc-promo__content{ display:flex; align-items:center; gap:12px; justify-content:flex-end; flex-wrap:wrap }
+.hc-promo__text{ font-weight:700 }
+.hc-promo__btn{
+  display:inline-flex; align-items:center; justify-content:center; height:38px; padding:0 14px; border-radius:10px;
+  font-weight:900; text-decoration:none; background:#fff; color:var(--blue,#2563EB);
+  box-shadow:0 6px 18px rgba(255,255,255,.25); border:2px solid rgba(255,255,255,.8);
+}
+.hc-promo__btn:hover{ transform:translateY(-1px); opacity:.95 }
+@media (max-width: 860px){ .hc-promo__inner{ grid-template-columns:1fr } .hc-promo__content{ justify-content:space-between } .hc-promo__close{ top:10px } }
+@media (max-width: 520px){ .hc-promo__text{ font-size:14px } .hc-promo__btn{ height:36px } }
+</style>
+<!-- === Fin Promo Banner CSS === -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -301,6 +346,32 @@
     <a href="#pricing" class="hc-cta">Commencer mon audit</a>
   </div>
 </header>
+
+<!-- === Promo Banner HTML (ajout) === -->
+<div class="hc-promo" id="hcPromo" role="region" aria-label="Promotion limitée">
+  <div class="hc-promo__inner">
+    <button class="hc-promo__close" id="hcPromoClose" aria-label="Fermer l’annonce">✕</button>
+
+    <!-- Texte défilant -->
+    <div class="hc-promo__marquee" aria-hidden="true">
+      <div class="hc-promo__track">
+        <span>Il reste <b id="hcPromoCountdown">2 j 00:00:00</b> pour profiter de -30 % avec le code <b>HC30</b>.</span>
+        <span>Essentiel, Performance, Expert. Paiement sécurisé Stripe.</span>
+        <span>Rapport livré en ~3 minutes.</span>
+      </div>
+    </div>
+
+    <!-- Contenu accessible + CTA -->
+    <div class="hc-promo__content">
+      <div class="hc-promo__text">
+        <strong>-30 %</strong> sur tous les audits avec <b>HC30</b>. Se termine dans
+        <b id="hcPromoCountdownLive" aria-live="polite">2 j 00:00:00</b>
+      </div>
+      <a href="#pricing" class="hc-promo__btn" id="hcPromoCta">Profiter de l’offre</a>
+    </div>
+  </div>
+</div>
+<!-- === Fin Promo Banner HTML === -->
 
 <!-- ===== 2. HERO ===== -->
 <section id="hero" class="hero" aria-label="Section d’introduction HyperConvo">
@@ -1457,9 +1528,9 @@
   </div>
 
   <div class="hc-legal-inline" role="navigation" aria-label="Liens légaux">
-    <a href="#" data-modal="cgv" data-modal="cgv">CGV</a> ·
-    <a href="#" data-modal="privacy" data-modal="privacy">Confidentialité</a> ·
-    <a href="#" data-modal="mentions" data-modal="mentions">Mentions légales</a> ·
+    <a href="#" data-modal="cgv">CGV</a> ·
+    <a href="#" data-modal="privacy">Confidentialité</a> ·
+    <a href="#" data-modal="mentions">Mentions légales</a> ·
     <a href="#" id="openCookieFooter">Gérer les cookies</a>
   </div>
 
@@ -1503,7 +1574,7 @@
     function onKey(e){ if(e.key === 'Escape'){ closeModal(key) } }
     m._esc = onKey;
     document.addEventListener('keydown', onKey);
-    m.addEventListener('click', (e)=>{ if(e.target === m){ closeModal(key) } }, { once:true });
+    m.addEventListener('click', (e)=>{ if(e.target === m){ closeModal(key) } });
   }
   function closeModal(key){
     const m = MODS[key]; if(!m) return;
@@ -1527,9 +1598,9 @@
 })();
 </script>
 
+<!-- === Tracking Stripe (fbq) sur les CTA === -->
 <script>
 (function(){
-  // Map des prix pour les events
   const price = { 'Essentiel': 19, 'Performance': 49, 'Expert Local': 99 };
 
   document.querySelectorAll('.js-stripe-btn').forEach(function(a){
@@ -1537,21 +1608,89 @@
       const plan = a.getAttribute('data-plan') || 'Unknown';
       const value = price[plan] || 0;
 
-      // Event standard pour l’entonnoir
-      fbq('track', 'InitiateCheckout', {
-        content_name: plan,
-        value: value,
-        currency: 'EUR'
-      });
+      // Event standard entonnoir
+      try{ fbq('track', 'InitiateCheckout', { content_name: plan, value, currency: 'EUR' }); }catch(_){}
 
-      // Event custom pour suivi plus granulaire
-      fbq('trackCustom', 'StripeCTA', {
-        plan: plan,
-        value: value,
-        currency: 'EUR'
-      });
+      // Event custom
+      try{ fbq('trackCustom', 'StripeCTA', { plan, value, currency: 'EUR' }); }catch(_){}
     }, {passive:true});
   });
+})();
+</script>
+
+<!-- === JS Bannière promo HC30 (compte à rebours 2 jours) === -->
+<script>
+(function(){
+  // Config
+  const END_AT = new Date(Date.now() + 2*24*60*60*1000); // ou ex: new Date('2025-10-04T23:59:59+10:00')
+  const PROMO_CODE = 'HC30';
+  const PROMO_PARAM = 'promo=' + PROMO_CODE;
+  const KEY_HIDE = 'hc_promo_hidden_until';
+  const HIDE_DAYS = 7;
+
+  const el   = document.getElementById('hcPromo');
+  const xBtn = document.getElementById('hcPromoClose');
+  const cta  = document.getElementById('hcPromoCta');
+  const cd1  = document.getElementById('hcPromoCountdown');
+  const cd2  = document.getElementById('hcPromoCountdownLive');
+
+  if(!el) return;
+
+  // Masquer si fermé récemment
+  try{
+    const hiddenUntil = localStorage.getItem(KEY_HIDE);
+    if(hiddenUntil && Date.now() < Number(hiddenUntil)){ el.style.display = 'none'; return; }
+  }catch(_){}
+
+  // Countdown
+  function fmt(ms){
+    if(ms <= 0) return '0 j 00:00:00';
+    const s = Math.floor(ms/1000);
+    const d = Math.floor(s/86400);
+    const h = Math.floor((s%86400)/3600).toString().padStart(2,'0');
+    const m = Math.floor((s%3600)/60).toString().padStart(2,'0');
+    const ss = (s%60).toString().padStart(2,'0');
+    return `${d} j ${h}:${m}:${ss}`;
+  }
+  function tick(){
+    const left = END_AT - Date.now();
+    const val = fmt(left);
+    if(cd1) cd1.textContent = val;
+    if(cd2) cd2.textContent = val;
+    if(left <= 0){ el.style.display = 'none'; clearInterval(iv); }
+  }
+  const iv = setInterval(tick, 1000); tick();
+
+  // Close + persist
+  xBtn && xBtn.addEventListener('click', function(){
+    el.style.display = 'none';
+    try{ localStorage.setItem(KEY_HIDE, String(Date.now() + HIDE_DAYS*864e5)); }catch(_){}
+  }, {passive:true});
+
+  // CTA : tracking + ajout ?promo=HC30 à l'URL et aux liens Stripe
+  cta && cta.addEventListener('click', function(){
+    try{ if(typeof fbq === 'function'){ fbq('trackCustom','PromoBannerClick', { promo: PROMO_CODE }); } }catch(_){}
+    const loc = new URL(window.location.href);
+    if(!loc.search.includes('promo=')){
+      const q = loc.search ? loc.search + '&' + PROMO_PARAM : '?' + PROMO_PARAM;
+      history.replaceState(null, '', loc.pathname + q + loc.hash);
+    }
+  }, {passive:true});
+
+  function attachPromoToStripe(){
+    if(Date.now() >= END_AT.getTime()) return;
+    document.querySelectorAll('.js-stripe-btn').forEach(function(a){
+      try{
+        const u = new URL(a.href);
+        if(!u.searchParams.has('promo')){
+          u.search += (u.search ? '&' : '') + PROMO_PARAM;
+          a.href = u.toString();
+        }
+      }catch(_){}
+    });
+  }
+  attachPromoToStripe();
+  setTimeout(attachPromoToStripe, 1500);
 })();
 </script>
 
