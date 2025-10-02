@@ -101,12 +101,12 @@
 </style>
 
 <style>
-:root{ --promo-h:0px } /* hauteur bannière (maj par JS) */
+:root{ --promo-h:0px }
 
-/* Promo banner */
+/* Promo banner FIXED */
 .hc-promo, .hc-promo *{ box-sizing:border-box; font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Arial,sans-serif }
 .hc-promo{
-  position:sticky; top:0; z-index:1200;
+  position:fixed; left:0; right:0; top:0; z-index:1200;
   background:linear-gradient(90deg,var(--blue,#2563EB),var(--green,#16A34A));
   color:#fff; border-bottom:1px solid rgba(255,255,255,.25);
   box-shadow:0 6px 18px rgba(2,6,23,.15);
@@ -114,9 +114,10 @@
 .hc-promo__inner{
   max-width:var(--maxw,1100px); margin:0 auto;
   display:grid; grid-template-columns:1fr auto; gap:10px; align-items:center;
-  padding:10px 16px; position:relative;
+  padding:10px 16px;
 }
-/* on supprime complètement le bouton close */
+
+/* pas de bouton close */
 .hc-promo__marquee{
   overflow:hidden; mask-image:linear-gradient(to right,transparent 0,#000 8%,#000 92%,transparent 100%);
   height:24px; display:flex; align-items:center;
@@ -128,6 +129,7 @@
 .hc-promo__track span{ opacity:.95 }
 @keyframes hc-marquee { from{ transform:translateX(0) } to{ transform:translateX(-50%) } }
 @media (prefers-reduced-motion: reduce){ .hc-promo__track{ animation:none } }
+
 .hc-promo__content{ display:flex; align-items:center; gap:12px; justify-content:flex-end; flex-wrap:wrap }
 .hc-promo__text{ font-weight:700 }
 .hc-promo__btn{
@@ -137,39 +139,8 @@
 }
 .hc-promo__btn:hover{ transform:translateY(-1px); opacity:.95 }
 
-/* IMPORTANT: le header colle sous la bannière sans chevaucher */
-.hc-header{ top:var(--promo-h,0px) !important; z-index:1000; }
-
-@media (max-width: 860px){ .hc-promo__inner{ grid-template-columns:1fr } .hc-promo__content{ justify-content:space-between } }
-@media (max-width: 520px){ .hc-promo__text{ font-size:14px } .hc-promo__btn{ height:36px } }
+/* IMPORTANT : on ne touche plus au header; on compense avec le padding-top du body (via JS) */
 </style>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "HyperConvo",
-  "url": "https://hyperconvo.ai/",
-  "logo": "https://hyperconvo.ai/logo.png"
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "Audit SEO local HyperConvo",
-  "description": "Audit SEO local automatisé, assisté par IA, livré en 3 minutes avec score et 5 actions prioritaires.",
-  "brand": {
-    "@type": "Brand",
-    "name": "HyperConvo"
-  },
-  "offers": [
-    {"@type": "Offer","price":"19","priceCurrency":"EUR","name":"Essentiel","url":"https://buy.stripe.com/4gM4gzaw3bPXfqG7h65gc00","availability":"https://schema.org/InStock"},
-    {"@type": "Offer","price":"49","priceCurrency":"EUR","name":"Performance","url":"https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01","availability":"https://schema.org/InStock"},
-    {"@type": "Offer","price":"99","priceCurrency":"EUR","name":"Expert Local","url":"https://buy.stripe.com/7sY9ATeMjbPX2DUgRG5gc02","availability":"https://schema.org/InStock"}
-  ]
-}
-</script>
 
 </head>
 <body>
@@ -1618,11 +1589,11 @@
 <script>
 (function(){
   // ===== Config =====
-  // 2 jours rolling, ou mets une date fixe Brisbane: new Date('2025-10-04T23:59:59+10:00')
+  // 2 jours rolling ; ou fixe (Brisbane) : new Date('2025-10-04T23:59:59+10:00')
   const END_AT = new Date(Date.now() + 2*24*60*60*1000);
   const PROMO_CODE = 'HC30';
   const PROMO_PARAM = 'promo=' + PROMO_CODE;
-  const ELIGIBLE = new Set(['Performance','Expert Local']); // -30% seulement pour ces plans
+  const ELIGIBLE = new Set(['Performance','Expert Local']); // -30% réservé à ces plans
 
   const el   = document.getElementById('hcPromo');
   const cta  = document.getElementById('hcPromoCta');
@@ -1630,15 +1601,16 @@
 
   if(!el) return;
 
-  // ===== Ajuste l’offset du header pour ne jamais chevaucher =====
-  function setHeaderOffset(){
+  // ===== Mesure & compensation : padding-top du body = hauteur bannière =====
+  function applyPromoOffset(){
     const h = el.getBoundingClientRect().height || 0;
     document.documentElement.style.setProperty('--promo-h', h + 'px');
+    document.body.style.paddingTop = h + 'px';
   }
-  setHeaderOffset();
-  // re-calc sur resize et au prochain frame (pour police/FOIT)
-  window.addEventListener('resize', setHeaderOffset, {passive:true});
-  requestAnimationFrame(setHeaderOffset);
+  applyPromoOffset();
+  window.addEventListener('resize', applyPromoOffset, {passive:true});
+  // recalc après chargement des polices/FOIT
+  window.addEventListener('load', applyPromoOffset, {once:true});
 
   // ===== Countdown =====
   function fmt(ms){
@@ -1655,15 +1627,15 @@
     const val = fmt(left);
     if(cd2) cd2.textContent = val;
     if(left <= 0){
-      // Fin promo: on masque la bannière et on remet le header à 0
-      el.style.display = 'none';
-      document.documentElement.style.setProperty('--promo-h', '0px');
+      // Fin promo : on retire la bannière et on remet le padding
+      el.remove();
+      document.body.style.paddingTop = '0px';
       clearInterval(iv);
     }
   }
   const iv = setInterval(tick, 1000); tick();
 
-  // ===== CTA bannière : tracking + ajoute ?promo=HC30 dans l’URL =====
+  // ===== CTA : tracking + ?promo=HC30 dans l’URL =====
   cta && cta.addEventListener('click', function(){
     try{ if(typeof fbq === 'function'){ fbq('trackCustom','PromoBannerClick', { promo: PROMO_CODE }); } }catch(_){}
     const loc = new URL(window.location.href);
@@ -1673,7 +1645,7 @@
     }
   }, {passive:true});
 
-  // ===== N’ajoute la promo que sur les boutons Stripe éligibles =====
+  // ===== N’ajoute la promo QUE sur les boutons Stripe éligibles =====
   function attachPromoToStripe(){
     if(Date.now() >= END_AT.getTime()) return;
     document.querySelectorAll('.js-stripe-btn').forEach(function(a){
@@ -1689,7 +1661,7 @@
     });
   }
   attachPromoToStripe();
-  setTimeout(attachPromoToStripe, 1500); // au cas où le DOM se charge plus tard
+  setTimeout(attachPromoToStripe, 1500);
 })();
 </script>
 
