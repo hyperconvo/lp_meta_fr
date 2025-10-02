@@ -320,27 +320,55 @@
 <!-- === Promo Banner (HC30) — AVANT le header === -->
 <div class="hc-promo" id="hcPromo" role="region" aria-label="Promotion limitée">
   <div class="hc-promo__inner">
-    <!-- Pas de bouton close -->
-
-    <!-- Texte défilant -->
-    <div class="hc-promo__marquee" aria-hidden="true">
-      <div class="hc-promo__track">
-        <span>-30 % sur les offres<b>"Performance"</b> & <b>"Expert Local"</b> avec le code promo <b>HC30</b></span>
-        <span>Rapport livré en ~3 minutes</span>
-        <span>Paiement sécurisé Stripe</span>
-      </div>
+    <div class="hc-promo__text">
+      <strong>-30 %</strong> sur les offres <b>"Performance"</b> & <b>"Expert Local"</b> avec le code promo <b>HC30</b>.
+      Se termine dans <b id="hcPromoCountdownLive" aria-live="polite">7 j 00:00:00</b>.
     </div>
-
-    <!-- Contenu accessible + CTA -->
-    <div class="hc-promo__content">
-      <div class="hc-promo__text">
-        <strong>-30 %</strong> sur les offres<b>"Performance"</b> & <b>"Expert Local"</b> avec le code promo <b>HC30</b>. Se termine dans
-        <b id="hcPromoCountdownLive" aria-live="polite">2 j 00:00:00</b>
-      </div>
-      <a href="#pricing" class="hc-promo__btn" id="hcPromoCta">Profiter de l’offre</a>
-    </div>
+    <a href="#pricing" class="hc-promo__btn" id="hcPromoCta">Profiter de l’offre</a>
   </div>
 </div>
+
+<style>
+:root{ --promo-h:0px }
+
+/* Promo banner FIXED et responsive */
+.hc-promo, .hc-promo *{ box-sizing:border-box; font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Arial,sans-serif }
+.hc-promo{
+  position:fixed; left:0; right:0; top:0; z-index:1200;
+  background:linear-gradient(90deg,var(--blue,#2563EB),var(--green,#16A34A));
+  color:#fff; border-bottom:1px solid rgba(255,255,255,.25);
+  box-shadow:0 6px 18px rgba(2,6,23,.15);
+}
+.hc-promo__inner{
+  max-width:var(--maxw,1100px); margin:0 auto;
+  display:grid; grid-template-columns:1fr auto; gap:16px; align-items:center;
+  padding:10px 16px;
+  padding-top:calc(10px + env(safe-area-inset-top, 0px)); /* iOS notch */
+}
+.hc-promo__text{
+  font-weight:700; line-height:1.35;
+  font-size:16px;
+  white-space:normal;
+}
+.hc-promo__btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:38px; padding:0 14px; border-radius:10px;
+  font-weight:900; text-decoration:none; background:#fff; color:var(--blue,#2563EB);
+  box-shadow:0 6px 18px rgba(255,255,255,.25); border:2px solid rgba(255,255,255,.8);
+  white-space:nowrap;
+}
+.hc-promo__btn:hover{ transform:translateY(-1px); opacity:.95 }
+
+/* Mobile: stack + bouton pleine largeur */
+@media (max-width: 800px){
+  .hc-promo__inner{ grid-template-columns:1fr; gap:10px }
+  .hc-promo__btn{ width:100%; height:40px }
+  .hc-promo__text{ font-size:15px }
+}
+@media (max-width: 420px){
+  .hc-promo__text{ font-size:14px }
+}
+</style>
 
 <!-- ===== 2. HERO ===== -->
 <section id="hero" class="hero" aria-label="Section d’introduction HyperConvo">
@@ -1589,27 +1617,41 @@
 <script>
 (function(){
   // ===== Config =====
-  // 2 jours rolling ; ou fixe (Brisbane) : new Date('2025-10-04T23:59:59+10:00')
-  const END_AT = new Date(Date.now() + 2*24*60*60*1000);
   const PROMO_CODE = 'HC30';
   const PROMO_PARAM = 'promo=' + PROMO_CODE;
   const ELIGIBLE = new Set(['Performance','Expert Local']); // -30% réservé à ces plans
+  const LS_KEY = 'hc_promo_end_at_v1';                      // stockage end date
+  const PERIOD_MS = 7 * 24 * 60 * 60 * 1000;               // 7 jours
 
   const el   = document.getElementById('hcPromo');
   const cta  = document.getElementById('hcPromoCta');
   const cd2  = document.getElementById('hcPromoCountdownLive');
-
   if(!el) return;
 
-  // ===== Mesure & compensation : padding-top du body = hauteur bannière =====
+  // ===== End date evergreen (7j) =====
+  function getEndAt(){
+    const raw = localStorage.getItem(LS_KEY);
+    let t = raw ? parseInt(raw, 10) : NaN;
+    if (!t || isNaN(t) || t < Date.now()) {
+      t = Date.now() + PERIOD_MS;
+      localStorage.setItem(LS_KEY, String(t));
+    }
+    return new Date(t);
+  }
+  function renewEndAt(){
+    const t = Date.now() + PERIOD_MS;
+    localStorage.setItem(LS_KEY, String(t));
+    return new Date(t);
+  }
+  let END_AT = getEndAt();
+
+  // ===== Compense la hauteur de la bannière =====
   function applyPromoOffset(){
     const h = el.getBoundingClientRect().height || 0;
-    document.documentElement.style.setProperty('--promo-h', h + 'px');
     document.body.style.paddingTop = h + 'px';
   }
   applyPromoOffset();
   window.addEventListener('resize', applyPromoOffset, {passive:true});
-  // recalc après chargement des polices/FOIT
   window.addEventListener('load', applyPromoOffset, {once:true});
 
   // ===== Countdown =====
@@ -1623,15 +1665,12 @@
     return `${d} j ${h}:${m}:${ss}`;
   }
   function tick(){
-    const left = END_AT - Date.now();
-    const val = fmt(left);
-    if(cd2) cd2.textContent = val;
+    let left = END_AT - Date.now();
     if(left <= 0){
-      // Fin promo : on retire la bannière et on remet le padding
-      el.remove();
-      document.body.style.paddingTop = '0px';
-      clearInterval(iv);
+      END_AT = renewEndAt();       // 🔁 repart pour 7 jours
+      left = END_AT - Date.now();
     }
+    if(cd2) cd2.textContent = fmt(left);
   }
   const iv = setInterval(tick, 1000); tick();
 
@@ -1647,7 +1686,6 @@
 
   // ===== N’ajoute la promo QUE sur les boutons Stripe éligibles =====
   function attachPromoToStripe(){
-    if(Date.now() >= END_AT.getTime()) return;
     document.querySelectorAll('.js-stripe-btn').forEach(function(a){
       const plan = a.getAttribute('data-plan') || '';
       if(!ELIGIBLE.has(plan)) return;
