@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HyperConvo - Audit SEO local artisans & commerces (3 min)</title>
+  <title>HyperConvo — Audit SEO local artisans & commerces (3 min)</title>
   <meta name="description" content="Audit SEO local automatisé en 3 minutes pour artisans et commerces. Score sur 100, 5 actions prioritaires, PageSpeed, Google Business. Paiement sécurisé Stripe." />
   <link rel="canonical" href="https://hyperconvo.ai/artisans" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="HyperConvo - Audit SEO local pour artisans & commerces" />
+  <meta property="og:title" content="HyperConvo — Audit SEO local pour artisans & commerces" />
   <meta property="og:description" content="Recevez en 3 minutes un rapport clair avec 5 actions prioritaires pour gagner des clients locaux." />
   <meta property="og:url" content="https://hyperconvo.ai/artisans" />
   <meta property="og:image" content="https://hyperconvo.ai/og-image.jpg" />
@@ -23,104 +23,69 @@
     body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif}
     a{color:inherit;text-decoration:none}
 
-    /* Header */
+    /* Header minimal */
     .hc-header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:40}
     .hc-header .wrap{max-width:var(--maxw);margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
     .logo{font-weight:900;letter-spacing:-.01em}
     .cta{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:10px;
          color:#fff;background:linear-gradient(90deg,var(--blue),var(--green));font-weight:800;box-shadow:0 4px 12px rgba(37,99,235,.25)}
 
-    /* Boutons */
+    /* Boutons génériques */
     .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;font-weight:800}
     .btn-primary{color:#fff;background:linear-gradient(90deg,#2563EB,#16A34A);box-shadow:0 6px 18px rgba(37,99,235,.25)}
-    .hero-cta { margin-top:8px; height:52px; padding:0 18px }
     .btn-full{width:100%}
 
-    /* HERO */
-    .hero { padding: 56px 20px; background:#fff }
-    .hero-grid { 
-      max-width:1100px; margin:0 auto; 
-      display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:start;
-    }
-    @media(max-width:980px){ .hero-grid{ grid-template-columns:1fr } }
-    .hero-grid > * { min-width:0; }
-    .hero-left { padding-right:8px }
-    .title { font-size:clamp(28px, 4.2vw, 44px); line-height:1.06; margin:0 0 10px; font-weight:900; letter-spacing:-.02em; hyphens:auto }
-    .subtitle { margin:0 0 12px; color:var(--muted); max-width:640px; word-break:break-word }
-    .badges { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px }
-    .pill, .pill-blue {
-      display:inline-flex; align-items:center; gap:8px; font-weight:800; font-size:12.5px;
-      padding:6px 10px; border-radius:999px;
-    }
-    .pill { border:1px solid rgba(22,163,74,.25); background:rgba(22,163,74,.10); color:#16A34A }
-    .pill-blue { border:1px solid rgba(37,99,235,.25); background:rgba(37,99,235,.08); color:#2563EB }
-    .proofline { display:flex; gap:12px; flex-wrap:wrap; align-items:center; color:#475569; font-weight:700; margin-top:12px }
-    .proofline.tight { margin:10px 0 6px }
-    .stars { color:#F59E0B }
+    /* === HERO (reprend l’aperçu de index.html) === */
+    .hero{padding:72px 20px;background:#fff}
+    .hero .container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.15fr 0.85fr;gap:40px;align-items:center}
+    @media (max-width:980px){ .hero .container{grid-template-columns:1fr;gap:28px} }
+    .title{font-size:48px;line-height:1.1;font-weight:900;margin:0 0 16px;letter-spacing:-.02em}
+    .subtitle{font-size:18px;line-height:1.55;color:var(--muted);margin:0 0 24px;max-width:680px}
+    .pills{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 20px}
+    .pill{background:#EDF2F7;border:1px solid var(--line);color:var(--text);padding:10px 14px;border-radius:14px;font-weight:600;display:flex;align-items:center;gap:8px}
+    .proof{display:flex;align-items:center;gap:18px;color:var(--muted);font-size:15px}
+    .stars{color:var(--star)}
+    .cta-row{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+    .cta-row .btn{height:52px;padding:0 18px}
 
-    .benefits { margin:10px 0 14px; padding:0; list-style:none }
-    .benefits li { position:relative; padding-left:26px; margin:8px 0; line-height:1.45; }
-    .benefits li::before{
-      content:""; position:absolute; left:0; top:4px; width:18px; height:18px; border-radius:50%;
-      background:linear-gradient(90deg,#2563EB,#16A34A);
+    /* Aperçu carte (copie de index.html avec micro-ajustements) */
+    .preview{
+      position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;
+      padding:26px;box-shadow:0 10px 30px rgba(2,6,23,.06);overflow:hidden
     }
-    .benefits li::after{
-      content:""; position:absolute; left:6px; top:8px; width:6px; height:10px; 
-      border:2px solid #fff; border-top:none; border-left:none; transform:rotate(45deg);
-    }
-    .micro-testimonial { margin:12px 0 0 }
-    .micro-testimonial blockquote { margin:0; color:#0F172A }
-    .micro-testimonial figcaption { color:#64748B; font-size:13px; margin-top:4px }
-
-    /* Aperçu du rapport - version index-like, mobile-first */
-    .report-preview{
-      position:relative; background:#fff; border:1px solid #E2E8F0; border-radius:16px; 
-      padding:16px; box-shadow:0 8px 24px rgba(2,6,23,.06);
-      display:flex; flex-direction:column; gap:12px; overflow:hidden; max-width:520px; margin-left:auto;
-    }
-    .rp-head{ display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; color:#475569; font-weight:900 }
-    .rp-badges{ display:flex; flex-wrap:wrap; gap:6px; }
-    .rp-chip{ font-size:12px; font-weight:800; border:1px solid rgba(37,99,235,.25); background:rgba(37,99,235,.08); color:#2563EB; padding:5px 9px; border-radius:999px; white-space:nowrap }
-    .rp-chip.g{ border-color:rgba(22,163,74,.25); background:rgba(22,163,74,.08); color:#16A34A }
-    .rp-grid{
-      display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:start;
-    }
-    .rp-card{
-      border:1px solid var(--line); border-radius:12px; padding:12px;
-      display:flex; flex-direction:column; gap:6px; background:#fff;
-    }
-    .meter{
-      height:10px; border-radius:999px; background:#EEF2FF; overflow:hidden;
-    }
-    .meter > i{ display:block; height:100%; width:82%; background:linear-gradient(90deg,#16A34A,#22C55E) }
-    .rp-list{ list-style:none; margin:0; padding:0 }
-    .rp-list li{ display:grid; grid-template-columns:18px 1fr; gap:8px; margin:6px 0; align-items:flex-start }
-    .tick{ width:18px; height:18px; margin-top:2px; border-radius:50%; background:linear-gradient(90deg,#2563EB,#16A34A); position:relative; flex:0 0 18px }
-    .tick::after{ content:""; position:absolute; left:5px; top:3px; width:6px; height:10px; border:2px solid #fff; border-top:none; border-left:none; transform:rotate(45deg) }
-    .mini { font-size:12px; color:#64748B }
-    .btn-block{
-      display:flex; align-items:center; justify-content:center;
-      width:100%; height:52px; border-radius:12px; font-weight:800; font-size:15px; line-height:1;
-      margin-top:auto; color:#fff; background:linear-gradient(90deg,#2563EB,#16A34A); box-shadow:0 4px 12px rgba(37,99,235,.25);
-      white-space:nowrap; text-align:center;
-    }
-    @media(max-width:780px){
-      .report-preview{ max-width:100%; }
-      .rp-grid{ grid-template-columns:1fr; }
-    }
+    .preview h3{margin:0 0 12px;font-size:18px;color:var(--muted);font-weight:800;letter-spacing:.02em}
+    .blob{position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, rgba(37,99,235,.15), transparent 55%),
+                 radial-gradient(circle at 70% 70%, rgba(22,163,74,.12), transparent 60%);}
+    .score-wrap{display:flex;align-items:center;gap:16px;margin:10px 0 18px}
+    .score-labels{display:flex;flex-direction:column;gap:4px}
+    .score-title{font-weight:900}
+    .score-sub{font-size:13px;color:var(--muted)}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 16px}
+    .chip{padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;border:1px solid rgba(37,99,235,.25);color:var(--blue);background:rgba(37,99,235,.08)}
+    .chip.green{border-color:rgba(22,163,74,.25);color:var(--green);background:rgba(22,163,74,.08)}
+    .list{list-style:none;margin:8px 0 18px;padding:0}
+    .list li{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:flex-start;margin:10px 0}
+    .tick{width:18px;height:18px;border-radius:50%;background:linear-gradient(90deg,#2563EB,#16A34A);position:relative;margin-top:2px}
+    .tick:after{content:"";position:absolute;left:5px;top:3px;width:6px;height:10px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
+    .mini-note{font-size:12px;color:var(--muted)}
+    .gauge{width:86px;height:86px}
 
     /* Sections génériques */
-    .section { padding:44px 20px }
+    .section{padding:44px 20px}
     .wrap2{max-width:var(--maxw);margin:0 auto}
     .head{text-align:center;margin-bottom:18px}
     .head h2{margin:0 0 6px;font-size:26px;font-weight:900}
     .head p{margin:0;color:#64748B}
+
+    /* Grilles */
     .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     @media(max-width:900px){.grid3{grid-template-columns:1fr}}
+
     .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 6px 20px rgba(2,6,23,.06)}
     .center{text-align:center}
 
-    /* Ce que vous recevez */
+    /* “Ce que vous recevez” (qui passe après) */
     .grid-get{align-items:stretch}
     .card-get{display:flex;flex-direction:column}
     .card-get .lead{margin:.25rem 0 .5rem;color:#334155}
@@ -128,34 +93,16 @@
     .card-get .bulleted li{margin:.25rem 0}
     .card-get .use{margin-top:auto;color:#475569;font-size:14.5px}
 
-    /* Pricing - format index */
-    .pricing{background:var(--bg)}
-    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
-    @media(max-width:960px){.plans{grid-template-columns:1fr}}
-    .plan{
-      position:relative;
-      display:flex;flex-direction:column;
-      background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;
-      box-shadow:0 2px 10px rgba(0,0,0,.04);min-height:100%;
-    }
-    .plan.reco{border:2px solid var(--blue2)}
-    .badge-reco{position:absolute;right:16px;top:16px;background:linear-gradient(90deg,var(--blue),var(--green));color:#fff;font-size:12px;font-weight:800;padding:6px 10px;border-radius:999px}
-    .plan-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
-    .plan-title{font-weight:800;color:#64748B}
-    .price{font-size:36px;font-weight:900;margin:6px 0 2px}
-    .period{font-size:14px;color:#64748B;font-weight:600}
-    .features{list-style:none;margin:8px 0 0;padding:0}
-    .features li{display:grid;grid-template-columns:20px 1fr;gap:10px;margin:10px 0;align-items:flex-start}
-    .plan .spacer{flex:1 1 auto}
-    .plan .btn{margin-top:14px}
+    /* === Pricing : EXACT de index.html (styles inclus) === */
+    /* On garde intact le bloc styles/markup de pricing copié ci-dessous */
 
-    /* FAQ */
+    /* FAQ longue */
     details{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
     summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:800;display:flex;gap:10px;align-items:center}
     details div{padding:0 16px 14px 44px;color:#334155;line-height:1.55}
     summary::-webkit-details-marker{display:none}
 
-    /* Footer */
+    /* Footer légal minimal */
     footer{background:#fff;border-top:1px solid var(--line);padding:22px 20px}
     .foot{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px}
     @media(max-width:900px){.foot{grid-template-columns:1fr}}
@@ -164,11 +111,11 @@
     .badges{font-size:13px;color:#64748B;display:flex;flex-direction:column;gap:6px}
     .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(90deg,#2563EB,#16A34A);display:inline-block;margin-right:8px;vertical-align:middle}
 
-    /* Mobile tweaks */
+    /* === Mobile tweaks === */
     @media (max-width:780px){
-      .hc-header .cta{ display:none; }
-      .hero-cta{ width:100%; }
+      .hc-header .cta{ display:none; }          /* éviter double CTA en haut */
       .btn-block{ height:52px; }
+      .preview{ max-width:100%; }
       .sticky-cta{
         position:sticky; bottom:0; left:0; right:0; z-index:35; 
         background:rgba(255,255,255,.97); backdrop-filter:saturate(1.1) blur(6px);
@@ -188,85 +135,83 @@
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- ===== HERO avec l’aperçu index.html ===== -->
   <section class="hero" id="hero" aria-label="Audit SEO local artisans & commerces">
-    <div class="hero-grid">
+    <div class="container">
       <!-- Colonne gauche -->
-      <div class="hero-left">
-        <div class="badges">
-          <span class="pill">📧 Rapport en ~3 min</span>
-          <span class="pill-blue">🔒 Stripe sécurisé</span>
-        </div>
-
+      <div>
         <h1 class="title">Plus de clients locaux en 3 minutes : découvrez ce qui bloque votre site</h1>
         <p class="subtitle">Votre salon, resto, boulangerie ou atelier n’apparaît pas en tête des recherches locales ? Obtenez un rapport clair et actionnable.</p>
 
-        <div class="proofline tight">
-          <span>🌐 500+ entreprises locales</span>
-          <span class="stars">★★★★★</span>
-          <span>4,9/5 (127 avis)</span>
+        <div class="pills">
+          <div class="pill">⏱️ Analyse en 3 min</div>
+          <div class="pill">🔒 Paiement sécurisé</div>
+          <div class="pill">✅ 5 actions concrètes</div>
         </div>
 
-        <ul class="benefits" aria-label="Bénéfices">
-          <li>Comprenez pourquoi vos clients ne vous trouvent pas</li>
-          <li>5 actions simples à appliquer (sans jargon)</li>
-          <li>Gagnez rapidement en visibilité locale</li>
-        </ul>
+        <div class="proof">
+          <div>🌐 500+ entreprises locales</div>
+          <div class="stars">★★★★★</div>
+          <div>4,9/5 (127 avis)</div>
+        </div>
 
-        <a class="btn btn-primary hero-cta" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Commencer mon audit</a>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#pricing">Voir les tarifs</a>
+          <a class="btn btn-primary" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Commencer mon audit</a>
+        </div>
 
-        <figure class="micro-testimonial" aria-label="Témoignage client">
-          <blockquote>“Grâce à l’audit, j’ai compris pourquoi mon salon n’apparaissait pas. Une semaine après, plus d’appels.”</blockquote>
-          <figcaption>Sophie, coiffeuse à Lyon</figcaption>
+        <!-- Micro témoignage -->
+        <figure class="micro-testimonial" style="margin:12px 0 0">
+          <blockquote style="margin:0;color:#0F172A">“Grâce à l’audit, j’ai compris pourquoi mon salon n’apparaissait pas. Une semaine après, plus d’appels.”</blockquote>
+          <figcaption style="color:#64748B;font-size:13px;margin-top:4px">— Sophie, coiffeuse à Lyon</figcaption>
         </figure>
       </div>
 
-      <!-- Colonne droite : Aperçu du rapport (version index) -->
-      <aside class="report-preview" aria-label="Aperçu du rapport">
-        <div class="rp-head">
-          <strong>Aperçu du rapport</strong>
-          <div class="rp-badges">
-            <span class="rp-chip g">Google Business détecté</span>
-            <span class="rp-chip">HTTPS valide</span>
+      <!-- Colonne droite : APERÇU repris de index.html -->
+      <aside class="preview" aria-label="Aperçu du rapport généré">
+        <div class="blob" aria-hidden="true"></div>
+        <h3>Aperçu du rapport</h3>
+
+        <div class="score-wrap">
+          <!-- Jauge SVG -->
+          <svg class="gauge" viewBox="0 0 120 120" role="img" aria-label="Score global 86 sur 100">
+            <defs>
+              <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#2563EB"/>
+                <stop offset="100%" stop-color="#16A34A"/>
+              </linearGradient>
+            </defs>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#E2E8F0" stroke-width="12" />
+            <circle cx="60" cy="60" r="50" fill="none" stroke="url(#grad)" stroke-width="12"
+                    stroke-linecap="round" stroke-dasharray="270 314" transform="rotate(-90 60 60)"/>
+            <text x="60" y="65" text-anchor="middle" font-size="28" font-weight="800" fill="#0F172A">86</text>
+          </svg>
+
+          <div class="score-labels">
+            <div class="score-title">Score global</div>
+            <div class="score-sub">5 priorités à corriger</div>
           </div>
         </div>
 
-        <div class="rp-grid">
-          <div class="rp-card" aria-label="Score global">
-            <div style="display:flex;align-items:center;justify-content:space-between">
-              <strong>Score global</strong>
-              <span style="font-weight:900;color:#16A34A">82/100</span>
-            </div>
-            <div class="meter" aria-hidden="true"><i></i></div>
-            <p class="mini">Objectif conseillé: 90+ pour figurer régulièrement dans le pack local.</p>
-          </div>
-
-          <div class="rp-card" aria-label="PageSpeed">
-            <div style="display:flex;align-items:center;justify-content:space-between">
-              <strong>PageSpeed</strong>
-              <span style="font-weight:900;color:#2563EB">Mobile 74 • Desktop 91</span>
-            </div>
-            <ul class="rp-list" aria-label="Optimisations vitesse">
-              <li><span class="tick"></span><span>Optimiser les images héro</span></li>
-              <li><span class="tick"></span><span>Retarder les scripts non essentiels</span></li>
-            </ul>
-          </div>
+        <div class="chips">
+          <span class="chip">PageSpeed Mobile: 78</span>
+          <span class="chip green">PageSpeed Desktop: 92</span>
+          <span class="chip green">Google Business: trouvé</span>
         </div>
 
-        <ul class="rp-list" aria-label="Priorités">
-          <li><span class="tick"></span><span>Title trop long, version optimisée fournie</span></li>
+        <ul class="list">
+          <li><span class="tick"></span><span>Balise <strong>Title</strong> trop longue — suggestion fournie</span></li>
           <li><span class="tick"></span><span>Méta description manquante sur 2 pages</span></li>
-          <li><span class="tick"></span><span>Améliorer H1 et structure Hn</span></li>
-          <li><span class="tick"></span><span>NAP incohérent entre site et fiche Google</span></li>
+          <li><span class="tick"></span><span>Améliorer <strong>H1</strong> & structure Hn</span></li>
+          <li><span class="tick"></span><span>NAP incohérent entre site & Google Business</span></li>
         </ul>
 
-        <p class="mini">Exemple. Le score réel et les priorités sont générés automatiquement pour votre site.</p>
-        <a class="btn btn-primary btn-block" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Commencer mon audit</a>
+        <div class="mini-note">Exemple d’aperçu. Le score et les priorités sont générés automatiquement par IA pour votre site réel.</div>
       </aside>
     </div>
   </section>
 
-  <!-- Comment ça marche (déplacé avant) -->
+  <!-- ===== SWAP #1 : “Comment ça marche” prend la place de “Ce que vous recevez” ===== -->
   <section class="section" aria-labelledby="steps-title">
     <div class="wrap2">
       <header class="head">
@@ -278,89 +223,139 @@
         <article class="card">
           <div class="num" style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;background:linear-gradient(135deg,#2563EB,#16A34A);margin-bottom:10px">1</div>
           <h3>Choisissez votre audit</h3>
-          <p>En cliquant sur “Commencer mon audit”, vous êtes redirigé vers <strong>Stripe Checkout</strong>, notre partenaire de paiement sécurisé. 
-          Vous renseignez votre <strong>adresse e-mail</strong> et l’<strong>URL du site à auditer</strong> pour générer le rapport.</p>
+          <p>Redirection vers <strong>Stripe Checkout</strong> sécurisé. Vous saisissez votre <strong>e-mail</strong> (pour recevoir le rapport) et l’<strong>URL</strong> à auditer — champs obligatoires.</p>
         </article>
 
         <article class="card">
           <div class="num" style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;background:linear-gradient(135deg,#2563EB,#16A34A);margin-bottom:10px">2</div>
           <h3>Paiement et déclenchement</h3>
-          <p>Dès validation du paiement, l’audit s’exécute. Le moteur assisté par IA analyse balises, PageSpeed, Google Business, avis et cohérence locale.</p>
+          <p>À la validation, l’automatisation lance l’audit. Le moteur IA analyse balises, PageSpeed, Google Business, avis, cohérence locale…</p>
         </article>
 
         <article class="card">
           <div class="num" style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;background:linear-gradient(135deg,#2563EB,#16A34A);margin-bottom:10px">3</div>
           <h3>Rapport livré en ~3 minutes</h3>
-          <p>Le rapport complet est envoyé automatiquement à l’adresse e-mail utilisée sur Stripe, avec score sur 100 et 5 actions priorisées.</p>
+          <p>Vous recevez un e-mail avec votre score /100, les <strong>5 actions priorisées</strong> et tous les détails utiles pour agir immédiatement.</p>
         </article>
       </div>
 
       <div class="center" style="margin-top:20px">
-        <a class="btn btn-primary btn-full" style="height:52px;padding:0 18px" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Commencer mon audit</a>
+        <a class="btn btn-primary btn-full" style="height:52px;padding:0 18px"
+           href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">
+           Commencer mon audit
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Plans & Tarifs (repris au format index) -->
-  <section class="section pricing" id="plans" aria-labelledby="plans-title">
-    <div class="wrap2">
+  <!-- ===== PRICING : EXACTEMENT la section de index.html ===== -->
+  <section id="pricing" class="pricing" aria-labelledby="pricing-title">
+    <style>
+    :root{
+      --blue:#2563EB; --blue2:#3B82F6; --green:#16A34A;
+      --text:#1F2937; --muted:#6B7280; --bg:#F9FAFB; --card:#FFFFFF; --line:#E5E7EB;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;color:var(--text);background:transparent}
+
+    .pricing{padding:64px 20px;background:var(--bg)}
+    .wrap{max-width:1100px;margin:0 auto}
+
+    .head{text-align:center;margin-bottom:40px}
+    .head h2{margin:0 0 10px;font-size:32px;line-height:1.2;font-weight:800}
+    .head p{margin:0;color:var(--muted);font-size:16px}
+
+    .pricing .grid{display:grid;gap:22px;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
+    @media (max-width: 960px){.pricing .grid{grid-template-columns:1fr}.pricing .card.reco{order:-1}}
+
+    .card{position:relative;display:flex;flex-direction:column;justify-content:space-between;border-radius:20px;background:var(--card);border:1px solid var(--line);padding:28px;box-shadow:0 2px 10px rgba(0,0,0,.04);transition:transform .2s ease, box-shadow .2s ease}
+    .card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.08)}
+    .card.reco{border:2px solid var(--blue2)}
+    .badge{position:absolute;top:14px;right:14px;background:linear-gradient(90deg,var(--blue),var(--green));color:#fff;font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px}
+    .chip{display:inline-block;margin-top:6px;font-size:12px;font-weight:700;color:var(--blue);background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.25);padding:4px 8px;border-radius:999px}
+    .plan{font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.2px}
+    .price{margin:0 0 16px;font-size:40px;font-weight:900}
+    .period{font-size:14px;color:var(--muted);font-weight:600}
+
+    ul.features{list-style:none;margin:12px 0 24px;padding:0}
+    ul.features li{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:flex-start;margin:10px 0}
+    .tick{width:18px;height:18px;border-radius:50%;background:linear-gradient(90deg,var(--blue),var(--green));position:relative;margin-top:2px}
+    .tick:after{content:"";position:absolute;left:5px;top:3px;width:6px;height:10px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;height:50px;border-radius:12px;font-weight:800;font-size:16px;text-decoration:none;transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;will-change:transform;margin-top:auto}
+    .btn:hover{transform:translateY(-2px);opacity:.95}
+    .btn-primary{color:#fff;background:linear-gradient(90deg,var(--blue),var(--green));box-shadow:0 6px 18px rgba(37,99,235,.25)}
+    .btn-outline{color:#2563EB;background:#fff;border:2px solid #3B82F6}
+    .note{margin-top:12px;font-size:13px;color:#6B7280;text-align:center}
+    .nowrap{white-space:nowrap}
+    </style>
+
+    <div class="wrap">
       <header class="head">
-        <h2 id="plans-title">Plans & Tarifs</h2>
-        <p>Transparence totale. Votre audit est livré par e-mail en ~3 minutes.</p>
+        <h2 id="pricing-title">Tarifs simples. Résultats immédiats.</h2>
+        <p>Choisissez l’audit qui vous convient — rapport livré par e-mail en ~3&nbsp;minutes.</p>
       </header>
 
-      <div class="plans">
-        <!-- Performance (recommandé) -->
-        <article class="plan reco" aria-label="Performance 49 euros">
-          <div class="badge-reco">⚡ Recommandé</div>
-          <div class="plan-head"><div class="plan-title">Performance</div></div>
-          <div class="price">49 € <span class="period">/ audit</span></div>
-          <ul class="features">
-            <li><span class="tick"></span><span>Toutes les features Essentiel</span></li>
-            <li><span class="tick"></span><span>PageSpeed mobile et desktop</span></li>
-            <li><span class="tick"></span><span>Analyse des pages clés supplémentaires</span></li>
-            <li><span class="tick"></span><span>Priorisation impact/effort</span></li>
-          </ul>
-          <div class="spacer"></div>
-          <a class="btn btn-primary" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Commencer mon audit</a>
+      <div class="grid">
+        <article class="card" aria-label="Offre Essentiel 19 euros">
+          <div>
+            <div class="plan">Essentiel</div>
+            <h3 class="price">19&nbsp;€ <span class="period">/ audit</span></h3>
+            <ul class="features">
+              <li><span class="tick"></span><span>Audit IA de la <strong>page d’accueil</strong> (URL fournie)</span></li>
+              <li><span class="tick"></span><span>Vérification des <strong>balises Title</strong> &amp; <strong>Méta description</strong></span></li>
+              <li><span class="tick"></span><span>Analyse <strong>H1</strong> &amp; <strong>contenu de base</strong></span></li>
+              <li><span class="tick"></span><span><strong>Score global</strong> + <strong>5 actions prioritaires</strong></span></li>
+            </ul>
+          </div>
+          <a class="btn btn-outline"
+             href="https://buy.stripe.com/4gM4gzaw3bPXfqG7h65gc00?utm_source=meta&utm_medium=ads&utm_campaign=hc_audit"
+             target="_blank" rel="noopener noreferrer">Choisir Essentiel — 19&nbsp;€</a>
         </article>
 
-        <!-- Essentiel -->
-        <article class="plan" aria-label="Essentiel 19 euros">
-          <div class="plan-head"><div class="plan-title">Essentiel</div></div>
-          <div class="price">19 € <span class="period">/ audit</span></div>
-          <ul class="features">
-            <li><span class="tick"></span><span>Audit de la page d’accueil</span></li>
-            <li><span class="tick"></span><span>Title et méta description</span></li>
-            <li><span class="tick"></span><span>H1 et contenu de base</span></li>
-            <li><span class="tick"></span><span>Score global et 5 actions</span></li>
-          </ul>
-          <div class="spacer"></div>
-          <a class="btn btn-primary" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Commencer mon audit</a>
+        <article class="card reco" aria-label="Offre Performance 49 euros">
+          <div class="badge">⚡ Recommandé</div>
+          <div>
+            <div class="plan">Performance</div>
+            <h3 class="price">49&nbsp;€ <span class="period">/ audit</span></h3>
+            <span class="chip">Inclut&nbsp;Essentiel</span>
+            <ul class="features">
+              <li><span class="tick"></span><span>Toutes les features <strong>Essentiel</strong></span></li>
+              <li><span class="tick"></span><span><strong>PageSpeed</strong> <span class="nowrap">mobile &amp; desktop</span> (0-100)</span></li>
+              <li><span class="tick"></span><span>Analyse IA des <strong>pages clés supplémentaires</strong></span></li>
+              <li><span class="tick"></span><span>Conseils classés par <strong>impact</strong> et <strong>effort</strong></span></li>
+            </ul>
+          </div>
+          <a class="btn btn-primary"
+             href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?utm_source=meta&utm_medium=ads&utm_campaign=hc_audit"
+             target="_blank" rel="noopener noreferrer">Choisir Performance — 49&nbsp;€</a>
         </article>
 
-        <!-- Expert Local -->
-        <article class="plan" aria-label="Expert Local 99 euros">
-          <div class="plan-head"><div class="plan-title">Expert Local</div></div>
-          <div class="price">99 € <span class="period">/ audit</span></div>
-          <ul class="features">
-            <li><span class="tick"></span><span>Toutes les features Performance</span></li>
-            <li><span class="tick"></span><span>Google Business Profile (NAP, catégories)</span></li>
-            <li><span class="tick"></span><span>Analyse des avis (volume, note, récence)</span></li>
-            <li><span class="tick"></span><span>Plan d’action local détaillé</span></li>
-          </ul>
-          <div class="spacer"></div>
-          <a class="btn btn-primary" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Commencer mon audit</a>
+        <article class="card" aria-label="Offre Expert Local 99 euros">
+          <div>
+            <div class="plan">Expert Local</div>
+            <h3 class="price">99&nbsp;€ <span class="period">/ audit</span></h3>
+            <span class="chip">Inclut&nbsp;Performance</span>
+            <ul class="features">
+              <li><span class="tick"></span><span>Toutes les features <strong>Performance</strong></span></li>
+              <li><span class="tick"></span><span>Analyse <strong>Google Business Profile</strong> (profil, NAP, catégories)</span></li>
+              <li><span class="tick"></span><span>Étude des <strong>avis</strong> (<span class="nowrap">volume</span>, <span class="nowrap">note</span>, <span class="nowrap">récence</span>)</span></li>
+              <li><span class="tick"></span><span>Synthèse priorisée + <strong>plan d’action local</strong></span></li>
+            </ul>
+          </div>
+          <a class="btn btn-outline"
+             href="https://buy.stripe.com/7sY9ATeMjbPX2DUgRG5gc02?utm_source=meta&utm_medium=ads&utm_campaign=hc_audit"
+             target="_blank" rel="noopener noreferrer">Choisir Expert — 99&nbsp;€</a>
         </article>
       </div>
 
-      <p style="text-align:center;color:#6B7280;font-size:13px;margin-top:12px">
-        Paiement sécurisé par Stripe • Rapport ~3 min • Assisté par IA • Facture par e-mail
+      <p class="note" style="text-align:center;margin-top:16px">
+        Paiement sécurisé par Stripe • Rapport ~3&nbsp;min • Assisté par IA • Facture envoyée par e-mail
       </p>
     </div>
   </section>
 
-  <!-- Ce que vous recevez (déplacé après) -->
+  <!-- ===== SWAP #2 : “Ce que vous recevez” passe à la place de l’ancienne section “Comment ça marche” ===== -->
   <section class="section" aria-labelledby="get-title">
     <div class="wrap2">
       <header class="head">
@@ -392,7 +387,7 @@
         </article>
 
         <article class="card card-get">
-          <h3>PageSpeed et Google Business</h3>
+          <h3>PageSpeed & Google Business</h3>
           <p class="lead">Analyse vitesse mobile/desktop + vérification de votre fiche Google et de vos avis.</p>
           <ul class="bulleted">
             <li>Scores PageSpeed avec pistes d’optimisation</li>
@@ -412,7 +407,7 @@
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- ===== FAQ (inchangé) ===== -->
   <section class="section" id="faq" aria-labelledby="faq-title">
     <div class="wrap2">
       <header class="head">
@@ -425,80 +420,35 @@
           <summary><span class="tick" aria-hidden="true"></span> ⏱️ Délais: quand vais-je recevoir mon audit ?</summary>
           <div>
             Dans la grande majorité des cas, vous recevez votre rapport <strong>dans les 3 minutes</strong> suivant le paiement. 
-            Le temps dépend de la vitesse de votre site et de la disponibilité des services tiers.
-            <br/><br/>
-            <strong>Bonnes pratiques</strong>: 
-            <ul>
-              <li>Surveillez vos dossiers <em>Spam</em> ou <em>Promotions</em>.</li>
-              <li>Utilisez une adresse e-mail que vous consultez réellement.</li>
-            </ul>
-            En cas d’absence de mail, contactez-nous et nous relançons l’envoi sans frais.
+            Le temps dépend de la vitesse de votre site et des services tiers.
           </div>
         </details>
 
         <details>
           <summary><span class="tick" aria-hidden="true"></span> 💳 Paiement: que demande Stripe exactement ?</summary>
           <div>
-            Nous utilisons <strong>Stripe Checkout</strong> (HTTPS, 3D Secure). 
-            Trois champs: <strong>e-mail</strong> pour facture et rapport, <strong>URL</strong> du site, <strong>coordonnées bancaires</strong> traitées par Stripe.
+            <strong>Stripe Checkout</strong> demande votre <strong>e-mail</strong>, l’<strong>URL</strong> à auditer et vos <strong>coordonnées bancaires</strong> (traitées par Stripe).
           </div>
         </details>
 
         <details>
           <summary><span class="tick" aria-hidden="true"></span> 📧 Livraison: à quelle adresse est envoyé le rapport ?</summary>
           <div>
-            À l’<strong>adresse e-mail utilisée lors du paiement Stripe</strong>. 
-            En cas d’erreur de saisie, écrivez à <a href="mailto:support@hyperconvo.ai">support@hyperconvo.ai</a>.
+            À l’adresse e-mail utilisée lors du paiement Stripe. En cas d’erreur, écrivez à <a href="mailto:support@hyperconvo.ai">support@hyperconvo.ai</a>.
           </div>
         </details>
 
         <details>
           <summary><span class="tick" aria-hidden="true"></span> 🧠 Humain ou IA: qui réalise l’audit ?</summary>
           <div>
-            L’audit est <strong>100 % automatisé</strong> par un moteur IA pour un diagnostic rapide et objectif.
+            <strong>100 % automatisé</strong> par un moteur assisté par IA. Option d’accompagnement pour les corrections si besoin.
           </div>
         </details>
 
         <details>
-          <summary><span class="tick" aria-hidden="true"></span> 📐 Périmètre: inclus et non inclus</summary>
+          <summary><span class="tick" aria-hidden="true"></span> 💸 Remboursement: est-ce possible ?</summary>
           <div>
-            <strong>Inclus</strong>: score sur 100, 5 actions priorisées, PageSpeed, signaux Google Business et avis. <br/>
-            <strong>Non inclus</strong>: implémentations, refonte, netlinking, analyse concurrentielle exhaustive.
-          </div>
-        </details>
-
-        <details>
-          <summary><span class="tick" aria-hidden="true"></span> ⚠️ Et si je n’ai pas de fiche Google Business ?</summary>
-          <div>
-            Recommandations pour créer ou récupérer votre fiche: catégorie, NAP, photos, posts, collecte d’avis.
-          </div>
-        </details>
-
-        <details>
-          <summary><span class="tick" aria-hidden="true"></span> 🔒 Données: que stockez-vous ?</summary>
-          <div>
-            RGPD appliqué. Stripe gère le paiement. Nous stockons l’URL et les données techniques nécessaires au rapport, hébergées en Europe.
-          </div>
-        </details>
-
-        <details>
-          <summary><span class="tick" aria-hidden="true"></span> 🧾 Facture et support</summary>
-          <div>
-            Facture envoyée automatiquement. Support via <a href="mailto:support@hyperconvo.ai">support@hyperconvo.ai</a>.
-          </div>
-        </details>
-
-        <details>
-          <summary><span class="tick" aria-hidden="true"></span> 🧪 Plusieurs pages ou sites</summary>
-          <div>
-            Essentiel cible la page d’accueil. Performance élargit aux pages clés. Pour plusieurs sites, commande à l’unité ou pack personnalisé.
-          </div>
-        </details>
-
-        <details>
-          <summary><span class="tick" aria-hidden="true"></span> 💸 Remboursement</summary>
-          <div>
-            Service de contenu numérique livré immédiatement. Pas de rétractation (art. L221-28). En cas de souci technique, renvoi du rapport.
+            <strong>Non</strong>. Contenu numérique livré immédiatement après paiement (art. L221-28). En cas de souci technique, nous renvoyons le rapport.
           </div>
         </details>
       </div>
