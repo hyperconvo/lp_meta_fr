@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HyperConvo — Audit SEO local pour artisans & commerces</title>
+  <meta name="description" content="Audit SEO local automatisé en 3 minutes pour artisans et commerces de proximité. Score sur 100, 5 actions prioritaires, PageSpeed, Google Business. Paiement sécurisé Stripe." />
+  <link rel="canonical" href="https://hyperconvo.ai/artisans" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="HyperConvo — Audit SEO local pour artisans & commerces" />
+  <meta property="og:description" content="Recevez en 3 minutes un rapport clair avec 5 actions prioritaires pour gagner des clients locaux." />
+  <meta property="og:url" content="https://hyperconvo.ai/artisans" />
+  <meta property="og:image" content="https://hyperconvo.ai/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    :root{
+      --blue:#2563EB; --blue2:#3B82F6; --green:#16A34A;
+      --text:#0F172A; --muted:#64748B; --bg:#F8FAFC; --card:#FFFFFF; --line:#E2E8F0; --star:#F59E0B;
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif}
+    a{color:inherit}
+
+    /* Header */
+    .hc-header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:50}
+    .hc-header .wrap{max-width:var(--maxw);margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-weight:900;text-decoration:none;letter-spacing:-.01em}
+    .nav{display:flex;gap:24px}
+    .nav a{font-size:14px;text-decoration:none;color:#334155;font-weight:600}
+    .cta{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:10px;
+         color:#fff;background:linear-gradient(90deg,var(--blue),var(--green));font-weight:800;text-decoration:none;box-shadow:0 4px 12px rgba(37,99,235,.25)}
+    @media(max-width:900px){.nav{display:none}}
+
+    /* Hero */
+    .hero{padding:72px 20px;background:#fff}
+    .hero .wrap{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+    @media(max-width:980px){.hero .wrap{grid-template-columns:1fr}}
+    .badge{display:inline-flex;gap:8px;align-items:center;background:rgba(22,163,74,.12);color:var(--green);
+           border:1px solid rgba(22,163,74,.25);padding:6px 12px;border-radius:999px;font-weight:800;font-size:13px;margin-bottom:16px}
+    .title{font-size:44px;line-height:1.08;font-weight:900;letter-spacing:-.02em;margin:0 0 14px}
+    .subtitle{font-size:18px;color:var(--muted);margin:0 0 20px;max-width:680px}
+    .bullets{display:grid;gap:10px;margin:18px 0}
+    .b{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:flex-start}
+    .tick{width:18px;height:18px;border-radius:50%;background:linear-gradient(90deg,var(--blue),var(--green));position:relative;margin-top:3px}
+    .tick:after{content:"";position:absolute;left:5px;top:3px;width:6px;height:10px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{height:52px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;padding:0 18px;font-weight:800;text-decoration:none}
+    .btn-primary{color:#fff;background:linear-gradient(90deg,var(--blue),var(--green));box-shadow:0 6px 18px rgba(37,99,235,.25)}
+    .proof{display:flex;gap:18px;align-items:center;color:var(--muted);font-size:15px;margin-top:18px;flex-wrap:wrap}
+    .stars{color:var(--star)}
+    .preview{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 10px 30px rgba(2,6,23,.06)}
+    .preview h3{margin:0 0 12px;font-weight:800;color:#475569}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+    .chip{font-size:12px;font-weight:800;border:1px solid rgba(37,99,235,.25);background:rgba(37,99,235,.08);color:#2563EB;padding:6px 10px;border-radius:999px}
+    .chip.g{border-color:rgba(22,163,74,.25);background:rgba(22,163,74,.08);color:#16A34A}
+    .mini{font-size:12px;color:#64748B}
+
+    /* Section: Steps */
+    .section{padding:64px 20px}
+    .wrap{max-width:var(--maxw);margin:0 auto}
+    .head{text-align:center;margin-bottom:34px}
+    .head h2{margin:0 0 8px;font-size:30px;font-weight:900;letter-spacing:-.02em}
+    .head p{margin:0;color:var(--muted)}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    @media(max-width:900px){.grid3{grid-template-columns:1fr}}
+    .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 6px 20px rgba(2,6,23,.06)}
+    .num{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;background:linear-gradient(135deg,var(--blue),var(--green));margin-bottom:10px}
+
+    /* Section: What you get */
+    .list{list-style:none;margin:0;padding:0}
+    .list li{display:grid;grid-template-columns:20px 1fr;gap:10px;margin:10px 0;align-items:flex-start}
+
+    /* Pricing */
+    .pricing{background:var(--bg)}
+    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    @media(max-width:960px){.plans{grid-template-columns:1fr}}
+    .plan{display:flex;flex-direction:column;gap:10px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+    .plan.reco{border:2px solid var(--blue2)}
+    .badge-reco{position:absolute;right:16px;top:16px;background:linear-gradient(90deg,var(--blue),var(--green));color:#fff;font-size:12px;font-weight:800;padding:6px 10px;border-radius:999px}
+    .plan-head{display:flex;align-items:center;justify-content:space-between}
+    .plan-title{font-weight:800;color:#64748B}
+    .price{font-size:36px;font-weight:900;margin:4px 0}
+    .period{font-size:14px;color:#64748B;font-weight:600}
+    .features{list-style:none;margin:6px 0 0;padding:0}
+    .features li{display:grid;grid-template-columns:20px 1fr;gap:10px;margin:10px 0;align-items:flex-start}
+    .btn-outline{color:#2563EB;background:#fff;border:2px solid #3B82F6}
+
+    /* FAQ */
+    details{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+    summary{list-style:none;cursor:pointer;padding:16px 18px;font-weight:800;display:flex;gap:10px;align-items:center}
+    details div{padding:0 18px 16px 44px;color:#334155}
+    summary::-webkit-details-marker{display:none}
+
+    /* Footer */
+    footer{background:#fff;border-top:1px solid var(--line);padding:26px 20px}
+    .foot{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px}
+    @media(max-width:900px){.foot{grid-template-columns:1fr}}
+    .foot h4{margin:0 0 8px;font-size:13px;letter-spacing:.06em;color:#94A3B8;text-transform:uppercase}
+    .links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+    .links a{text-decoration:none;color:#334155}
+    .badges{font-size:13px;color:#64748B;display:flex;flex-direction:column;gap:6px}
+    .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(90deg,var(--blue),var(--green));display:inline-block;margin-right:8px;vertical-align:middle}
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="hc-header">
+    <div class="wrap">
+      <a class="logo" href="/">HyperConvo</a>
+      <nav class="nav" aria-label="Navigation">
+        <a href="#plans">Plans</a>
+        <a href="#how">Comment ça marche</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <!-- CTA global - Performance 49€ -->
+      <a class="cta" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Commencer mon audit</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero" aria-label="Audit SEO local pour artisans et commerces">
+    <div class="wrap">
+      <div>
+        <div class="badge">🤖 Audit SEO automatisé</div>
+        <h1 class="title">Plus de clients locaux en 3 minutes: découvrez ce qui bloque votre site</h1>
+        <p class="subtitle">Votre salon, restaurant, boulangerie ou atelier n’apparaît pas en haut des recherches locales ou sur Google Maps. Obtenez un rapport clair et actionnable, livré par e-mail en 3 minutes.</p>
+
+        <div class="bullets">
+          <div class="b"><span class="tick"></span><span>Comprenez pourquoi vos clients ne vous trouvent pas en ligne</span></div>
+          <div class="b"><span class="tick"></span><span>Recevez 5 actions simples à appliquer sans jargon</span></div>
+          <div class="b"><span class="tick"></span><span>Gagnez rapidement en visibilité locale</span></div>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Commencer mon audit</a>
+        </div>
+
+        <div class="proof">
+          <div>🌐 Plus de 500 entreprises locales nous font confiance</div>
+          <div class="stars">★★★★★</div>
+          <div>4,9/5 (127 avis)</div>
+          <div>🔒 Stripe sécurisé · 📧 Rapport ~3 min</div>
+        </div>
+      </div>
+
+      <aside class="preview" aria-label="Aperçu de rapport">
+        <h3>Aperçu du rapport</h3>
+        <div class="chips">
+          <span class="chip">Score global 82/100</span>
+          <span class="chip g">Google Business détecté</span>
+          <span class="chip">PageSpeed mobile 74</span>
+          <span class="chip g">PageSpeed desktop 91</span>
+        </div>
+        <ul class="list">
+          <li><span class="tick"></span><span>Title trop long - version optimisée fournie</span></li>
+          <li><span class="tick"></span><span>Méta description absente sur 2 pages clés</span></li>
+          <li><span class="tick"></span><span>Améliorer H1 et structure des sous-titres</span></li>
+          <li><span class="tick"></span><span>NAP incohérent entre site et fiche Google Business</span></li>
+        </ul>
+        <p class="mini">Exemple indicatif. Le score réel et les recommandations sont générés automatiquement pour votre site.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <header class="head">
+        <h2 id="how-title">Comment ça marche</h2>
+        <p>Zéro jargon. Vous savez quoi corriger en moins de 5 minutes.</p>
+      </header>
+      <div class="grid3">
+        <article class="card">
+          <div class="num">1</div>
+          <h3>Entrez l’URL de votre site</h3>
+          <p>Nous détectons automatiquement les éléments clés: balises Title, méta description, H1, signaux techniques.</p>
+        </article>
+        <article class="card">
+          <div class="num">2</div>
+          <h3>Audit IA instantané</h3>
+          <p>Un rapport complet avec score global, PageSpeed mobile/desktop, Google Business si disponible.</p>
+        </article>
+        <article class="card">
+          <div class="num">3</div>
+          <h3>Recevez 5 priorités claires</h3>
+          <p>Actions classées par impact et effort. Corrigez l’essentiel d’abord et gagnez en visibilité locale.</p>
+        </article>
+      </div>
+
+      <div style="text-align:center;margin-top:20px">
+        <a class="btn btn-primary" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Commencer mon audit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What you get -->
+  <section class="section" aria-labelledby="get-title">
+    <div class="wrap">
+      <header class="head">
+        <h2 id="get-title">Ce que vous recevez</h2>
+        <p>Tout ce qu’il faut pour comprendre et agir tout de suite.</p>
+      </header>
+
+      <div class="grid3">
+        <article class="card">
+          <h3>Score sur 100</h3>
+          <p>Un score global clair pour situer votre site par rapport aux attentes locales.</p>
+        </article>
+        <article class="card">
+          <h3>5 actions prioritaires</h3>
+          <p>Des conseils concrets classés par impact et effort pour aller à l’essentiel.</p>
+        </article>
+        <article class="card">
+          <h3>PageSpeed & Google Business</h3>
+          <p>Analyse vitesse mobile et desktop, vérification de votre fiche Google et de vos avis.</p>
+        </article>
+      </div>
+
+      <div style="text-align:center;margin-top:20px">
+        <a class="btn btn-primary" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Commencer mon audit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="section pricing" id="plans" aria-labelledby="plans-title">
+    <div class="wrap">
+      <header class="head">
+        <h2 id="plans-title">Plans & Prix</h2>
+        <p>Choisissez l’audit qui vous convient. Rapport livré par e-mail en ~3 min.</p>
+      </header>
+
+      <div class="plans">
+        <!-- Essentiel -->
+        <article class="plan" aria-label="Essentiel 19 euros">
+          <div class="plan-head"><div class="plan-title">Essentiel</div></div>
+          <div class="price">19 € <span class="period">/ audit</span></div>
+          <ul class="features">
+            <li><span class="tick"></span><span>Audit de la page d’accueil</span></li>
+            <li><span class="tick"></span><span>Title & méta description</span></li>
+            <li><span class="tick"></span><span>H1 & contenu de base</span></li>
+            <li><span class="tick"></span><span>Score global + 5 actions</span></li>
+          </ul>
+          <a class="btn btn-outline" href="https://buy.stripe.com/4gM4gzaw3bPXfqG7h65gc00?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Choisir Essentiel</a>
+        </article>
+
+        <!-- Performance (recommandé) -->
+        <article class="plan reco" aria-label="Performance 49 euros" style="position:relative">
+          <div class="badge-reco">⚡ Recommandé</div>
+          <div class="plan-head"><div class="plan-title">Performance</div></div>
+          <div class="price">49 € <span class="period">/ audit</span></div>
+          <ul class="features">
+            <li><span class="tick"></span><span>Toutes les features Essentiel</span></li>
+            <li><span class="tick"></span><span>PageSpeed mobile & desktop</span></li>
+            <li><span class="tick"></span><span>Analyse des pages clés supplémentaires</span></li>
+            <li><span class="tick"></span><span>Priorisation impact/effort</span></li>
+          </ul>
+          <!-- CTA principal identique partout -->
+          <a class="btn btn-primary" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Commencer mon audit</a>
+        </article>
+
+        <!-- Expert Local -->
+        <article class="plan" aria-label="Expert Local 99 euros">
+          <div class="plan-head"><div class="plan-title">Expert Local</div></div>
+          <div class="price">99 € <span class="period">/ audit</span></div>
+          <ul class="features">
+            <li><span class="tick"></span><span>Toutes les features Performance</span></li>
+            <li><span class="tick"></span><span>Google Business Profile (profil, NAP, catégories)</span></li>
+            <li><span class="tick"></span><span>Analyse des avis (volume, note, récence)</span></li>
+            <li><span class="tick"></span><span>Plan d’action local détaillé</span></li>
+          </ul>
+          <a class="btn btn-outline" href="https://buy.stripe.com/7sY9ATeMjbPX2DUgRG5gc02?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Choisir Expert</a>
+        </article>
+      </div>
+
+      <p style="text-align:center;color:#6B7280;font-size:13px;margin-top:12px">
+        Paiement sécurisé par Stripe • Rapport ~3 min • Assisté par IA • Facture par e-mail
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <header class="head">
+        <h2 id="faq-title">Questions fréquentes</h2>
+        <p>Tout ce que vous devez savoir avant de lancer votre audit.</p>
+      </header>
+
+      <div class="grid3" style="grid-template-columns:1fr">
+        <details open>
+          <summary><span class="tick" aria-hidden="true"></span> ⏱️ Combien de temps pour recevoir mon audit ?</summary>
+          <div>Environ 3 minutes après le paiement. Le rapport est généré automatiquement et envoyé par e-mail.</div>
+        </details>
+
+        <details>
+          <summary><span class="tick" aria-hidden="true"></span> 💳 Est-ce un abonnement ?</summary>
+          <div>Non. Chaque audit est un achat unique, sans engagement ni frais cachés.</div>
+        </details>
+
+        <details>
+          <summary><span class="tick" aria-hidden="true"></span> 🧠 Est-ce un audit humain ?</summary>
+          <div>L’audit est généré automatiquement par un outil assisté par IA. Si vous souhaitez de l’accompagnement pour la mise en œuvre, c’est possible.</div>
+        </details>
+
+        <details>
+          <summary><span class="tick" aria-hidden="true"></span> 💸 Proposez-vous des remboursements ?</summary>
+          <div><strong>Non</strong>. Le paiement déclenche immédiatement la génération d’un contenu numérique livré sans support matériel. En validant le paiement, vous consentez à l’exécution immédiate et reconnaissez renoncer au droit de rétractation. En cas de souci (ex. non-réception), contactez <a href="mailto:support@hyperconvo.ai">support@hyperconvo.ai</a>.</div>
+        </details>
+      </div>
+
+      <div style="text-align:center;margin-top:22px">
+        <a class="btn btn-primary" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Commencer mon audit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="foot">
+      <div>
+        <h3 style="margin:0 0 8px;font-size:20px;font-weight:900;letter-spacing:-.01em">HyperConvo</h3>
+        <p style="margin:0;color:#64748B">Audit SEO local automatisé en 3 minutes pour artisans et commerces.</p>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:8px">
+          <div style="color:var(--star)">★★★★★</div>
+          <div style="color:#6B7280;font-size:14px">4,9/5 <span style="color:#94A3B8">(127 avis)</span></div>
+        </div>
+        <small style="display:block;margin-top:8px;color:#94A3B8">© 2025 HyperConvo. Tous droits réservés.</small>
+      </div>
+
+      <nav aria-label="Navigation pied de page">
+        <h4>Navigation</h4>
+        <ul class="links">
+          <li><a href="#plans">Plans</a></li>
+          <li><a href="#how">Comment ça marche</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="mailto:support@hyperconvo.ai">support@hyperconvo.ai</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h4>Support & Légal</h4>
+        <ul class="links">
+          <li><a href="/cgv.html">CGV</a></li>
+          <li><a href="/privacy.html">Politique de confidentialité</a></li>
+          <li><a href="/mentions-legales.html">Mentions légales</a></li>
+        </ul>
+        <div class="badges" style="margin-top:10px">
+          <div><span class="dot"></span>Paiement sécurisé Stripe</div>
+          <div><span class="dot"></span>Données hébergées en Europe (RGPD)</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width:var(--maxw);margin:20px auto 0;border-top:1px solid var(--line);padding-top:12px;text-align:center;color:#94A3B8;font-size:13px">
+      Made in 🇪🇺 • Paiements sécurisés • Rapport livré par e-mail
+    </div>
+  </footer>
+</body>
+</html>
