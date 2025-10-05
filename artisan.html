@@ -15,7 +15,7 @@
   <meta property="og:image" content="https://hyperconvo.ai/og-image.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- ✅ JSON-LD minimal (tu pourras compléter) -->
+  <!-- JSON-LD minimal -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -50,9 +50,18 @@
          color:#fff;background:linear-gradient(90deg,var(--blue),var(--green));font-weight:800;box-shadow:0 4px 12px rgba(37,99,235,.25)}
 
     /* Boutons génériques */
-    .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;font-weight:800}
+    .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;font-weight:800;white-space:nowrap}
     .btn-primary{color:#fff;background:linear-gradient(90deg,#2563EB,#16A34A);box-shadow:0 6px 18px rgba(37,99,235,.25)}
-    .btn-full{width:100%}
+    .btn-lg{height:52px;padding:0 20px}
+    .btn-md{height:48px;padding:0 18px}
+    .btn-sm{height:42px;padding:0 16px}
+    .btn-center{display:inline-flex;margin:0 auto}
+    .btn-max{max-width:320px;width:100%} /* sera pleine largeur seulement là où on le veut */
+
+    /* Sur desktop, ne pas étirer à 100% par défaut */
+    @media (min-width: 781px){
+      .desktop-inline .btn-max{width:auto}
+    }
 
     /* HERO */
     .hero{padding:72px 20px;background:#fff}
@@ -126,18 +135,18 @@
     .badges{font-size:13px;color:#64748B;display:flex;flex-direction:column;gap:6px}
     .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(90deg,#2563EB,#16A34A);display:inline-block;margin-right:8px;vertical-align:middle}
 
-    /* Mobile tweaks + ✅ padding-bottom pour éviter le chevauchement avec sticky CTA / FAQ */
+    /* Mobile tweaks + padding-bottom pour sticky CTA / FAQ */
     @media (max-width:780px){
-      body{ padding-bottom:72px } /* évite que le sticky CTA chevauche le contenu (FAQ) */
+      body{ padding-bottom:72px }
       .hc-header .cta{ display:none }
-      .btn-block{ height:52px; }
-      .preview{ max-width:100%; }
       .sticky-cta{
         position:sticky; bottom:0; left:0; right:0; z-index:35;
         background:rgba(255,255,255,.97); backdrop-filter:saturate(1.1) blur(6px);
         border-top:1px solid #E2E8F0; padding:10px 14px calc(10px + env(safe-area-inset-bottom)) 14px;
       }
       .sticky-cta .btn{ display:block; width:100%; height:50px; border-radius:12px; color:#fff; background:linear-gradient(90deg,#2563EB,#16A34A); font-weight:900 }
+      /* Sur mobile, les boutons “centrés & max 320px” deviennent pleine largeur */
+      .btn-max{width:100%}
     }
   </style>
 </head>
@@ -147,7 +156,6 @@
   <header class="hc-header" aria-label="En-tête HyperConvo">
     <div class="wrap">
       <div class="logo">HyperConvo</div>
-      <!-- Pas de Stripe pour le moment -->
       <a class="cta" href="#pricing">Voir les tarifs</a>
     </div>
   </header>
@@ -173,11 +181,10 @@
         </div>
 
         <div class="cta-row">
-          <a class="btn btn-primary" href="#pricing">Voir les tarifs</a>
-          <a class="btn btn-primary" href="#faq">Questions fréquentes</a>
+          <a class="btn btn-primary btn-lg" href="#pricing">Voir les tarifs</a>
+          <a class="btn btn-primary btn-lg" href="#faq">Questions fréquentes</a>
         </div>
 
-        <!-- Micro témoignage -->
         <figure class="micro-testimonial" style="margin:12px 0 0">
           <blockquote style="margin:0;color:#0F172A">“Grâce à l’audit, j’ai compris pourquoi mon salon n’apparaissait pas. Une semaine après, plus d’appels.”</blockquote>
           <figcaption style="color:#64748B;font-size:13px;margin-top:4px">— Sophie, coiffeuse à Lyon</figcaption>
@@ -190,7 +197,6 @@
         <h3>Aperçu du rapport</h3>
 
         <div class="score-wrap" role="group" aria-label="Indicateurs clés">
-          <!-- ✅ Jauge avec attributs ARIA -->
           <svg class="gauge" viewBox="0 0 120 120" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="86" aria-label="Score global 86 sur 100">
             <defs>
               <linearGradient id="grad" x1="0%" y1="0%" x2="100%">
@@ -256,13 +262,14 @@
         </article>
       </div>
 
-      <div class="center" style="margin-top:20px">
-        <a class="btn btn-primary btn-full" style="height:52px;padding:0 18px" href="#pricing">Voir les tarifs</a>
+      <!-- ✅ Bouton compact, centré, pas full-width sur desktop -->
+      <div class="center desktop-inline" style="margin-top:22px">
+        <a class="btn btn-primary btn-md btn-center btn-max" href="#pricing">Voir les tarifs et lancer l’audit</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== Tarifs (sans Stripe pour l’instant) ===== -->
+  <!-- ===== Tarifs (liens Stripe conservés) ===== -->
   <section id="pricing" class="pricing" aria-labelledby="pricing-title">
     <style>
       .pricing{padding:64px 20px;background:#F9FAFB}
@@ -284,7 +291,8 @@
       .pricing .tick{width:18px;height:18px;border-radius:50%;background:linear-gradient(90deg,var(--blue),var(--green));position:relative;margin-top:2px}
       .pricing .tick:after{content:"";position:absolute;left:5px;top:3px;width:6px;height:10px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
       .pricing .btn{display:inline-flex;align-items:center;justify-content:center;height:50px;border-radius:12px;font-weight:800;font-size:16px;text-decoration:none;margin-top:auto}
-      .btn-disabled{background:#E5E7EB;color:#94A3B8;cursor:not-allowed}
+      .btn-outline{color:#2563EB;background:#fff;border:2px solid #3B82F6}
+      .btn-primary-grad{color:#fff;background:linear-gradient(90deg,#2563EB,#16A34A);box-shadow:0 6px 18px rgba(37,99,235,.25)}
       .note{margin-top:12px;font-size:13px;color:#6B7280;text-align:center}
       .nowrap{white-space:nowrap}
     </style>
@@ -296,6 +304,7 @@
       </header>
 
       <div class="grid">
+        <!-- 19 € Essentiel -->
         <article class="card" aria-label="Offre Essentiel 19 euros">
           <div>
             <div class="plan">Essentiel</div>
@@ -307,9 +316,13 @@
               <li><span class="tick"></span><span><strong>Score global</strong> + <strong>5 actions prioritaires</strong></span></li>
             </ul>
           </div>
-          <a class="btn btn-disabled" href="#" aria-disabled="true" title="Bientôt disponible">Bientôt dispo</a>
+          <a class="btn btn-outline js-stripe-btn"
+             data-plan="Essentiel"
+             href="https://buy.stripe.com/4gM4gzaw3bPXfqG7h65gc00?utm_source=meta&utm_medium=ads&utm_campaign=hc_audit"
+             target="_blank" rel="noopener noreferrer">Choisir Essentiel — 19&nbsp;€</a>
         </article>
 
+        <!-- 49 € Performance (reco) -->
         <article class="card reco" aria-label="Offre Performance 49 euros">
           <div class="badge">⚡ Recommandé</div>
           <div>
@@ -323,9 +336,13 @@
               <li><span class="tick"></span><span>Conseils classés par <strong>impact</strong> et <strong>effort</strong></span></li>
             </ul>
           </div>
-          <a class="btn btn-disabled" href="#" aria-disabled="true" title="Bientôt disponible">Bientôt dispo</a>
+          <a class="btn btn-primary-grad js-stripe-btn"
+             data-plan="Performance"
+             href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?utm_source=meta&utm_medium=ads&utm_campaign=hc_audit"
+             target="_blank" rel="noopener noreferrer">Choisir Performance — 49&nbsp;€</a>
         </article>
 
+        <!-- 99 € Expert Local -->
         <article class="card" aria-label="Offre Expert Local 99 euros">
           <div>
             <div class="plan">Expert Local</div>
@@ -338,7 +355,10 @@
               <li><span class="tick"></span><span>Synthèse priorisée + <strong>plan d’action local</strong></span></li>
             </ul>
           </div>
-          <a class="btn btn-disabled" href="#" aria-disabled="true" title="Bientôt disponible">Bientôt dispo</a>
+          <a class="btn btn-outline js-stripe-btn"
+             data-plan="Expert Local"
+             href="https://buy.stripe.com/7sY9ATeMjbPX2DUgRG5gc02?utm_source=meta&utm_medium=ads&utm_campaign=hc_audit"
+             target="_blank" rel="noopener noreferrer">Choisir Expert — 99&nbsp;€</a>
         </article>
       </div>
 
@@ -389,8 +409,9 @@
         </article>
       </div>
 
-      <div class="center" style="margin-top:20px">
-        <a class="btn btn-primary btn-full" style="height:52px;padding:0 18px" href="#pricing">Voir les tarifs</a>
+      <!-- ✅ Bouton compact, centré -->
+      <div class="center desktop-inline" style="margin-top:22px">
+        <a class="btn btn-primary btn-md btn-center btn-max" href="#pricing">Voir les tarifs</a>
       </div>
     </div>
   </section>
@@ -441,8 +462,9 @@
         </details>
       </div>
 
-      <div class="center" style="margin-top:18px">
-        <a class="btn btn-primary btn-full" style="height:52px;padding:0 18px" href="#pricing">Voir les tarifs</a>
+      <!-- ✅ Bouton compact, centré -->
+      <div class="center desktop-inline" style="margin-top:18px">
+        <a class="btn btn-primary btn-md btn-center btn-max" href="#pricing">Voir les tarifs</a>
       </div>
     </div>
   </section>
@@ -474,12 +496,12 @@
       </nav>
 
       <div class="center">
-        <a class="btn btn-primary" style="height:46px;padding:0 16px" href="#pricing">Voir les tarifs</a>
+        <a class="btn btn-primary btn-md" style="padding:0 18px" href="#pricing">Voir les tarifs</a>
       </div>
     </div>
   </footer>
 
-  <!-- Sticky CTA mobile (sans Stripe) -->
+  <!-- Sticky CTA mobile -->
   <div class="sticky-cta" role="region" aria-label="Appel à l’action">
     <a class="btn" href="#pricing">Voir les tarifs</a>
   </div>
