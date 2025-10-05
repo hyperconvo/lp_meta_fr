@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HyperConvo — Audit SEO local artisans & commerces (3 min)</title>
   <meta name="description" content="Audit SEO local automatisé en 3 minutes pour artisans et commerces. Score sur 100, 5 actions prioritaires, PageSpeed, Google Business. Rapport envoyé par e-mail." />
-  <!-- ✅ Canonical corrigé -->
   <link rel="canonical" href="https://hyperconvo.ai/artisan.html" />
 
   <meta property="og:type" content="website" />
@@ -36,32 +35,25 @@
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{
-      margin:0;background:var(--bg);color:var(--text);
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
-    }
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif}
     a{color:inherit;text-decoration:none}
 
-    /* Header minimal */
+    /* Header */
     .hc-header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:40}
     .hc-header .wrap{max-width:var(--maxw);margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
     .logo{font-weight:900;letter-spacing:-.01em}
-    .cta{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:10px;
-         color:#fff;background:linear-gradient(90deg,var(--blue),var(--green));font-weight:800;box-shadow:0 4px 12px rgba(37,99,235,.25)}
+    .cta{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:10px;color:#fff;background:linear-gradient(90deg,var(--blue),var(--green));font-weight:800;box-shadow:0 4px 12px rgba(37,99,235,.25)}
 
-    /* Boutons génériques */
+    /* Buttons */
     .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;font-weight:800;white-space:nowrap}
     .btn-primary{color:#fff;background:linear-gradient(90deg,#2563EB,#16A34A);box-shadow:0 6px 18px rgba(37,99,235,.25)}
+    .btn-outline{color:#2563EB;background:#fff;border:2px solid #3B82F6}
     .btn-lg{height:52px;padding:0 20px}
     .btn-md{height:48px;padding:0 18px}
     .btn-sm{height:42px;padding:0 16px}
     .btn-center{display:inline-flex;margin:0 auto}
-    .btn-max{max-width:320px;width:100%} /* sera pleine largeur seulement là où on le veut */
-
-    /* Sur desktop, ne pas étirer à 100% par défaut */
-    @media (min-width: 781px){
-      .desktop-inline .btn-max{width:auto}
-    }
+    .btn-max{max-width:320px;width:100%}
+    @media (min-width: 781px){ .desktop-inline .btn-max{width:auto} }
 
     /* HERO */
     .hero{padding:72px 20px;background:#fff}
@@ -76,15 +68,12 @@
     .cta-row{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
     .cta-row .btn{height:52px;padding:0 18px}
 
-    /* Aperçu carte */
-    .preview{
-      position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;
-      padding:26px;box-shadow:0 10px 30px rgba(2,6,23,.06);overflow:hidden
-    }
+    /* Preview card */
+    .preview{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:0 10px 30px rgba(2,6,23,.06);overflow:hidden}
     .preview h3{margin:0 0 12px;font-size:18px;color:var(--muted);font-weight:800;letter-spacing:.02em}
-    .blob{position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;
-      background:radial-gradient(circle at 30% 30%, rgba(37,99,235,.15), transparent 55%),
-                 radial-gradient(circle at 70% 70%, rgba(22,163,74,.12), transparent 60%);}
+    .blob{position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;background:
+      radial-gradient(circle at 30% 30%, rgba(37,99,235,.15), transparent 55%),
+      radial-gradient(circle at 70% 70%, rgba(22,163,74,.12), transparent 60%)}
     .score-wrap{display:flex;align-items:center;gap:16px;margin:10px 0 18px}
     .score-labels{display:flex;flex-direction:column;gap:4px}
     .score-title{font-weight:900}
@@ -98,21 +87,20 @@
     .tick:after{content:"";position:absolute;left:5px;top:3px;width:6px;height:10px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
     .gauge{width:86px;height:86px}
 
-    /* Sections génériques */
+    /* Sections */
     .section{padding:44px 20px}
     .wrap2{max-width:var(--maxw);margin:0 auto}
     .head{text-align:center;margin-bottom:18px}
     .head h2{margin:0 0 6px;font-size:26px;font-weight:900}
     .head p{margin:0;color:#64748B}
 
-    /* Grilles */
+    /* Grids & cards */
     .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     @media(max-width:900px){.grid3{grid-template-columns:1fr}}
-
     .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 6px 20px rgba(2,6,23,.06)}
     .center{text-align:center}
 
-    /* “Ce que vous recevez” */
+    /* Get section */
     .grid-get{align-items:stretch}
     .card-get{display:flex;flex-direction:column}
     .card-get .lead{margin:.25rem 0 .5rem;color:#334155}
@@ -126,7 +114,31 @@
     details div{padding:0 16px 14px 44px;color:#334155;line-height:1.55}
     summary::-webkit-details-marker{display:none}
 
-    /* Footer légal minimal */
+    /* Pricing */
+    .pricing{padding:64px 20px;background:#F9FAFB}
+    .pricing .wrap{max-width:1100px;margin:0 auto}
+    .pricing .head{text-align:center;margin-bottom:40px}
+    .pricing .head h2{margin:0 0 10px;font-size:32px;line-height:1.2;font-weight:800}
+    .pricing .head p{margin:0;color:#6B7280;font-size:16px}
+    .pricing .grid{display:grid;gap:22px;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
+    @media (max-width: 960px){.pricing .grid{grid-template-columns:1fr}.pricing .card.reco{order:-1}}
+    .pricing .card{position:relative;display:flex;flex-direction:column;justify-content:space-between;border-radius:20px;background:#fff;border:1px solid #E5E7EB;padding:28px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+    .pricing .card.reco{border:2px solid var(--blue2)}
+    .badge{position:absolute;top:14px;right:14px;background:linear-gradient(90deg,var(--blue),var(--green));color:#fff;font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px}
+    .chip{display:inline-block;margin-top:6px;font-size:12px;font-weight:700;color:var(--blue);background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.25);padding:4px 8px;border-radius:999px}
+    .plan{font-weight:700;color:#6B7280;margin-bottom:6px;letter-spacing:.2px}
+    .price{margin:0 0 16px;font-size:40px;font-weight:900}
+    .period{font-size:14px;color:#6B7280;font-weight:600}
+    ul.features{list-style:none;margin:12px 0 24px;padding:0}
+    ul.features li{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:flex-start;margin:10px 0}
+    .pricing .tick{width:18px;height:18px;border-radius:50%;background:linear-gradient(90deg,var(--blue),var(--green));position:relative;margin-top:2px}
+    .pricing .tick:after{content:"";position:absolute;left:5px;top:3px;width:6px;height:10px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
+    .pricing .btn{display:inline-flex;align-items:center;justify-content:center;height:50px;border-radius:12px;font-weight:800;font-size:16px;text-decoration:none;margin-top:auto}
+    .btn-primary-grad{color:#fff;background:linear-gradient(90deg,#2563EB,#16A34A);box-shadow:0 6px 18px rgba(37,99,235,.25)}
+    .note{margin-top:12px;font-size:13px;color:#6B7280;text-align:center}
+    .nowrap{white-space:nowrap}
+
+    /* Footer */
     footer{background:#fff;border-top:1px solid var(--line);padding:22px 20px}
     .foot{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px}
     @media(max-width:900px){.foot{grid-template-columns:1fr}}
@@ -135,9 +147,9 @@
     .badges{font-size:13px;color:#64748B;display:flex;flex-direction:column;gap:6px}
     .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(90deg,#2563EB,#16A34A);display:inline-block;margin-right:8px;vertical-align:middle}
 
-    /* Mobile tweaks + padding-bottom pour sticky CTA / FAQ */
+    /* Mobile tweaks */
     @media (max-width:780px){
-      body{ padding-bottom:72px }
+      body{ padding-bottom:72px } /* évite le chevauchement FAQ / sticky */
       .hc-header .cta{ display:none }
       .sticky-cta{
         position:sticky; bottom:0; left:0; right:0; z-index:35;
@@ -145,7 +157,6 @@
         border-top:1px solid #E2E8F0; padding:10px 14px calc(10px + env(safe-area-inset-bottom)) 14px;
       }
       .sticky-cta .btn{ display:block; width:100%; height:50px; border-radius:12px; color:#fff; background:linear-gradient(90deg,#2563EB,#16A34A); font-weight:900 }
-      /* Sur mobile, les boutons “centrés & max 320px” deviennent pleine largeur */
       .btn-max{width:100%}
     }
   </style>
@@ -156,14 +167,14 @@
   <header class="hc-header" aria-label="En-tête HyperConvo">
     <div class="wrap">
       <div class="logo">HyperConvo</div>
-      <a class="cta" href="#pricing">Voir les tarifs</a>
+      <!-- CTA header → Stripe 49€ -->
+      <a class="cta" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Commencer (49€)</a>
     </div>
   </header>
 
-  <!-- ===== HERO ===== -->
+  <!-- HERO -->
   <section class="hero" id="hero" aria-label="Audit SEO local artisans & commerces">
     <div class="container">
-      <!-- Colonne gauche -->
       <div>
         <h1 class="title">Plus de clients locaux en 3 minutes : découvrez ce qui bloque votre site</h1>
         <p class="subtitle">Votre salon, resto, boulangerie ou atelier n’apparaît pas en tête des recherches locales ? Obtenez un rapport clair et actionnable.</p>
@@ -181,8 +192,8 @@
         </div>
 
         <div class="cta-row">
-          <a class="btn btn-primary btn-lg" href="#pricing">Voir les tarifs</a>
-          <a class="btn btn-primary btn-lg" href="#faq">Questions fréquentes</a>
+          <a class="btn btn-primary btn-lg" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Lancer mon audit (49€)</a>
+          <a class="btn btn-primary btn-lg" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Questions fréquentes</a>
         </div>
 
         <figure class="micro-testimonial" style="margin:12px 0 0">
@@ -191,7 +202,7 @@
         </figure>
       </div>
 
-      <!-- Colonne droite : APERÇU -->
+      <!-- Aperçu -->
       <aside class="preview" aria-label="Aperçu du rapport généré">
         <div class="blob" aria-hidden="true"></div>
         <h3>Aperçu du rapport</h3>
@@ -234,69 +245,53 @@
     </div>
   </section>
 
-  <!-- ===== Comment ça marche ===== -->
+  <!-- Comment ça marche (détaillé & rassurant) -->
   <section class="section" aria-labelledby="steps-title">
     <div class="wrap2">
       <header class="head">
         <h2 id="steps-title">Comment ça marche</h2>
-        <p>Tout est automatisé et transparent : vous savez quoi corriger en moins de 5 minutes.</p>
+        <p>Simple, rapide et 100 % automatisé : tout se fait en quelques minutes, sans prise de tête.</p>
       </header>
 
       <div class="grid3">
         <article class="card">
           <div class="num" style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;background:linear-gradient(135deg,#2563EB,#16A34A);margin-bottom:10px">1</div>
           <h3>Choisissez votre audit</h3>
-          <p>Vous renseignez l’<strong>e-mail</strong> de réception et l’<strong>URL</strong> à auditer. Champs obligatoires.</p>
+          <p>Vous êtes redirigé vers <strong>Stripe Checkout</strong> (paiement sécurisé). Nous demandons uniquement :</p>
+          <ul style="margin:8px 0 0 16px;padding:0;list-style:disc;color:#334155">
+            <li>votre <strong>adresse e-mail</strong> (pour recevoir le rapport),</li>
+            <li>l’<strong>URL de votre site</strong> à analyser,</li>
+            <li>et pour l’offre <strong>Expert Local</strong>, le <strong>nom de votre page Google</strong> ou <strong>le lien Google Maps</strong>.</li>
+          </ul>
+          <p style="margin-top:8px;color:#64748B;font-size:14.5px">Aucune donnée sensible ni inscription requise.</p>
         </article>
 
         <article class="card">
           <div class="num" style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;background:linear-gradient(135deg,#2563EB,#16A34A);margin-bottom:10px">2</div>
-          <h3>Analyse automatique</h3>
-          <p>Le moteur IA scanne balises, PageSpeed, Google Business, avis, cohérence locale…</p>
+          <h3>Paiement & lancement</h3>
+          <p>Une fois le paiement validé, l’audit démarre automatiquement. Le moteur IA analyse balises, performances, cohérence locale et fiche Google Business.</p>
         </article>
 
         <article class="card">
           <div class="num" style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;background:linear-gradient(135deg,#2563EB,#16A34A);margin-bottom:10px">3</div>
           <h3>Rapport en ~3 minutes</h3>
-          <p>Vous recevez par e-mail votre score /100, les <strong>5 actions priorisées</strong> et tous les détails utiles.</p>
+          <p>Vous recevez par e-mail votre score /100, les <strong>5 actions prioritaires</strong> et toutes les recommandations classées par impact et effort.</p>
         </article>
       </div>
 
-      <!-- ✅ Bouton compact, centré, pas full-width sur desktop -->
       <div class="center desktop-inline" style="margin-top:22px">
-        <a class="btn btn-primary btn-md btn-center btn-max" href="#pricing">Voir les tarifs et lancer l’audit</a>
+        <a class="btn btn-primary btn-md btn-center btn-max"
+           href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans"
+           target="_blank" rel="noopener noreferrer">
+           Lancer mon audit maintenant
+        </a>
+        <small style="display:block;margin-top:6px;color:#64748B">→ Audit recommandé “Performance” (49 €)</small>
       </div>
     </div>
   </section>
 
-  <!-- ===== Tarifs (liens Stripe conservés) ===== -->
+  <!-- Tarifs -->
   <section id="pricing" class="pricing" aria-labelledby="pricing-title">
-    <style>
-      .pricing{padding:64px 20px;background:#F9FAFB}
-      .pricing .wrap{max-width:1100px;margin:0 auto}
-      .pricing .head{text-align:center;margin-bottom:40px}
-      .pricing .head h2{margin:0 0 10px;font-size:32px;line-height:1.2;font-weight:800}
-      .pricing .head p{margin:0;color:#6B7280;font-size:16px}
-      .pricing .grid{display:grid;gap:22px;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
-      @media (max-width: 960px){.pricing .grid{grid-template-columns:1fr}.pricing .card.reco{order:-1}}
-      .pricing .card{position:relative;display:flex;flex-direction:column;justify-content:space-between;border-radius:20px;background:#fff;border:1px solid #E5E7EB;padding:28px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
-      .pricing .card.reco{border:2px solid var(--blue2)}
-      .badge{position:absolute;top:14px;right:14px;background:linear-gradient(90deg,var(--blue),var(--green));color:#fff;font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px}
-      .chip{display:inline-block;margin-top:6px;font-size:12px;font-weight:700;color:var(--blue);background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.25);padding:4px 8px;border-radius:999px}
-      .plan{font-weight:700;color:#6B7280;margin-bottom:6px;letter-spacing:.2px}
-      .price{margin:0 0 16px;font-size:40px;font-weight:900}
-      .period{font-size:14px;color:#6B7280;font-weight:600}
-      ul.features{list-style:none;margin:12px 0 24px;padding:0}
-      ul.features li{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:flex-start;margin:10px 0}
-      .pricing .tick{width:18px;height:18px;border-radius:50%;background:linear-gradient(90deg,var(--blue),var(--green));position:relative;margin-top:2px}
-      .pricing .tick:after{content:"";position:absolute;left:5px;top:3px;width:6px;height:10px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
-      .pricing .btn{display:inline-flex;align-items:center;justify-content:center;height:50px;border-radius:12px;font-weight:800;font-size:16px;text-decoration:none;margin-top:auto}
-      .btn-outline{color:#2563EB;background:#fff;border:2px solid #3B82F6}
-      .btn-primary-grad{color:#fff;background:linear-gradient(90deg,#2563EB,#16A34A);box-shadow:0 6px 18px rgba(37,99,235,.25)}
-      .note{margin-top:12px;font-size:13px;color:#6B7280;text-align:center}
-      .nowrap{white-space:nowrap}
-    </style>
-
     <div class="wrap">
       <header class="head">
         <h2 id="pricing-title">Tarifs simples. Résultats immédiats.</h2>
@@ -316,9 +311,8 @@
               <li><span class="tick"></span><span><strong>Score global</strong> + <strong>5 actions prioritaires</strong></span></li>
             </ul>
           </div>
-          <a class="btn btn-outline js-stripe-btn"
-             data-plan="Essentiel"
-             href="https://buy.stripe.com/4gM4gzaw3bPXfqG7h65gc00?utm_source=meta&utm_medium=ads&utm_campaign=hc_audit"
+          <a class="btn btn-outline"
+             href="https://buy.stripe.com/4gM4gzaw3bPXfqG7h65gc00?utm_source=site&utm_medium=pricing_card&utm_campaign=artisans"
              target="_blank" rel="noopener noreferrer">Choisir Essentiel — 19&nbsp;€</a>
         </article>
 
@@ -336,9 +330,8 @@
               <li><span class="tick"></span><span>Conseils classés par <strong>impact</strong> et <strong>effort</strong></span></li>
             </ul>
           </div>
-          <a class="btn btn-primary-grad js-stripe-btn"
-             data-plan="Performance"
-             href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?utm_source=meta&utm_medium=ads&utm_campaign=hc_audit"
+          <a class="btn btn-primary-grad"
+             href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?utm_source=site&utm_medium=pricing_card&utm_campaign=artisans"
              target="_blank" rel="noopener noreferrer">Choisir Performance — 49&nbsp;€</a>
         </article>
 
@@ -355,9 +348,8 @@
               <li><span class="tick"></span><span>Synthèse priorisée + <strong>plan d’action local</strong></span></li>
             </ul>
           </div>
-          <a class="btn btn-outline js-stripe-btn"
-             data-plan="Expert Local"
-             href="https://buy.stripe.com/7sY9ATeMjbPX2DUgRG5gc02?utm_source=meta&utm_medium=ads&utm_campaign=hc_audit"
+          <a class="btn btn-outline"
+             href="https://buy.stripe.com/7sY9ATeMjbPX2DUgRG5gc02?utm_source=site&utm_medium=pricing_card&utm_campaign=artisans"
              target="_blank" rel="noopener noreferrer">Choisir Expert — 99&nbsp;€</a>
         </article>
       </div>
@@ -366,7 +358,7 @@
     </div>
   </section>
 
-  <!-- ===== Ce que vous recevez ===== -->
+  <!-- Ce que vous recevez -->
   <section class="section" aria-labelledby="get-title">
     <div class="wrap2">
       <header class="head">
@@ -409,14 +401,16 @@
         </article>
       </div>
 
-      <!-- ✅ Bouton compact, centré -->
       <div class="center desktop-inline" style="margin-top:22px">
-        <a class="btn btn-primary btn-md btn-center btn-max" href="#pricing">Voir les tarifs</a>
+        <a class="btn btn-primary btn-md btn-center btn-max"
+           href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans"
+           target="_blank" rel="noopener noreferrer">Lancer mon audit (49€)</a>
+        <small style="display:block;margin-top:6px;color:#64748B">→ Audit recommandé “Performance”</small>
       </div>
     </div>
   </section>
 
-  <!-- ===== FAQ ===== -->
+  <!-- FAQ -->
   <section class="section" id="faq" aria-labelledby="faq-title">
     <div class="wrap2">
       <header class="head">
@@ -427,44 +421,34 @@
       <div class="grid3" style="grid-template-columns:1fr">
         <details open>
           <summary><span class="tick" aria-hidden="true"></span> ⏱️ Délais: quand vais-je recevoir mon audit ?</summary>
-          <div>
-            Dans la grande majorité des cas, vous recevez votre rapport <strong>dans les 3 minutes</strong> suivant la commande.
-            Le temps dépend de la vitesse de votre site et des services tiers.
-          </div>
+          <div>Dans la grande majorité des cas, vous recevez votre rapport <strong>dans les 3 minutes</strong> suivant la commande (variable selon la vitesse du site et des services tiers).</div>
         </details>
 
         <details>
           <summary><span class="tick" aria-hidden="true"></span> 💳 Paiement: quelles informations sont demandées ?</summary>
-          <div>
-            Votre <strong>e-mail</strong> (pour recevoir le rapport) et l’<strong>URL</strong> à auditer. Le paiement est traité en toute sécurité par Stripe.
-          </div>
+          <div>Uniquement votre <strong>e-mail</strong> (livraison du rapport) et l’<strong>URL</strong> à auditer. Pour l’offre <strong>Expert Local</strong>, le <strong>nom de votre page Google</strong> ou <strong>le lien Google Maps</strong>.</div>
         </details>
 
         <details>
           <summary><span class="tick" aria-hidden="true"></span> 📧 Livraison: à quelle adresse est envoyé le rapport ?</summary>
-          <div>
-            À l’adresse e-mail indiquée lors de la commande. En cas d’erreur, écrivez à <a href="mailto:support@hyperconvo.ai">support@hyperconvo.ai</a>.
-          </div>
+          <div>À l’adresse e-mail indiquée lors de la commande. En cas d’erreur, écrivez à <a href="mailto:support@hyperconvo.ai">support@hyperconvo.ai</a>.</div>
         </details>
 
         <details>
           <summary><span class="tick" aria-hidden="true"></span> 🧠 Humain ou IA: qui réalise l’audit ?</summary>
-          <div>
-            <strong>100 % automatisé</strong> par un moteur assisté par IA. Option d’accompagnement pour les corrections si besoin.
-          </div>
+          <div><strong>100 % automatisé</strong> par un moteur assisté par IA. Option d’accompagnement pour les corrections si besoin.</div>
         </details>
 
         <details>
           <summary><span class="tick" aria-hidden="true"></span> 💸 Remboursement: est-ce possible ?</summary>
-          <div>
-            <strong>Non</strong>. Contenu numérique livré immédiatement après paiement (art. L221-28). En cas de souci technique, nous renvoyons le rapport.
-          </div>
+          <div><strong>Non</strong>. Contenu numérique livré immédiatement après paiement (art. L221-28). En cas de souci technique, nous renvoyons le rapport.</div>
         </details>
       </div>
 
-      <!-- ✅ Bouton compact, centré -->
       <div class="center desktop-inline" style="margin-top:18px">
-        <a class="btn btn-primary btn-md btn-center btn-max" href="#pricing">Voir les tarifs</a>
+        <a class="btn btn-primary btn-md btn-center btn-max"
+           href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans"
+           target="_blank" rel="noopener noreferrer">Lancer mon audit (49€)</a>
       </div>
     </div>
   </section>
@@ -496,14 +480,16 @@
       </nav>
 
       <div class="center">
-        <a class="btn btn-primary btn-md" style="padding:0 18px" href="#pricing">Voir les tarifs</a>
+        <a class="btn btn-primary btn-md" style="padding:0 18px"
+           href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans"
+           target="_blank" rel="noopener noreferrer">Commencer (49€)</a>
       </div>
     </div>
   </footer>
 
   <!-- Sticky CTA mobile -->
   <div class="sticky-cta" role="region" aria-label="Appel à l’action">
-    <a class="btn" href="#pricing">Voir les tarifs</a>
+    <a class="btn" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Lancer mon audit (49€)</a>
   </div>
 </body>
 </html>
