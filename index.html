@@ -617,7 +617,102 @@
   </div>
 </section>
   
+<!-- ===== CHOIX MÉTIER ===== -->
+<section id="segments" class="hc-segments" aria-labelledby="segments-title">
+  <style>
+    :root{
+      --blue:#2563EB; --blue2:#3B82F6; --green:#16A34A;
+      --text:#0F172A; --muted:#64748B; --bg:#F8FAFC; --card:#FFFFFF; --line:#E2E8F0;
+      --maxw:1100px;
+    }
+    .hc-segments{background:var(--bg);padding:64px 20px}
+    .hc-segments .wrap{max-width:var(--maxw);margin:0 auto}
 
+    .hc-segments .head{text-align:center;margin-bottom:32px}
+    .hc-segments .head h2{margin:0 0 8px;font-size:32px;font-weight:900;letter-spacing:-.02em;color:var(--text)}
+    .hc-segments .head p{margin:0;color:var(--muted);font-size:16px}
+
+    .hc-segments .grid{
+      display:grid;gap:18px;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+    @media(max-width: 900px){
+      .hc-segments .grid{grid-template-columns:1fr}
+    }
+
+    .hc-segments .card{
+      background:var(--card);border:1px solid var(--line);border-radius:18px;
+      padding:22px;box-shadow:0 6px 20px rgba(2,6,23,.06);
+      display:flex;flex-direction:column;gap:12px;transition:.2s ease
+    }
+    .hc-segments .card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(2,6,23,.08)}
+
+    .hc-segments .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(22,163,74,.10);color:var(--green);
+      border:1px solid rgba(22,163,74,.25);
+      font-weight:800;font-size:12px;padding:6px 10px;border-radius:999px
+    }
+
+    .hc-segments .title{margin:0;font-size:18px;font-weight:900;color:var(--text);letter-spacing:-.01em}
+    .hc-segments .desc{margin:0;color:#334155;line-height:1.55;font-size:14px;min-height:3.2em}
+
+    .hc-segments .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      height:48px;padding:0 18px;border-radius:12px;font-weight:800;font-size:15px;
+      text-decoration:none;color:#fff;background:linear-gradient(90deg,var(--blue),var(--green));
+      box-shadow:0 6px 18px rgba(37,99,235,.25);transition:.15s ease;margin-top:auto
+    }
+    .hc-segments .btn:hover{transform:translateY(-2px);opacity:.95}
+
+    .hc-segments .meta{
+      display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px
+    }
+    .hc-segments .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:linear-gradient(90deg,var(--blue),var(--green));
+      display:inline-block;vertical-align:middle
+    }
+  </style>
+
+  <div class="wrap">
+    <header class="head">
+      <h2 id="segments-title">Choisissez votre type de métier</h2>
+      <p>Un parcours adapté à votre activité · recommandations claires et actionnables.</p>
+    </header>
+
+    <div class="grid" role="list">
+      <!-- Artisan -->
+      <article class="card" role="listitem" aria-label="Parcours Artisan">
+        <span class="eyebrow">🔧 Artisan & Commerce local</span>
+        <h3 class="title">Artisan</h3>
+        <p class="desc">Idéal pour coiffeurs, plombiers, boulangers, cabinets de proximité… Focus sur Google Business, NAP et requêtes locales.</p>
+        <div class="meta"><span class="dot" aria-hidden="true"></span><span>Local · Map Pack · Avis</span></div>
+        <a class="btn" href="/artisan" aria-label="Aller vers la page dédiée Artisan">Aller sur la page Artisan</a>
+      </article>
+
+      <!-- E-commerce -->
+      <article class="card" role="listitem" aria-label="Parcours E-commerce">
+        <span class="eyebrow">🛒 Boutique en ligne</span>
+        <h3 class="title">Ecom</h3>
+        <p class="desc">Pensé pour Shopify/Prestashop/WooCommerce. Mots-clés produits, fiches, Core Web Vitals et conversions.</p>
+        <div class="meta"><span class="dot" aria-hidden="true"></span><span>Fiches produits · Vitesse · SEO on-page</span></div>
+        <a class="btn" href="/ecommerce" aria-label="Aller vers la page dédiée E-commerce">Aller sur la page E-commerce</a>
+      </article>
+
+      <!-- PME / TPE -->
+      <article class="card" role="listitem" aria-label="Parcours PME/TPE">
+        <span class="eyebrow">🏢 Services & B2B</span>
+        <h3 class="title">PME / TPE</h3>
+        <p class="desc">Pour entreprises de services, cabinets, agences. Pages services, maillage interne et leads qualifiés.</p>
+        <div class="meta"><span class="dot" aria-hidden="true"></span><span>Pages services · Leads · Autorité</span></div>
+        <a class="btn" href="/pme-tpe" aria-label="Aller vers la page dédiée PME / TPE">Aller sur la page PME / TPE</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+  
 <!-- ===== 3. PRICING ===== -->
 <section id="pricing" class="pricing" aria-labelledby="pricing-title">
   <style>
