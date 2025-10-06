@@ -131,7 +131,7 @@
     .period{font-size:14px;color:#6B7280;font-weight:600}
     ul.features{list-style:none;margin:12px 0 24px;padding:0}
     ul.features li{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:flex-start;margin:10px 0}
-    .pricing .tick{width:18px;height:18px;border-radius:50%;background:linear-gradient(90deg,var(--blue),var(--green));position:relative;margin-top:2px}
+    .pricing .tick{width:18px;height:18px;border-radius:50%;background:linear-gradient(90deg,#2563EB,#16A34A);position:relative;margin-top:2px}
     .pricing .tick:after{content:"";position:absolute;left:5px;top:3px;width:6px;height:10px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
     .pricing .btn{display:inline-flex;align-items:center;justify-content:center;height:50px;border-radius:12px;font-weight:800;font-size:16px;text-decoration:none;margin-top:auto}
     .btn-primary-grad{color:#fff;background:linear-gradient(90deg,#2563EB,#16A34A);box-shadow:0 6px 18px rgba(37,99,235,.25)}
@@ -167,6 +167,20 @@
       .btn-max{ width:100% }
     }
   </style>
+
+  <!-- Meta Pixel Code (ajouté) -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+    (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1189802013345074');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1189802013345074&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 
 <body>
@@ -493,5 +507,111 @@
       </div>
     </div>
   </footer>
+
+  <!-- Tracking Meta Pixel — Attaches non intrusifs (ajouté) -->
+  <script>
+  (function(){
+    function safeFbq(){ try{ return typeof fbq === 'function' ? fbq : null }catch(e){ return null } }
+    const F = safeFbq();
+
+    // ViewContent pour catégoriser la LP
+    try{ F && F('track','ViewContent',{content_name:'LP PME-TPE', content_category:'Landing Page'}); }catch(_){}
+
+    // Prix par plan
+    const PRICE = { 'Essentiel':19, 'Performance':49, 'Expert Local':99 };
+
+    // Déduction du plan à partir du DOM / libellé
+    function inferPlan(a){
+      const card = a.closest('article.card');
+      if(card){
+        const planEl = card.querySelector('.plan') || card;
+        const txt = (planEl.textContent||'').toLowerCase();
+        if(txt.includes('essentiel')) return 'Essentiel';
+        if(txt.includes('performance')) return 'Performance';
+        if(txt.includes('expert')) return 'Expert Local';
+      }
+      const t = (a.textContent||'').toLowerCase();
+      if(t.includes('essentiel')) return 'Essentiel';
+      if(t.includes('performance')) return 'Performance';
+      if(t.includes('expert')) return 'Expert Local';
+      return 'Performance';
+    }
+    function track(){ try{ F && F.apply(null, arguments) }catch(_){}
+
+    // 1) Tous les liens Stripe → IC + event custom
+    document.querySelectorAll('a[href^="https://buy.stripe.com"]').forEach(function(a){
+      a.addEventListener('click', function(){
+        const plan = inferPlan(a);
+        const value = PRICE[plan] || 0;
+        track('track','InitiateCheckout', { content_name: plan, value, currency:'EUR', source:'pme-tpe' });
+        track('trackCustom','StripeCTA', { plan, value, currency:'EUR', lp:'pme-tpe' });
+      }, {passive:true});
+    });
+
+    // 2) CTA Header
+    const headerCta = document.querySelector('.hc-header .cta');
+    headerCta && headerCta.addEventListener('click', function(){
+      track('trackCustom','CTA_Header_Click',{ lp:'pme-tpe' });
+    }, {passive:true});
+
+    // 3) CTAs Hero (primary / secondary)
+    document.querySelectorAll('.hero .cta-row a').forEach(function(a, i){
+      a.addEventListener('click', function(){
+        track('trackCustom','CTA_Hero_Click', { position: (i===0?'primary':'secondary'), lp:'pme-tpe' });
+      }, {passive:true});
+    });
+
+    // 4) CTA Steps (bouton central sous "Comment ça marche")
+    const stepsBtn = document.querySelector('.section .btn.btn-primary.btn-md.btn-center.btn-max');
+    stepsBtn && stepsBtn.addEventListener('click', function(){
+      track('trackCustom','CTA_Steps_Click', { lp:'pme-tpe' });
+    }, {passive:true});
+
+    // 5) Pricing → AddToCart + PricingClick
+    document.querySelectorAll('#pricing .card a').forEach(function(a){
+      a.addEventListener('click', function(){
+        const plan = inferPlan(a);
+        const value = PRICE[plan] || 0;
+        track('track','AddToCart', { content_name: plan, value, currency:'EUR', lp:'pme-tpe' });
+        track('trackCustom','PricingClick', { plan, value, lp:'pme-tpe' });
+      }, {passive:true});
+    });
+
+    // 6) FAQ ouvertures
+    document.querySelectorAll('#faq details > summary').forEach(function(s){
+      s.addEventListener('click', function(){
+        const q = (s.textContent||'').trim().replace(/\s+/g,' ').slice(0,120);
+        track('trackCustom','FAQOpen', { q, lp:'pme-tpe' });
+      }, {passive:true});
+    });
+
+    // 7) Liens légaux
+    document.querySelectorAll('footer a[href$=".html"]').forEach(function(a){
+      a.addEventListener('click', function(){
+        track('trackCustom','LegalView', { href: a.getAttribute('href'), lp:'pme-tpe' });
+      }, {passive:true});
+    });
+
+    // 8) Mailto (contact)
+    document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){
+      a.addEventListener('click', function(){
+        track('track','Contact', { method:'email', lp:'pme-tpe' });
+      }, {passive:true});
+    });
+
+    // 9) Scroll depth 50 %
+    let sent50 = false;
+    window.addEventListener('scroll', function(){
+      if(sent50) return;
+      const scrolled = window.scrollY + window.innerHeight;
+      const perc = scrolled / document.documentElement.scrollHeight;
+      if(perc >= 0.5){
+        sent50 = true;
+        track('trackCustom','ScrollDepth', { percent:50, lp:'pme-tpe' });
+      }
+    }, {passive:true});
+  })();
+  </script>
+  <!-- Fin tracking Pixel -->
 </body>
 </html>
