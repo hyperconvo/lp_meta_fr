@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HyperConvo — Page en travaux</title>
+  <meta name="description" content="Cette page est en cours de préparation. Vous allez être redirigé vers l’accueil d’HyperConvo." />
+  <link rel="canonical" href="https://hyperconvo.ai/" />
+
+  <!-- Empêche l’indexation pendant les travaux -->
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Fallback sans JavaScript -->
+  <noscript><meta http-equiv="refresh" content="0;url=/" /></noscript>
+
+  <style>
+    :root{
+      --blue:#2563EB; --green:#16A34A; --text:#0F172A; --muted:#64748B; --bg:#F8FAFC; --line:#E2E8F0;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+      display:grid; place-items:center; padding:24px;
+    }
+    .card{
+      width:min(720px, 92vw);
+      background:#fff; border:1px solid var(--line); border-radius:16px;
+      padding:24px; box-shadow:0 10px 30px rgba(2,6,23,.06); text-align:center; position:relative; overflow:hidden;
+    }
+    .logo{font-weight:900; letter-spacing:-.01em; margin-bottom:8px}
+    h1{margin:8px 0 6px; font-size:clamp(22px,4.6vw,30px); line-height:1.2}
+    p{margin:8px 0; color:var(--muted)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      height:48px; padding:0 18px; border-radius:12px; font-weight:800; text-decoration:none; margin-top:12px;
+      color:#fff; background:linear-gradient(90deg,var(--blue),var(--green));
+      box-shadow:0 6px 18px rgba(37,99,235,.25);
+    }
+    .hint{margin-top:10px; font-size:13px; color:#94A3B8}
+    .blob{
+      position:absolute; right:-80px; top:-80px; width:220px; height:220px; border-radius:50%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(37,99,235,.12), transparent 55%),
+        radial-gradient(circle at 70% 70%, rgba(22,163,74,.10), transparent 60%);
+      pointer-events:none;
+    }
+  </style>
+
+  <script>
+    (function(){
+      // Si l'URL contient ?preview=1, on NE redirige pas (utile pour vérifier l'affichage)
+      var params = new URLSearchParams(location.search);
+      if(!params.has('preview')){
+        // Redirection douce (1.2s). Utilise replace() pour ne pas polluer l'historique.
+        setTimeout(function(){ location.replace('/') }, 1200);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <main class="card" role="status" aria-live="polite">
+    <div class="blob" aria-hidden="true"></div>
+    <div class="logo">HyperConvo</div>
+    <h1>Page en travaux</h1>
+    <p>Cette page n’est pas encore disponible. Vous allez être redirigé vers l’accueil.</p>
+    <a class="btn" href="/">Retourner à l’accueil</a>
+    <div class="hint">Besoin de voir cette page sans redirection ? Ajoutez <code>?preview=1</code> à l’URL.</div>
+  </main>
+</body>
+</html>
