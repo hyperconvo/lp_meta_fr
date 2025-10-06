@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Merci – HyperConvo</title>
+  <meta name="description" content="Merci pour votre commande HyperConvo. Votre audit SEO automatisé sera envoyé par e-mail sous 3 minutes." />
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- ✅ Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1189802013345074');
+    fbq('track', 'PageView');
+    fbq('track', 'Purchase', { value: 49.00, currency: 'EUR' });
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1189802013345074&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- ✅ End Meta Pixel Code -->
+
+  <meta http-equiv="refresh" content="4; url=/" />
+
+  <style>
+    :root {
+      --blue: #2563EB;
+      --bg: #F8FAFC;
+      --text: #0F172A;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 24px;
+    }
+    h1 { font-size: clamp(2rem, 6vw, 3rem); margin-bottom: 12px; }
+    p { font-size: clamp(1rem, 2vw, 1.25rem); margin-bottom: 24px; opacity: .85; }
+    a {
+      display: inline-block;
+      padding: 12px 20px;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    a:hover { opacity: .9; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Merci !</h1>
+    <p>Votre commande a bien été prise en compte.<br />Le rapport arrive par e-mail sous 3 minutes.</p>
+    <a href="/">Retour à l’accueil</a>
+  </main>
+</body>
+</html>
