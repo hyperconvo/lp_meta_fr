@@ -131,7 +131,7 @@
     .period{font-size:14px;color:#6B7280;font-weight:600}
     ul.features{list-style:none;margin:12px 0 24px;padding:0}
     ul.features li{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:flex-start;margin:10px 0}
-    .pricing .tick{width:18px;height:18px;border-radius:50%;background:linear-gradient(90deg,var(--blue),var(--green));position:relative;margin-top:2px}
+    .pricing .tick{width:18px;height:18px;border-radius:50%;background:linear-gradient(90deg,#2563EB,#16A34A);position:relative;margin-top:2px}
     .pricing .tick:after{content:"";position:absolute;left:5px;top:3px;width:6px;height:10px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
     .pricing .btn{display:inline-flex;align-items:center;justify-content:center;height:50px;border-radius:12px;font-weight:800;font-size:16px;text-decoration:none;margin-top:auto}
     .btn-primary-grad{color:#fff;background:linear-gradient(90deg,#2563EB,#16A34A);box-shadow:0 6px 18px rgba(37,99,235,.25)}
@@ -149,48 +149,20 @@
 
     /* Mobile tweaks */
     @media (max-width:780px){
-      body{ padding-bottom:72px } /* si sticky CTA est gardée */
-      /* ✅ Afficher le CTA header sur mobile (compact) */
-      .hc-header .cta{
-        display:inline-flex;
-        height:36px;
-        padding:0 12px;
-        font-size:14px;
-        border-radius:10px;
-      }
+      body{ padding-bottom:72px }
+      .hc-header .cta{display:inline-flex;height:36px;padding:0 12px;font-size:14px;border-radius:10px}
       .hero .container{ grid-template-columns:1fr; gap:28px }
-
-      /* ✅ Titre plus petit et lisible sur mobile */
       .title{ font-size:28px; line-height:1.2; letter-spacing:-.01em }
-
-      /* ✅ Pills centrées + full width */
       .pills{ flex-direction:column; align-items:stretch; gap:10px }
       .pill{ justify-content:center; width:100%; padding:12px 14px; font-weight:700 }
-
-      /* ✅ CTA du HERO centrés + étirés */
       .cta-row{ justify-content:center; width:100% }
       .cta-row .btn{ width:100%; max-width:420px; height:50px; border-radius:12px; font-weight:900 }
-
-      /* Preview : s'assurer qu'elle ne dépasse pas */
       .preview{ max-width:100% }
-
-      /* Sticky CTA (si conservée) */
-      .sticky-cta{
-        position:sticky; bottom:0; left:0; right:0; z-index:35;
-        background:rgba(255,255,255,.97); backdrop-filter:saturate(1.1) blur(6px);
-        border-top:1px solid #E2E8F0; padding:10px 14px calc(10px + env(safe-area-inset-bottom)) 14px;
-      }
-      .sticky-cta .btn{
-        display:block; width:100%; height:50px; border-radius:12px;
-        color:#fff; background:linear-gradient(90deg,#2563EB,#16A34A); font-weight:900
-      }
-
-      /* Boutons compacts des autres sections → full width sur mobile */
       .btn-max{ width:100% }
     }
   </style>
 
-  <!-- ✅ Meta Pixel Code (ajouté) -->
+  <!-- ✅ Meta Pixel -->
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -202,7 +174,7 @@
   </script>
   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1189802013345074&ev=PageView&noscript=1"/></noscript>
-  <!-- ✅ End Meta Pixel Code -->
+  <!-- ✅ End Meta Pixel -->
 </head>
 
 <body>
@@ -211,7 +183,12 @@
     <div class="wrap">
       <div class="logo">HyperConvo</div>
       <!-- CTA header → Stripe 49€ -->
-      <a class="cta" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Commencer (49€)</a>
+      <a class="cta"
+         href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans"
+         target="_blank" rel="noopener noreferrer"
+         data-track="StripeCTA" data-loc="header" data-plan="Performance 49">
+         Commencer (49€)
+      </a>
     </div>
   </header>
 
@@ -235,8 +212,15 @@
         </div>
 
         <div class="cta-row">
-          <a class="btn btn-primary btn-lg" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Lancer mon audit (49€)</a>
-          <a class="btn btn-primary btn-lg" href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans" target="_blank" rel="noopener noreferrer">Questions fréquentes</a>
+          <a class="btn btn-primary btn-lg"
+             href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans"
+             target="_blank" rel="noopener noreferrer"
+             data-track="StripeCTA" data-loc="hero_primary" data-plan="Performance 49">
+             Lancer mon audit (49€)
+          </a>
+
+          <!-- ⚠️ ICI on ne pointe plus vers Stripe : on scrolle vers la FAQ -->
+          <a class="btn btn-primary btn-lg" href="#faq" rel="nofollow">Questions fréquentes</a>
         </div>
 
         <figure class="micro-testimonial" style="margin:12px 0 0">
@@ -249,46 +233,35 @@
       <aside class="preview" aria-label="Aperçu du rapport généré">
         <div class="blob" aria-hidden="true"></div>
         <h3>Aperçu du rapport</h3>
-
         <div class="score-wrap" role="group" aria-label="Indicateurs clés">
           <svg class="gauge" viewBox="0 0 120 120" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="86" aria-label="Score global 86 sur 100">
-            <defs>
-              <linearGradient id="grad" x1="0%" y1="0%" x2="100%">
-                <stop offset="0%" stop-color="#2563EB"/>
-                <stop offset="100%" stop-color="#16A34A"/>
-              </linearGradient>
-            </defs>
+            <defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%"><stop offset="0%" stop-color="#2563EB"/><stop offset="100%" stop-color="#16A34A"/></linearGradient></defs>
             <circle cx="60" cy="60" r="50" fill="none" stroke="#E2E8F0" stroke-width="12" />
-            <circle cx="60" cy="60" r="50" fill="none" stroke="url(#grad)" stroke-width="12"
-                    stroke-linecap="round" stroke-dasharray="270 314" transform="rotate(-90 60 60)"/>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="url(#grad)" stroke-width="12" stroke-linecap="round" stroke-dasharray="270 314" transform="rotate(-90 60 60)"/>
             <text x="60" y="65" text-anchor="middle" font-size="28" font-weight="800" fill="#0F172A">86</text>
           </svg>
-
           <div class="score-labels" aria-live="polite">
             <div class="score-title">Score global</div>
             <div class="score-sub">5 priorités à corriger</div>
           </div>
         </div>
-
         <div class="chips" aria-label="Synthèse rapide">
           <span class="chip">PageSpeed Mobile: 78</span>
           <span class="chip green">PageSpeed Desktop: 92</span>
           <span class="chip green">Google Business: trouvé</span>
         </div>
-
         <ul class="list">
           <li><span class="tick" aria-hidden="true"></span><span>Balise <strong>Title</strong> trop longue — suggestion fournie</span></li>
           <li><span class="tick" aria-hidden="true"></span><span>Méta description manquante sur 2 pages</span></li>
           <li><span class="tick" aria-hidden="true"></span><span>Améliorer <strong>H1</strong> & structure Hn</span></li>
           <li><span class="tick" aria-hidden="true"></span><span>NAP incohérent entre site & Google Business</span></li>
         </ul>
-
         <div class="mini-note">Exemple d’aperçu. Le score et les priorités sont générés automatiquement par IA pour votre site réel.</div>
       </aside>
     </div>
   </section>
 
-  <!-- Comment ça marche (détaillé & rassurant) -->
+  <!-- Comment ça marche -->
   <section class="section" aria-labelledby="steps-title">
     <div class="wrap2">
       <header class="head">
@@ -312,7 +285,7 @@
         <article class="card">
           <div class="num" style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;background:linear-gradient(135deg,#2563EB,#16A34A);margin-bottom:10px">2</div>
           <h3>Paiement & lancement</h3>
-          <p>Une fois le paiement validé, l’audit démarre automatiquement. Le moteur IA analyse balises, performances, cohérence locale et fiche Google Business.</p>
+          <p>Une fois le paiement validé, l’audit démarre automatiquement. Le moteur IA analyse balises, performances, cohérence locale et fiche Google Business (si applicable).</p>
         </article>
 
         <article class="card">
@@ -325,7 +298,8 @@
       <div class="center desktop-inline" style="margin-top:22px">
         <a class="btn btn-primary btn-md btn-center btn-max"
            href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans"
-           target="_blank" rel="noopener noreferrer">
+           target="_blank" rel="noopener noreferrer"
+           data-track="StripeCTA" data-loc="steps_cta" data-plan="Performance 49">
            Lancer mon audit maintenant
         </a>
         <small style="display:block;margin-top:6px;color:#64748B">→ Audit recommandé “Performance” (49 €)</small>
@@ -356,7 +330,10 @@
           </div>
           <a class="btn btn-outline"
              href="https://buy.stripe.com/4gM4gzaw3bPXfqG7h65gc00?utm_source=site&utm_medium=pricing_card&utm_campaign=artisans"
-             target="_blank" rel="noopener noreferrer">Choisir Essentiel — 19&nbsp;€</a>
+             target="_blank" rel="noopener noreferrer"
+             data-track="StripeCTA" data-loc="pricing_essentiel" data-plan="Essentiel 19">
+             Choisir Essentiel — 19&nbsp;€
+          </a>
         </article>
 
         <!-- 49 € Performance (reco) -->
@@ -375,7 +352,10 @@
           </div>
           <a class="btn btn-primary-grad"
              href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?utm_source=site&utm_medium=pricing_card&utm_campaign=artisans"
-             target="_blank" rel="noopener noreferrer">Choisir Performance — 49&nbsp;€</a>
+             target="_blank" rel="noopener noreferrer"
+             data-track="StripeCTA" data-loc="pricing_perf" data-plan="Performance 49">
+             Choisir Performance — 49&nbsp;€
+          </a>
         </article>
 
         <!-- 99 € Expert Local -->
@@ -393,7 +373,10 @@
           </div>
           <a class="btn btn-outline"
              href="https://buy.stripe.com/7sY9ATeMjbPX2DUgRG5gc02?utm_source=site&utm_medium=pricing_card&utm_campaign=artisans"
-             target="_blank" rel="noopener noreferrer">Choisir Expert — 99&nbsp;€</a>
+             target="_blank" rel="noopener noreferrer"
+             data-track="StripeCTA" data-loc="pricing_expert" data-plan="Expert Local 99">
+             Choisir Expert — 99&nbsp;€
+          </a>
         </article>
       </div>
 
@@ -412,9 +395,9 @@
       <div class="grid3 grid-get">
         <article class="card card-get">
           <h3>Score sur 100</h3>
-          <p class="lead">Un score global clair pour situer votre site par rapport aux attentes locales.</p>
+          <p class="lead">Un score global clair pour situer votre site face aux attentes SEO locales.</p>
           <ul class="bulleted">
-            <li>Lecture instantanée de votre niveau SEO local</li>
+            <li>Lecture instantanée de votre niveau</li>
             <li>Comparaison implicite avec les standards Google</li>
             <li>Repérage immédiat des points faibles majeurs</li>
           </ul>
@@ -426,10 +409,10 @@
           <p class="lead">Des recommandations concrètes classées par <strong>impact</strong> et <strong>effort</strong>.</p>
           <ul class="bulleted">
             <li>Libellés simples, sans jargon</li>
-            <li>Exemples de formulations (Title, Meta, H1)</li>
+            <li>Exemples (Title, Meta, H1)</li>
             <li>Ordre conseillé pour gagner du temps</li>
           </ul>
-          <p class="use">À quoi ça sert ? À savoir <strong>quoi faire en premier</strong> pour obtenir des résultats visibles rapidement.</p>
+          <p class="use">À quoi ça sert ? À savoir <strong>quoi faire en premier</strong> pour des résultats rapides.</p>
         </article>
 
         <article class="card card-get">
@@ -447,7 +430,10 @@
       <div class="center desktop-inline" style="margin-top:22px">
         <a class="btn btn-primary btn-md btn-center btn-max"
            href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans"
-           target="_blank" rel="noopener noreferrer">Lancer mon audit (49€)</a>
+           target="_blank" rel="noopener noreferrer"
+           data-track="StripeCTA" data-loc="get_cta" data-plan="Performance 49">
+           Lancer mon audit (49€)
+        </a>
         <small style="display:block;margin-top:6px;color:#64748B">→ Audit recommandé “Performance”</small>
       </div>
     </div>
@@ -491,7 +477,10 @@
       <div class="center desktop-inline" style="margin-top:18px">
         <a class="btn btn-primary btn-md btn-center btn-max"
            href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans"
-           target="_blank" rel="noopener noreferrer">Lancer mon audit (49€)</a>
+           target="_blank" rel="noopener noreferrer"
+           data-track="StripeCTA" data-loc="faq_cta" data-plan="Performance 49">
+           Lancer mon audit (49€)
+        </a>
       </div>
     </div>
   </section>
@@ -501,7 +490,7 @@
     <div class="foot">
       <div>
         <h3 style="margin:0 0 6px;font-size:20px;font-weight:900;letter-spacing:-.01em">HyperConvo</h3>
-        <p style="margin:0;color:#64748B">Audit SEO local automatisé en 3 minutes.</p>
+        <p style="margin:0;color:#64748B">Audit SEO automatisé en 3 minutes.</p>
         <div style="display:flex;align-items:center;gap:10px;margin-top:8px">
           <div style="color:var(--star)">★★★★★</div>
           <div style="color:#6B7280;font-size:14px">4,9/5 <span style="color:#94A3B8">(127 avis)</span></div>
@@ -525,118 +514,31 @@
       <div class="center">
         <a class="btn btn-primary btn-md" style="padding:0 18px"
            href="https://buy.stripe.com/dRm4gz33Bf294M230Q5gc01?client_reference_id=artisans"
-           target="_blank" rel="noopener noreferrer">Commencer (49€)</a>
+           target="_blank" rel="noopener noreferrer"
+           data-track="StripeCTA" data-loc="footer" data-plan="Performance 49">
+           Commencer (49€)
+        </a>
       </div>
     </div>
   </footer>
 
-  <!-- ✅ Tracking Meta Pixel — Attaches non-intrusifs (ajouté) -->
+  <!-- Tracking: envoie un event FB 'StripeCTA' sur tous les boutons Stripe -->
   <script>
-  (function(){
-    // Helper
-    function safeFbq(){ try{ return typeof fbq === 'function' ? fbq : null }catch(e){ return null } }
-    const F = safeFbq();
-
-    // ViewContent (catégorisation LP)
-    try{ F && F('track','ViewContent',{content_name:'LP Artisan', content_category:'Landing Page'}); }catch(_){}
-
-    // Mapping prix
-    const PRICE = { 'Essentiel':19, 'Performance':49, 'Expert Local':99 };
-
-    // Inférer le plan à partir du contexte DOM
-    function inferPlan(a){
-      const card = a.closest('article.card');
-      if(card){
-        const planEl = card.querySelector('.plan') || card;
-        const txt = (planEl.textContent||'').toLowerCase();
-        if(txt.includes('essentiel')) return 'Essentiel';
-        if(txt.includes('performance')) return 'Performance';
-        if(txt.includes('expert')) return 'Expert Local';
+    (function(){
+      function sendStripeCTA(el){
+        var payload = {
+          location: el.getAttribute('data-loc') || 'unknown',
+          plan: el.getAttribute('data-plan') || 'unknown',
+          href: el.getAttribute('href') || ''
+        };
+        try { if (typeof fbq === 'function') fbq('trackCustom', 'StripeCTA', payload); } catch(e){}
       }
-      const t = (a.textContent||'').toLowerCase();
-      if(t.includes('essentiel')) return 'Essentiel';
-      if(t.includes('performance')) return 'Performance';
-      if(t.includes('expert')) return 'Expert Local';
-      return 'Performance';
-    }
-
-    function track(){ try{ F && F.apply(null, arguments) }catch(_){}
-
-    // 1) Tous les liens Stripe → InitiateCheckout + StripeCTA
-    document.querySelectorAll('a[href^="https://buy.stripe.com"]').forEach(function(a){
-      a.addEventListener('click', function(){
-        const plan = inferPlan(a);
-        const value = PRICE[plan] || 0;
-        track('track','InitiateCheckout', { content_name: plan, value, currency:'EUR', source:'artisan' });
-        track('trackCustom','StripeCTA', { plan, value, currency:'EUR', lp:'artisan' });
-      }, {passive:true});
-    });
-
-    // 2) CTA Header
-    const headerCta = document.querySelector('.hc-header .cta');
-    headerCta && headerCta.addEventListener('click', function(){
-      track('trackCustom','CTA_Header_Click',{ lp:'artisan' });
-    }, {passive:true});
-
-    // 3) CTA Hero (primary / secondary)
-    document.querySelectorAll('.hero .cta-row a').forEach(function(a, i){
-      a.addEventListener('click', function(){
-        track('trackCustom','CTA_Hero_Click', { position: (i===0?'primary':'secondary'), lp:'artisan' });
-      }, {passive:true});
-    });
-
-    // 4) CTA Steps (bouton central)
-    const stepsBtn = document.querySelector('.section .btn.btn-primary.btn-md.btn-center.btn-max');
-    stepsBtn && stepsBtn.addEventListener('click', function(){
-      track('trackCustom','CTA_Steps_Click', { lp:'artisan' });
-    }, {passive:true});
-
-    // 5) Boutons Pricing → AddToCart + PricingClick (avec plan/valeur)
-    document.querySelectorAll('#pricing .card a').forEach(function(a){
-      a.addEventListener('click', function(){
-        const plan = inferPlan(a);
-        const value = PRICE[plan] || 0;
-        track('track','AddToCart', { content_name: plan, value, currency:'EUR', lp:'artisan' });
-        track('trackCustom','PricingClick', { plan, value, lp:'artisan' });
-      }, {passive:true});
-    });
-
-    // 6) FAQ — ouverture des questions
-    document.querySelectorAll('#faq details > summary').forEach(function(s){
-      s.addEventListener('click', function(){
-        const q = (s.textContent||'').trim().replace(/\s+/g,' ').slice(0,120);
-        track('trackCustom','FAQOpen', { q, lp:'artisan' });
-      }, {passive:true});
-    });
-
-    // 7) Liens légaux en footer
-    document.querySelectorAll('footer a[href$=".html"]').forEach(function(a){
-      a.addEventListener('click', function(){
-        track('trackCustom','LegalView', { href: a.getAttribute('href'), lp:'artisan' });
-      }, {passive:true});
-    });
-
-    // 8) Mailto → Contact
-    document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){
-      a.addEventListener('click', function(){
-        track('track','Contact', { method:'email', lp:'artisan' });
-      }, {passive:true});
-    });
-
-    // 9) Scroll depth 50 %
-    let sent50 = false;
-    window.addEventListener('scroll', function(){
-      if(sent50) return;
-      const scrolled = window.scrollY + window.innerHeight;
-      const perc = scrolled / document.documentElement.scrollHeight;
-      if(perc >= 0.5){
-        sent50 = true;
-        track('trackCustom','ScrollDepth', { percent:50, lp:'artisan' });
+      function onClick(e){
+        var el = e.currentTarget; sendStripeCTA(el);
       }
-    }, {passive:true});
-  })();
+      var ctas = document.querySelectorAll('a[data-track="StripeCTA"]');
+      for (var i=0;i<ctas.length;i++){ ctas[i].addEventListener('click', onClick, {passive:true}); }
+    })();
   </script>
-  <!-- ✅ Fin tracking Pixel -->
-  
 </body>
 </html>
