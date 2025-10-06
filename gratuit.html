@@ -31,15 +31,23 @@
     .hc-header .wrap{max-width:var(--maxw);margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
     .logo{font-weight:900;letter-spacing:-.01em}
     .cta{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:10px;color:#fff;background:linear-gradient(90deg,var(--blue),var(--green));font-weight:800;box-shadow:0 4px 12px rgba(37,99,235,.25)}
+
     .hero{padding:72px 20px;background:#fff}
     .hero .container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
     @media (max-width:980px){ .hero .container{grid-template-columns:1fr;gap:28px} }
     .title{font-size:clamp(28px,5vw,48px);line-height:1.15;font-weight:900;margin:0 0 12px;letter-spacing:-.02em}
     .subtitle{font-size:18px;line-height:1.55;color:var(--muted);margin:0 0 24px;max-width:640px}
+
     .pills{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 18px}
     .pill{background:#EDF2F7;border:1px solid var(--line);color:var(--text);padding:10px 14px;border-radius:14px;font-weight:700;display:flex;align-items:center;gap:8px}
-    .proof{display:flex;align-items:center;gap:18px;color:var(--muted);font-size:15px}
+
+    .proof{display:flex;align-items:center;gap:18px;color:var(--muted);font-size:15px;flex-wrap:wrap}
+    .proof-line1,.proof-line2{display:flex;gap:8px;align-items:center}
     .stars{color:#F59E0B}
+    @media (max-width:780px){
+      .proof{flex-direction:column;align-items:flex-start}
+      .proof-line1,.proof-line2{width:100%}
+    }
 
     .card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 10px 30px rgba(2,6,23,.06);overflow:hidden}
     .blob{position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;background:
@@ -52,15 +60,21 @@
     label{font-size:13px;font-weight:800;color:#334155}
     input{height:48px;border:1.5px solid #CBD5E1;border-radius:12px;padding:0 14px;font-size:15px;font-weight:600;color:#0F172A;background:#fff}
     input:focus{outline:none;border-color:#3B82F6;box-shadow:0 0 0 4px rgba(59,130,246,.12)}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:4px}
+
+    .actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:4px}
     .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;font-weight:900}
     .btn-primary{height:52px;padding:0 18px;color:#fff;background:linear-gradient(90deg,#2563EB,#16A34A);box-shadow:0 6px 18px rgba(37,99,235,.25)}
     .btn[disabled]{opacity:.65;cursor:not-allowed}
-    .btn-ghost{height:46px;padding:0 14px;border:1px dashed #94A3B8;background:#F8FAFC;color:#475569;border-radius:10px;font-weight:800}
     .hint{font-size:12.5px;color:#64748B}
+
+    /* Opt-in inline (desktop + mobile) */
+    .optin{display:inline-flex;gap:8px;align-items:center}
+    .optin input{height:16px;width:16px}
+
     .success,.error{display:none;margin-top:10px;padding:12px;border-radius:10px;font-weight:700}
     .success{border:1px solid #BBF7D0;background:#F0FDF4;color:#166534}
     .error{border:1px solid #FECACA;background:#FEF2F2;color:#991B1B}
+    .success,.error{aria-live:polite}
 
     .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
     .badge{border:1px solid var(--line);background:#F8FAFC;border-radius:10px;padding:8px 10px;font-size:12.5px;color:#334155;font-weight:800;display:flex;gap:8px;align-items:center}
@@ -79,7 +93,9 @@
     .cookie-toggle{display:flex;gap:10px;align-items:center;margin-top:8px}
     .cookie-toggle input{width:16px;height:16px}
 
-    @media (max-width:780px){ .title{font-size:28px;line-height:1.2} .hero .container{grid-template-columns:1fr} .btn-primary{width:100%} }
+    /* Micro-section grid responsive */
+    .microgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    @media (max-width:780px){ .microgrid{grid-template-columns:1fr} .title{font-size:28px;line-height:1.2} .hero .container{grid-template-columns:1fr} .btn-primary{width:100%} }
   </style>
 </head>
 <body>
@@ -102,10 +118,10 @@
           <div class="pill">🔒 Données traitées en Europe</div>
         </div>
 
+        <!-- Preuve sociale: 2 lignes sur mobile -->
         <div class="proof">
-          <div>🌐 500+ entreprises utilisatrices</div>
-          <div class="stars">★★★★★</div>
-          <div>4,9/5 (127 avis)</div>
+          <div class="proof-line1">🌐 500+ entreprises utilisatrices</div>
+          <div class="proof-line2"><span class="stars">★★★★★</span> <span>4,9/5 (127 avis)</span></div>
         </div>
       </div>
 
@@ -127,16 +143,18 @@
             <input id="email" name="email" type="email" inputmode="email" placeholder="prenom@exemple.fr" autocomplete="email" required />
           </div>
 
-          <div class="field" style="display:flex;gap:8px;align-items:flex-start">
-            <input id="mk" name="marketing_optin" type="checkbox" style="margin-top:2px;height:16px;width:16px" />
-            <label for="mk" style="font-weight:600;color:#334155">Recevoir conseils et offres par e-mail (facultatif)</label>
-          </div>
-
           <div class="actions">
             <button class="btn btn-primary" id="submitBtn" type="submit">
               <span class="btn-label">Obtenir un aperçu gratuit</span>
               <span class="btn-loading" style="display:none;margin-left:8px">• • •</span>
             </button>
+
+            <!-- Opt-in désormais à côté du bouton et du hint (desktop + mobile) -->
+            <label class="optin" for="mk">
+              <input id="mk" name="marketing_optin" type="checkbox" />
+              <span>Recevoir conseils et offres (facultatif)</span>
+            </label>
+
             <span class="hint">En envoyant, vous acceptez de recevoir l’aperçu par e-mail. Sans opt-in, aucun marketing.</span>
           </div>
 
@@ -155,9 +173,10 @@
     </div>
   </section>
 
+  <!-- Micro-section persuasion: passe en 1 colonne sur mobile -->
   <section style="padding:24px 20px">
     <div style="max-width:var(--maxw);margin:0 auto">
-      <div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+      <div class="card microgrid">
         <div>
           <h3 style="margin-top:0">Pourquoi c’est gratuit</h3>
           <p style="margin:8px 0 0;color:#334155;line-height:1.6">
@@ -196,13 +215,11 @@
         </div>
       </nav>
 
-      <div>
-        <a class="btn-ghost" href="#form">Recommencer</a>
-      </div>
+      <div><!-- (recommencer supprimé) --></div>
     </div>
   </footer>
 
-  <!-- Consent banner (Consent Mode v2 minimal) -->
+  <!-- Consent banner + logique formulaire + redirection (/api/lead conserve) -->
   <div id="cookieBanner" class="cookie-banner" style="display:none">
     <div style="font-weight:900;letter-spacing:-.01em;margin-bottom:4px">Cookies et confidentialité</div>
     <div style="color:#334155">Nous utilisons des cookies pour mesurer l’audience et pour le marketing. Vous pouvez accepter ou refuser par catégorie.</div>
@@ -217,7 +234,7 @@
 
   <script>
   ;(function(){
-    // --- Consent state (first party) ---
+    // Consent state
     const CKEY = 'hc_consent_v2';
     const consent = JSON.parse(localStorage.getItem(CKEY) || '{"marketing":false,"set":false}');
     const banner = document.getElementById('cookieBanner');
@@ -227,24 +244,13 @@
     function showBanner(){ banner.style.display='block' }
     function hideBanner(){ banner.style.display='none' }
 
-    // show banner if not set
     if(!consent.set){ showBanner() }
-
-    // open from footer
     openCookieFooter.addEventListener('click', (e)=>{ e.preventDefault(); mkCheck.checked = !!consent.marketing; showBanner() });
 
     document.getElementById('cookieReject').onclick = ()=>{ saveConsent(false) }
     document.getElementById('cookieAccept').onclick = ()=>{ saveConsent(true) }
     document.getElementById('cookieSave').onclick = ()=>{ saveConsent(mkCheck.checked) }
 
-    function saveConsent(marketing){
-      const value = { set:true, marketing:!!marketing, ts:Date.now() };
-      localStorage.setItem(CKEY, JSON.stringify(value));
-      applyConsent(value);
-      hideBanner();
-    }
-
-    // Consent Mode v2: default deny, enable if accepted
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments) }
     gtag('consent', 'default', {
@@ -253,6 +259,26 @@
       'ad_personalization': 'denied',
       'analytics_storage': 'denied'
     });
+
+    function loadGA(){
+      if(loadGA.done) return; loadGA.done = true;
+      var s = document.createElement('script');
+      s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=G-TP76TR7EY9';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', 'G-TP76TR7EY9');
+    }
+    function loadMeta(){
+      if(loadMeta.done) return; loadMeta.done = true;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','1189802013345074');
+      fbq('track','PageView');
+      fbq('track','ViewContent',{content_name:'LP Apercu Gratuit', content_category:'Landing Page'});
+    }
 
     function applyConsent(c){
       gtag('consent', 'update', {
@@ -263,36 +289,15 @@
       });
       if(c.marketing){ loadGA(); loadMeta() }
     }
-
-    // Lazy loaders (only after consent)
-    let gaLoaded = false, fbLoaded = false;
-
-    function loadGA(){
-      if(gaLoaded) return; gaLoaded = true;
-      var s = document.createElement('script');
-      s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=G-TP76TR7EY9';
-      document.head.appendChild(s);
-      gtag('js', new Date());
-      gtag('config', 'G-TP76TR7EY9');
+    function saveConsent(marketing){
+      const value = { set:true, marketing:!!marketing, ts:Date.now() };
+      localStorage.setItem(CKEY, JSON.stringify(value));
+      applyConsent(value);
+      hideBanner();
     }
-
-    function loadMeta(){
-      if(fbLoaded) return; fbLoaded = true;
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init','1189802013345074');
-      fbq('track','PageView');
-      // Mark landing view (for later funnels)
-      fbq('track','ViewContent',{content_name:'LP Apercu Gratuit', content_category:'Landing Page'});
-    }
-
-    // Apply consent at start
     applyConsent(consent);
 
-    // --- Form logic ---
+    // Form logic (identique)
     const form = document.getElementById('previewForm');
     const ok   = document.getElementById('ok');
     const ko   = document.getElementById('ko');
@@ -300,7 +305,6 @@
     const btnLabel = btn.querySelector('.btn-label');
     const btnLoad  = btn.querySelector('.btn-loading');
 
-    // UTM capture and persistence
     const params = new URLSearchParams(location.search);
     const utm = {
       source: params.get('utm_source') || '',
@@ -310,7 +314,6 @@
       term: params.get('utm_term') || ''
     };
 
-    // Prefill from storage if empty
     try{
       const saved = JSON.parse(localStorage.getItem('hc_lead_ctx') || '{}');
       if(saved.url)  form.url.value = saved.url;
@@ -337,16 +340,11 @@
       if(!url){ ko.textContent='URL invalide. Exemple: https://votre-site.fr'; ko.style.display='block'; return }
       if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ ko.textContent='E-mail invalide.'; ko.style.display='block'; return }
 
-      // Persist context
       localStorage.setItem('hc_lead_ctx', JSON.stringify({url,email,utm}));
 
-      // Loading UI
       btn.disabled = true; btnLoad.style.display='inline-block'; btnLabel.textContent = 'Analyse en cours…';
 
-      const payload = {
-        url, email, marketing_optin: !!optin,
-        utm, page: location.href, ts: Date.now()
-      };
+      const payload = { url, email, marketing_optin: !!optin, utm, page: location.href, ts: Date.now() };
 
       try{
         const res = await fetch('/api/lead', {
@@ -356,13 +354,11 @@
         });
         if(!res.ok){ throw new Error('bad status '+res.status) }
 
-        // Tracking: Lead on submit
         try{ if(window.fbq){ fbq('track','Lead',{content_name:'ApercuGratuit', url_site:url, source:'gratuit'}) } }catch(_){}
         try{ if(window.gtag){ gtag('event','generate_lead',{ send_to:'G-TP76TR7EY9', value:0, currency:'EUR' }) } }catch(_){}
 
         ok.style.display = 'block';
 
-        // Redirect to pre-analyse / tripwire
         const q = new URLSearchParams({
           url, email,
           utm_source: utm.source, utm_medium: utm.medium, utm_campaign: utm.campaign, utm_content: utm.content, utm_term: utm.term
