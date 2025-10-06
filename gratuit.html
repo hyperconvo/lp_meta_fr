@@ -4,48 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HyperConvo — Aperçu gratuit SEO local (30 s)</title>
-  <meta name="description" content="Obtenez un aperçu gratuit en 30 secondes: score approximatif et 1 recommandation. Rapport complet disponible ensuite." />
-  <link rel="canonical" href="https://hyperconvo.ai/apercu-gratuit" />
+  <meta name="description" content="Obtenez un aperçu gratuit en 30 secondes : score approximatif et 1 recommandation. Rapport complet disponible ensuite." />
+  <link rel="canonical" href="https://hyperconvo.ai/gratuit" />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TP76TR7EY9"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments)}
-    gtag('js', new Date());
-    gtag('config', 'G-TP76TR7EY9');
-  </script>
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Aperçu gratuit SEO local en 30 s" />
+  <meta property="og:description" content="Score approximatif + 1 action rapide. Rapport complet disponible ensuite." />
+  <meta property="og:url" content="https://hyperconvo.ai/gratuit" />
+  <meta property="og:image" content="https://hyperconvo.ai/og/score-card-1200x630.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Meta Pixel -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-    (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1189802013345074');
-    fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1189802013345074&ev=PageView&noscript=1"/></noscript>
+  <!-- Perf: preconnect -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+  <link rel="preconnect" href="https://connect.facebook.net" crossorigin />
 
   <style>
     :root{
       --blue:#2563EB; --green:#16A34A; --text:#0F172A; --muted:#64748B;
-      --bg:#F8FAFC; --card:#FFFFFF; --line:#E2E8F0; --maxw:1100px;
+      --bg:#F8FAFC; --card:#fff; --line:#E2E8F0; --maxw:1100px;
     }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
     body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif}
     a{color:inherit;text-decoration:none}
-
-    /* Header */
     .hc-header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:40}
     .hc-header .wrap{max-width:var(--maxw);margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
     .logo{font-weight:900;letter-spacing:-.01em}
     .cta{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:10px;color:#fff;background:linear-gradient(90deg,var(--blue),var(--green));font-weight:800;box-shadow:0 4px 12px rgba(37,99,235,.25)}
-
-    /* Hero */
     .hero{padding:72px 20px;background:#fff}
     .hero .container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
     @media (max-width:980px){ .hero .container{grid-template-columns:1fr;gap:28px} }
@@ -56,7 +41,6 @@
     .proof{display:flex;align-items:center;gap:18px;color:var(--muted);font-size:15px}
     .stars{color:#F59E0B}
 
-    /* Card form */
     .card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 10px 30px rgba(2,6,23,.06);overflow:hidden}
     .blob{position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;background:
       radial-gradient(circle at 30% 30%, rgba(37,99,235,.12), transparent 55%),
@@ -71,28 +55,34 @@
     .actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:4px}
     .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;font-weight:900}
     .btn-primary{height:52px;padding:0 18px;color:#fff;background:linear-gradient(90deg,#2563EB,#16A34A);box-shadow:0 6px 18px rgba(37,99,235,.25)}
+    .btn[disabled]{opacity:.65;cursor:not-allowed}
     .btn-ghost{height:46px;padding:0 14px;border:1px dashed #94A3B8;background:#F8FAFC;color:#475569;border-radius:10px;font-weight:800}
     .hint{font-size:12.5px;color:#64748B}
-    .success{display:none;margin-top:10px;padding:12px;border:1px solid #BBF7D0;background:#F0FDF4;color:#166534;border-radius:10px;font-weight:700}
-    .error{display:none;margin-top:10px;padding:12px;border:1px solid #FECACA;background:#FEF2F2;color:#991B1B;border-radius:10px;font-weight:700}
+    .success,.error{display:none;margin-top:10px;padding:12px;border-radius:10px;font-weight:700}
+    .success{border:1px solid #BBF7D0;background:#F0FDF4;color:#166534}
+    .error{border:1px solid #FECACA;background:#FEF2F2;color:#991B1B}
 
-    /* Footer */
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .badge{border:1px solid var(--line);background:#F8FAFC;border-radius:10px;padding:8px 10px;font-size:12.5px;color:#334155;font-weight:800;display:flex;gap:8px;align-items:center}
+
     footer{background:#fff;border-top:1px solid var(--line);padding:22px 20px}
     .foot{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px}
     @media(max-width:900px){.foot{grid-template-columns:1fr}}
     .links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
     .links a{color:#334155}
 
-    /* Mobile */
-    @media (max-width:780px){
-      .title{font-size:28px;line-height:1.2;letter-spacing:-.01em}
-      .hero .container{grid-template-columns:1fr}
-      .btn-primary{width:100%}
-    }
+    /* Cookie banner */
+    .cookie-banner{position:fixed;inset:auto 12px 12px 12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 10px 30px rgba(2,6,23,.12);max-width:720px;margin:0 auto;z-index:50}
+    .cookie-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .cookie-btn{height:44px;padding:0 14px;border-radius:10px;font-weight:900;border:1px solid #CBD5E1;background:#fff}
+    .cookie-accept{background:linear-gradient(90deg,#2563EB,#16A34A);color:#fff;border:none}
+    .cookie-toggle{display:flex;gap:10px;align-items:center;margin-top:8px}
+    .cookie-toggle input{width:16px;height:16px}
+
+    @media (max-width:780px){ .title{font-size:28px;line-height:1.2} .hero .container{grid-template-columns:1fr} .btn-primary{width:100%} }
   </style>
 </head>
 <body>
-  <!-- Header -->
   <header class="hc-header" aria-label="En-tête HyperConvo">
     <div class="wrap">
       <div class="logo">HyperConvo</div>
@@ -100,7 +90,6 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="hero" id="hero" aria-label="Aperçu gratuit SEO local">
     <div class="container">
       <div>
@@ -120,7 +109,6 @@
         </div>
       </div>
 
-      <!-- Carte formulaire -->
       <aside class="card" id="form" aria-label="Formulaire d’aperçu gratuit">
         <div class="blob" aria-hidden="true"></div>
         <h3>Entrez votre site + e-mail</h3>
@@ -131,51 +119,63 @@
 
           <div class="field">
             <label for="url">URL de votre site</label>
-            <input id="url" name="url" type="url" inputmode="url" placeholder="https://votre-site.fr" required />
+            <input id="url" name="url" type="url" inputmode="url" placeholder="https://votre-site.fr" autocomplete="url" required />
           </div>
 
           <div class="field">
             <label for="email">Adresse e-mail</label>
-            <input id="email" name="email" type="email" inputmode="email" placeholder="prenom@exemple.fr" required />
+            <input id="email" name="email" type="email" inputmode="email" placeholder="prenom@exemple.fr" autocomplete="email" required />
+          </div>
+
+          <div class="field" style="display:flex;gap:8px;align-items:flex-start">
+            <input id="mk" name="marketing_optin" type="checkbox" style="margin-top:2px;height:16px;width:16px" />
+            <label for="mk" style="font-weight:600;color:#334155">Recevoir conseils et offres par e-mail (facultatif)</label>
           </div>
 
           <div class="actions">
-            <button class="btn btn-primary" type="submit">Obtenir un aperçu gratuit</button>
-            <span class="hint">En envoyant, vous acceptez de recevoir l’aperçu par e-mail. Pas de spam.</span>
+            <button class="btn btn-primary" id="submitBtn" type="submit">
+              <span class="btn-label">Obtenir un aperçu gratuit</span>
+              <span class="btn-loading" style="display:none;margin-left:8px">• • •</span>
+            </button>
+            <span class="hint">En envoyant, vous acceptez de recevoir l’aperçu par e-mail. Sans opt-in, aucun marketing.</span>
           </div>
 
-          <div id="ok" class="success" role="status">Merci. Votre aperçu est en préparation — vérifiez votre boîte e-mail dans un instant.</div>
-          <div id="ko" class="error" role="alert">Oups. Impossible d’envoyer. Réessayez dans un instant.</div>
+          <div id="ok" class="success" role="status" aria-live="polite">Merci. Redirection…</div>
+          <div id="ko" class="error" role="alert" aria-live="polite">Oups. Impossible d’envoyer. Réessayez dans un instant.</div>
+
+          <div class="badges">
+            <div class="badge">🧩 Automatisé par Zapier</div>
+            <div class="badge">💳 Paiement sécurisé Stripe</div>
+            <div class="badge">🇪🇺 Hébergement UE</div>
+          </div>
         </form>
 
-        <p class="hint" style="margin-top:8px">Astuce: a/b testez cette étape gratuite pour préparer la vente du rapport complet.</p>
+        <p class="hint" style="margin-top:8px">Astuce: cette première étape gratuite prépare la vente du rapport complet.</p>
       </aside>
     </div>
   </section>
 
-  <!-- Micro section persuasion -->
   <section style="padding:24px 20px">
     <div style="max-width:var(--maxw);margin:0 auto">
       <div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
         <div>
           <h3 style="margin-top:0">Pourquoi c’est gratuit</h3>
           <p style="margin:8px 0 0;color:#334155;line-height:1.6">
-            Cette étape vous donne une première lecture rapide. Si vous voulez le diagnostic complet avec score sur 100, PageSpeed et 5 actions prioritaires, vous pourrez l’acheter ensuite en un clic.
+            Vous obtenez une première lecture rapide. Pour le diagnostic complet avec score sur 100, PageSpeed et 5 actions prioritaires, vous pourrez l’acheter ensuite en un clic.
           </p>
         </div>
         <div>
           <h3 style="margin-top:0">Résultat attendu</h3>
           <ul style="margin:8px 0 0 18px;color:#334155">
             <li>Score approximatif</li>
-            <li>1 recommandation claire à appliquer</li>
-            <li>Invitation vers le rapport complet si pertinent</li>
+            <li>1 recommandation claire</li>
+            <li>Accès au rapport complet si pertinent</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer aria-label="Pied de page">
     <div class="foot">
       <div>
@@ -202,14 +202,105 @@
     </div>
   </footer>
 
-  <!-- JS -->
+  <!-- Consent banner (Consent Mode v2 minimal) -->
+  <div id="cookieBanner" class="cookie-banner" style="display:none">
+    <div style="font-weight:900;letter-spacing:-.01em;margin-bottom:4px">Cookies et confidentialité</div>
+    <div style="color:#334155">Nous utilisons des cookies pour mesurer l’audience et pour le marketing. Vous pouvez accepter ou refuser par catégorie.</div>
+    <div class="cookie-toggle"><input type="checkbox" id="consent_measurement" checked disabled /> <label for="consent_measurement">Mesure essentielle (anonyme)</label></div>
+    <div class="cookie-toggle"><input type="checkbox" id="consent_marketing" /> <label for="consent_marketing">Marketing (GA4, Meta)</label></div>
+    <div class="cookie-actions">
+      <button id="cookieReject" class="cookie-btn">Tout refuser</button>
+      <button id="cookieAccept" class="cookie-btn cookie-accept">Tout accepter</button>
+      <button id="cookieSave" class="cookie-btn">Enregistrer</button>
+    </div>
+  </div>
+
   <script>
-  (function(){
+  ;(function(){
+    // --- Consent state (first party) ---
+    const CKEY = 'hc_consent_v2';
+    const consent = JSON.parse(localStorage.getItem(CKEY) || '{"marketing":false,"set":false}');
+    const banner = document.getElementById('cookieBanner');
+    const mkCheck = document.getElementById('consent_marketing');
+    const openCookieFooter = document.getElementById('openCookieFooter');
+
+    function showBanner(){ banner.style.display='block' }
+    function hideBanner(){ banner.style.display='none' }
+
+    // show banner if not set
+    if(!consent.set){ showBanner() }
+
+    // open from footer
+    openCookieFooter.addEventListener('click', (e)=>{ e.preventDefault(); mkCheck.checked = !!consent.marketing; showBanner() });
+
+    document.getElementById('cookieReject').onclick = ()=>{ saveConsent(false) }
+    document.getElementById('cookieAccept').onclick = ()=>{ saveConsent(true) }
+    document.getElementById('cookieSave').onclick = ()=>{ saveConsent(mkCheck.checked) }
+
+    function saveConsent(marketing){
+      const value = { set:true, marketing:!!marketing, ts:Date.now() };
+      localStorage.setItem(CKEY, JSON.stringify(value));
+      applyConsent(value);
+      hideBanner();
+    }
+
+    // Consent Mode v2: default deny, enable if accepted
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments) }
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied'
+    });
+
+    function applyConsent(c){
+      gtag('consent', 'update', {
+        'ad_storage': c.marketing ? 'granted' : 'denied',
+        'ad_user_data': c.marketing ? 'granted' : 'denied',
+        'ad_personalization': c.marketing ? 'granted' : 'denied',
+        'analytics_storage': c.marketing ? 'granted' : 'denied'
+      });
+      if(c.marketing){ loadGA(); loadMeta() }
+    }
+
+    // Lazy loaders (only after consent)
+    let gaLoaded = false, fbLoaded = false;
+
+    function loadGA(){
+      if(gaLoaded) return; gaLoaded = true;
+      var s = document.createElement('script');
+      s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=G-TP76TR7EY9';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', 'G-TP76TR7EY9');
+    }
+
+    function loadMeta(){
+      if(fbLoaded) return; fbLoaded = true;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','1189802013345074');
+      fbq('track','PageView');
+      // Mark landing view (for later funnels)
+      fbq('track','ViewContent',{content_name:'LP Apercu Gratuit', content_category:'Landing Page'});
+    }
+
+    // Apply consent at start
+    applyConsent(consent);
+
+    // --- Form logic ---
     const form = document.getElementById('previewForm');
     const ok   = document.getElementById('ok');
     const ko   = document.getElementById('ko');
+    const btn  = document.getElementById('submitBtn');
+    const btnLabel = btn.querySelector('.btn-label');
+    const btnLoad  = btn.querySelector('.btn-loading');
 
-    // UTM capture
+    // UTM capture and persistence
     const params = new URLSearchParams(location.search);
     const utm = {
       source: params.get('utm_source') || '',
@@ -219,55 +310,71 @@
       term: params.get('utm_term') || ''
     };
 
-    function isValidUrl(u){
-      try{
-        const x = new URL(u);
-        return x.protocol === 'http:' || x.protocol === 'https:';
-      }catch(_){ return false }
+    // Prefill from storage if empty
+    try{
+      const saved = JSON.parse(localStorage.getItem('hc_lead_ctx') || '{}');
+      if(saved.url)  form.url.value = saved.url;
+      if(saved.email)form.email.value = saved.email;
+    }catch(_){}
+
+    function normalizeUrl(u){
+      u = u.trim();
+      if(!u) return u;
+      if(!/^https?:\/\//i.test(u)){ u = 'https://' + u; }
+      try{ new URL(u); return u }catch(_){ return '' }
     }
 
     form.addEventListener('submit', async function(e){
       e.preventDefault();
       ok.style.display = 'none'; ko.style.display = 'none';
 
-      const url   = form.url.value.trim();
+      let url = normalizeUrl(form.url.value);
       const email = form.email.value.trim();
+      const optin = document.getElementById('mk').checked;
       const honey = form.company.value.trim();
 
-      if(honey){ return } // bot
-      if(!isValidUrl(url)){ ko.textContent = 'URL invalide. Exemple: https://votre-site.fr'; ko.style.display='block'; return }
-      if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ ko.textContent = 'E-mail invalide.'; ko.style.display='block'; return }
+      if(honey){ return }
+      if(!url){ ko.textContent='URL invalide. Exemple: https://votre-site.fr'; ko.style.display='block'; return }
+      if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ ko.textContent='E-mail invalide.'; ko.style.display='block'; return }
+
+      // Persist context
+      localStorage.setItem('hc_lead_ctx', JSON.stringify({url,email,utm}));
+
+      // Loading UI
+      btn.disabled = true; btnLoad.style.display='inline-block'; btnLabel.textContent = 'Analyse en cours…';
 
       const payload = {
-        url, email,
-        utm,
-        page: location.href,
-        ts: Date.now()
+        url, email, marketing_optin: !!optin,
+        utm, page: location.href, ts: Date.now()
       };
 
       try{
-        // Remplace par ton webhook Zapier
-        const ZAP_URL = 'https://hooks.zapier.com/hooks/catch/XXX/YYY/';
-        const res = await fetch(ZAP_URL, {
+        const res = await fetch('/api/lead', {
           method:'POST',
           headers:{'Content-Type':'application/json'},
           body: JSON.stringify(payload)
         });
         if(!res.ok){ throw new Error('bad status '+res.status) }
 
-        // Tracking succès
-        try{ fbq && fbq('track','Lead',{content_name:'ApercuGratuit'}) }catch(_){}
-        try{ gtag && gtag('event','generate_lead',{send_to:'G-TP76TR7EY9'}) }catch(_){}
+        // Tracking: Lead on submit
+        try{ if(window.fbq){ fbq('track','Lead',{content_name:'ApercuGratuit', url_site:url, source:'gratuit'}) } }catch(_){}
+        try{ if(window.gtag){ gtag('event','generate_lead',{ send_to:'G-TP76TR7EY9', value:0, currency:'EUR' }) } }catch(_){}
 
         ok.style.display = 'block';
-        form.reset();
+
+        // Redirect to pre-analyse / tripwire
+        const q = new URLSearchParams({
+          url, email,
+          utm_source: utm.source, utm_medium: utm.medium, utm_campaign: utm.campaign, utm_content: utm.content, utm_term: utm.term
+        }).toString();
+        setTimeout(()=>{ location.href = '/audit-express?'+q }, 550);
+
       }catch(err){
         ko.style.display = 'block';
+      }finally{
+        btn.disabled = false; btnLoad.style.display='none'; btnLabel.textContent = 'Obtenir un aperçu gratuit';
       }
     });
-
-    // Marquer la vue du module pour le Pixel
-    try{ fbq && fbq('track','ViewContent',{content_name:'LP Apercu Gratuit', content_category:'Landing Page'}) }catch(_){}
   })();
   </script>
 </body>
