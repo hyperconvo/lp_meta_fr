@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HyperConvo · Démarrer un audit</title>
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <meta name="color-scheme" content="light" />
+  <meta name="description" content="Page privée de démarrage audit HyperConvo." />
+  <style>
+    :root{
+      --blue:#2563EB; --green:#16A34A; --bg:#F8FAFC; --card:#FFFFFF;
+      --text:#0F172A; --muted:#64748B; --line:#E2E8F0;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif;
+      display:grid; place-items:center;
+    }
+    .wrap{
+      width:min(560px, 92vw);
+      background:var(--card); border:1px solid var(--line); border-radius:16px;
+      box-shadow:0 8px 28px rgba(2,6,23,.08);
+      padding:22px 18px;
+    }
+    .brand{font-weight:900; font-size:18px; letter-spacing:-.01em}
+    .title{margin:10px 0 6px; font-size:22px; font-weight:900; letter-spacing:-.01em}
+    .sub{margin:0 0 16px; color:var(--muted); font-size:14.5px}
+    .field{
+      display:flex; gap:10px; align-items:center; margin:12px 0 8px;
+    }
+    input[type="url"]{
+      flex:1; height:48px; padding:0 14px; border-radius:12px; border:1.5px solid var(--line);
+      font-size:15px; outline:none; transition:border-color .15s ease, box-shadow .15s ease;
+      background:#fff;
+    }
+    input[type="url"]:focus{ border-color:#93C5FD; box-shadow:0 0 0 4px rgba(37,99,235,.15) }
+    button{
+      height:48px; padding:0 18px; border-radius:12px; border:0; cursor:pointer; font-weight:900; font-size:15px;
+      color:#fff; background:linear-gradient(90deg, var(--blue), var(--green));
+      box-shadow:0 6px 18px rgba(37,99,235,.25);
+    }
+    .mini{margin:6px 0 0; color:#94A3B8; font-size:12px}
+    .topbar{
+      position:fixed; inset:0 0 auto 0; display:flex; justify-content:flex-end; gap:8px; padding:10px 12px; pointer-events:none;
+    }
+    .ghost{
+      pointer-events:auto;
+      height:36px; padding:0 12px; border-radius:10px; border:2px solid #E2E8F0; background:#fff; color:#0F172A;
+      font-weight:800; font-size:13px; text-decoration:none; display:inline-flex; align-items:center; justify-content:center;
+    }
+    .hint{font-size:12px; color:#94A3B8; margin-top:10px}
+  </style>
+</head>
+<body>
+  <!-- Liens login/signup discrets en haut à droite -->
+  <div class="topbar" aria-hidden="false">
+    <!-- Remplace les href par tes vraies routes d'auth -->
+    <a class="ghost" href="/signin.html">Connexion</a>
+    <a class="ghost" href="/signup.html">Créer un compte</a>
+  </div>
+
+  <main class="wrap" role="main" aria-label="Démarrer un audit">
+    <div class="brand">HyperConvo</div>
+    <h1 class="title">Entrez votre site pour lancer l'audit</h1>
+    <p class="sub">Nous allons conserver votre URL jusqu'à la connexion. Rien ne sera analysé tant que vous n'avez pas validé.</p>
+
+    <form id="hcForm" novalidate>
+      <!-- Champ bait anti-bot -->
+      <input type="text" name="website_name" style="position:absolute;left:-9999px;top:-9999px" tabindex="-1" aria-hidden="true" autocomplete="off" />
+
+      <div class="field">
+        <input id="siteUrl" name="siteUrl" type="url" inputmode="url" placeholder="https://www.exemple.com"
+               autocomplete="url" required aria-required="true" />
+        <button type="submit" id="submitBtn">Lancer mon audit</button>
+      </div>
+      <div class="mini">Exemples valides: https://exemple.fr, https://exemple.com</div>
+      <div class="hint">Astuce: vous pourrez vous connecter ensuite. L’URL est mémorisée localement.</div>
+    </form>
+  </main>
+
+  <script>
+    (function(){
+      const form = document.getElementById('hcForm');
+      const input = document.getElementById('siteUrl');
+      const btn   = document.getElementById('submitBtn');
+
+      // Utilise une clé locale peu évidente
+      const KEY = 'hc_pending_url_v1';
+
+      function isValidUrl(v){
+        try{
+          const u = new URL(v);
+          return ['http:','https:'].includes(u.protocol);
+        }catch(e){ return false }
+      }
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const url = (input.value || '').trim();
+
+        // Bot trap simple
+        const spam = form.querySelector('[name="website_name"]');
+        if (spam && spam.value) return; // ignore les bots
+
+        if(!isValidUrl(url)){
+          input.focus();
+          input.setAttribute('aria-invalid','true');
+          input.style.borderColor = '#FCA5A5';
+          alert('Merci d’entrer une URL valide avec http(s).');
+          return;
+        }
+
+        // Stocke localement l’URL pour la récupérer après login/signup
+        try{ localStorage.setItem(KEY, url) }catch(e){}
+
+        // Redirige vers ta page d’auth intégrée (à créer)
+        // Option A: vers une page unique qui gère login/signup selon l’état
+        // Option B: vers une page de transition "pré-analyse"
+        // Remplace la route ci-dessous par la tienne:
+        window.location.href = '/_auth/start.html?next=/app/new-audit&url=' + encodeURIComponent(url);
+      }, {passive:false});
+    })();
+  </script>
+</body>
+</html>
