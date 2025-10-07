@@ -89,7 +89,8 @@
       <a class="btn-ghost" href="/signup.html">Créer un compte</a>
     </nav>
   </header>
-
+  
+<!-- SECTION 1 — Titre / URL -->
   <main class="hero" role="main">
     <div class="inner">
       <div class="eyebrow">Audit SEO local en 3 minutes</div>
@@ -246,6 +247,292 @@
   @media (max-width:980px){
     .hc-card{ grid-template-columns:1fr }
     .hc-card--alt .hc-card__media{ order:-1 }
+  }
+</style>
+
+<!-- SECTION 3 — Reviews défilantes -->
+<section class="hc-reviews" aria-label="Avis utilisateurs">
+  <div class="hc-reviews__head">
+    <h2>“HyperConvo m’a bluffé.”</h2>
+    <p>Et d’autres choses sympas que nos clients racontent.</p>
+    <a class="hc-rev__btn" href="#start">Commencer</a>
+  </div>
+
+  <!-- Row A - vers la droite -->
+  <div class="hc-rev__row dir-right" aria-hidden="false">
+    <div class="hc-rev__fade hc-rev__fade--left"></div>
+    <div class="hc-rev__track">
+      <!-- 6 cartes - répéter 2x pour boucle fluide -->
+      <article class="hc-rev__card">
+        <p>Audit en 3 min, recommandations claires. On a gagné du temps et des leads.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="GK"></span>
+          <div><b>Gleb Konon</b><small>Freelance - Lyon</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>L’IA propose des Titles et metas prêts à coller. Score passé de 62 à 85.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="RM"></span>
+          <div><b>Richard Manisa</b><small>PME B2B - Paris</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>Le module avis Google est top - on voit tout de suite quoi améliorer.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="MI"></span>
+          <div><b>Masia Ighani</b><small>Commerce - Toulouse</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>Meilleur “aha moment” - la priorité des 5 actions est ultra utile.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="EC"></span>
+          <div><b>Erel Cohen</b><small>Agence - Bordeaux</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>On compare nos concurrents locaux et on suit le score chaque mois.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="AR"></span>
+          <div><b>Ariel ML</b><small>Services - Nice</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>Intégration Stripe propre - expérience pro de bout en bout.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="LC"></span>
+          <div><b>Luc C.</b><small>Artisan - Nantes</small></div>
+        </div>
+      </article>
+
+      <!-- duplication pour boucle continue -->
+      <article class="hc-rev__card">
+        <p>Audit en 3 min, recommandations claires. On a gagné du temps et des leads.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="GK"></span>
+          <div><b>Gleb Konon</b><small>Freelance - Lyon</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>L’IA propose des Titles et metas prêts à coller. Score passé de 62 à 85.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="RM"></span>
+          <div><b>Richard Manisa</b><small>PME B2B - Paris</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>Le module avis Google est top - on voit tout de suite quoi améliorer.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="MI"></span>
+          <div><b>Masia Ighani</b><small>Commerce - Toulouse</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>Meilleur “aha moment” - la priorité des 5 actions est ultra utile.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="EC"></span>
+          <div><b>Erel Cohen</b><small>Agence - Bordeaux</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>On compare nos concurrents locaux et on suit le score chaque mois.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="AR"></span>
+          <div><b>Ariel ML</b><small>Services - Nice</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>Intégration Stripe propre - expérience pro de bout en bout.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="LC"></span>
+          <div><b>Luc C.</b><small>Artisan - Nantes</small></div>
+        </div>
+      </article>
+    </div>
+    <div class="hc-rev__fade hc-rev__fade--right"></div>
+  </div>
+
+  <!-- Row B - vers la gauche -->
+  <div class="hc-rev__row dir-left" aria-hidden="false">
+    <div class="hc-rev__fade hc-rev__fade--left"></div>
+    <div class="hc-rev__track">
+      <!-- 6 cartes puis duplication 2x -->
+      <article class="hc-rev__card">
+        <p>Support réactif - le PDF marque blanche est nickel pour nos clients.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="JP"></span>
+          <div><b>Julie P.</b><small>Agence - Lille</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>On a corrigé 3 points critiques en 24h. Trafic local en hausse.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="TS"></span>
+          <div><b>Tom S.</b><small>Cabinet - Marseille</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>Les graphes d’évolution donnent une vision claire aux dirigeants.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="AM"></span>
+          <div><b>Ana M.</b><small>PME - Bordeaux</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>L’ajout concurrents est hyper pratique pour se situer dans Google.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="BD"></span>
+          <div><b>Ben D.</b><small>Retail - Lyon</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>UX simple - mes équipes non techniques s’en sortent très bien.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="CC"></span>
+          <div><b>Chloé C.</b><small>Multi-sites - Nantes</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>Rapport livré en 3 min - conforme à la promesse. Reco solide.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="PA"></span>
+          <div><b>Paul A.</b><small>Indépendant - Toulouse</small></div>
+        </div>
+      </article>
+
+      <!-- duplication -->
+      <article class="hc-rev__card">
+        <p>Support réactif - le PDF marque blanche est nickel pour nos clients.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="JP"></span>
+          <div><b>Julie P.</b><small>Agence - Lille</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>On a corrigé 3 points critiques en 24h. Trafic local en hausse.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="TS"></span>
+          <div><b>Tom S.</b><small>Cabinet - Marseille</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>Les graphes d’évolution donnent une vision claire aux dirigeants.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="AM"></span>
+          <div><b>Ana M.</b><small>PME - Bordeaux</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>L’ajout concurrents est hyper pratique pour se situer dans Google.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="BD"></span>
+          <div><b>Ben D.</b><small>Retail - Lyon</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>UX simple - mes équipes non techniques s’en sortent très bien.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="CC"></span>
+          <div><b>Chloé C.</b><small>Multi-sites - Nantes</small></div>
+        </div>
+      </article>
+
+      <article class="hc-rev__card">
+        <p>Rapport livré en 3 min - conforme à la promesse. Reco solide.</p>
+        <div class="hc-rev__meta">
+          <span class="avatar" data-i="PA"></span>
+          <div><b>Paul A.</b><small>Indépendant - Toulouse</small></div>
+        </div>
+      </article>
+    </div>
+    <div class="hc-rev__fade hc-rev__fade--right"></div>
+  </div>
+</section>
+
+<style>
+  .hc-reviews{
+    max-width:1200px; margin:56px auto 24px; padding:0 18px;
+  }
+  .hc-reviews__head{
+    text-align:center; margin-bottom:18px;
+    background:linear-gradient(180deg,#F8FAFC,#ECFDF5);
+    border:1px solid #E5E7EB; border-radius:20px; padding:26px 18px;
+  }
+  .hc-reviews__head h2{
+    margin:0 0 6px; font-size:clamp(24px,4.8vw,40px); line-height:1.06; font-weight:900; letter-spacing:-.02em;
+  }
+  .hc-reviews__head p{ margin:0 0 12px; color:#64748B }
+  .hc-rev__btn{
+    display:inline-flex; height:44px; padding:0 16px; border-radius:12px; color:#fff; text-decoration:none; font-weight:900;
+    background:linear-gradient(90deg,#2563EB,#16A34A); box-shadow:0 10px 26px rgba(37,99,235,.25);
+  }
+
+  .hc-rev__row{
+    position:relative; overflow:hidden; margin:18px 0;
+    border-radius:24px; border:1px solid #E5E7EB; background:#FFF;
+  }
+  .hc-rev__track{
+    display:flex; gap:16px; padding:16px; width:max-content;
+    animation: marquee 36s linear infinite;
+  }
+  .dir-left .hc-rev__track{ animation-direction: reverse }
+  .hc-rev__row:hover .hc-rev__track{ animation-play-state: paused }
+
+  @keyframes marquee {
+    0% { transform: translateX(0) }
+    100% { transform: translateX(-50%) }
+  }
+
+  .hc-rev__card{
+    width:320px; min-height:140px; background:#fff;
+    border:1px solid #E5E7EB; border-radius:18px; padding:16px;
+    box-shadow:0 10px 30px rgba(2,6,23,.06);
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .hc-rev__card p{ margin:0 0 10px; color:#334155; font-size:14.8px }
+  .hc-rev__meta{ display:flex; align-items:center; gap:10px }
+  .hc-rev__meta b{ display:block; font-size:14px }
+  .hc-rev__meta small{ display:block; color:#94A3B8; font-size:12px }
+
+  /* avatars avec initiales - remplace par vraies images si tu veux */
+  .avatar{
+    width:34px; height:34px; border-radius:50%;
+    background:linear-gradient(135deg,#2563EB22,#16A34A22), #F1F5F9;
+    border:1px solid #E2E8F0; display:grid; place-items:center; font-weight:900; font-size:12px; color:#0F172A;
+  }
+  .avatar::after{ content:attr(data-i) }
+
+  /* fades côtés */
+  .hc-rev__fade{
+    position:absolute; top:0; bottom:0; width:80px; pointer-events:none;
+    background:linear-gradient(90deg,#FFF, rgba(255,255,255,0));
+  }
+  .hc-rev__fade--left{ left:0 }
+  .hc-rev__fade--right{ right:0; transform:scaleX(-1) }
+
+  @media (max-width:620px){
+    .hc-rev__card{ width:260px }
+    .hc-reviews__head{ padding:20px 14px }
   }
 </style>
 
