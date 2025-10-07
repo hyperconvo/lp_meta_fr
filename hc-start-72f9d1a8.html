@@ -111,6 +111,144 @@
     </div>
   </main>
 
+  <!-- SECTION 2 — Cartes vitrines style Base44 -->
+<section class="hc-cards" aria-label="Exemples et avantages">
+  <!-- Carte 1 -->
+  <article class="hc-card">
+    <div class="hc-card__text">
+      <h2 class="hc-card__title">Créez à la vitesse de la pensée</h2>
+      <p class="hc-card__p">
+        Décrivez votre site et lancez l’audit. Nous générons les composants essentiels : score global,
+        5 actions prioritaires et aperçu PageSpeed.
+      </p>
+      <a class="hc-card__btn" href="#start">Commencer</a>
+    </div>
+    <div class="hc-card__media">
+      <!-- Remplace l’image par un vrai visuel si besoin -->
+      <div class="mock">
+        <div class="mock__bubble">“Vos balises Title semblent trop longues.”</div>
+        <div class="mock__cta">↑</div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Carte 2 (layout inversé) -->
+  <article class="hc-card hc-card--alt">
+    <div class="hc-card__text">
+      <h2 class="hc-card__title">Le backend est déjà prêt</h2>
+      <p class="hc-card__p">
+        Authentification, base d’audits, webhooks Stripe, envoi d’e-mails : tout est câblé en coulisses
+        pour que vous voyiez juste le résultat, pas la plomberie.
+      </p>
+      <a class="hc-card__btn" href="#start">Découvrir</a>
+    </div>
+    <div class="hc-card__media">
+      <div class="mock">
+        <ul class="mock__list">
+          <li class="ok">Connexion utilisateur</li>
+          <li class="ok">Base “audits”</li>
+          <li class="ok">Notifications e-mail</li>
+          <li class="ok">Paiement Stripe</li>
+          <li class="ok">PDF rapport</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- Carte 3 -->
+  <article class="hc-card">
+    <div class="hc-card__text">
+      <h2 class="hc-card__title">Prêt à l’emploi, instantanément</h2>
+      <p class="hc-card__p">
+        Hébergement géré et rendu rapide. Publiez, partagez et suivez vos scores dans le temps.
+        Ajoutez des concurrents et gérez vos avis Google.
+      </p>
+      <a class="hc-card__btn" href="#start">Voir un exemple</a>
+    </div>
+    <div class="hc-card__media">
+      <div class="mock mock--dash">
+        <div class="row">
+          <div class="tile"><b>Score</b><span>86</span></div>
+          <div class="tile"><b>Mobile</b><span>78</span></div>
+          <div class="tile"><b>Avis</b><span>4.6★</span></div>
+        </div>
+        <div class="row ring"></div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<style>
+  /* ====== Cartes vitrines ====== */
+  :root{
+    --hc-radius: 24px;
+    --hc-brd:#E5E7EB;
+    --hc-text:#0F172A;
+    --hc-muted:#475569;
+    --hc-grad1: radial-gradient(1200px 600px at 12% 10%, rgba(37,99,235,.10), transparent 60%),
+                radial-gradient(1200px 600px at 88% 90%, rgba(22,163,74,.12), transparent 60%),
+                linear-gradient(#FFF, #F8FAFC);
+    --hc-grad2: radial-gradient(1200px 600px at 88% 10%, rgba(37,99,235,.10), transparent 60%),
+                radial-gradient(1200px 600px at 12% 90%, rgba(251,146,60,.15), transparent 60%),
+                linear-gradient(#FFF, #F8FAFC);
+  }
+  .hc-cards{
+    max-width:1100px; margin:48px auto; padding:0 18px;
+    display:grid; gap:26px;
+  }
+  .hc-card{
+    display:grid; grid-template-columns: 1.05fr .95fr; gap:26px;
+    background:#FFF; border:1px solid var(--hc-brd); border-radius:var(--hc-radius);
+    padding:24px; box-shadow:0 16px 60px rgba(2,6,23,.08);
+    background-image: var(--hc-grad1);
+  }
+  .hc-card--alt{ background-image: var(--hc-grad2) }
+  .hc-card__text{ display:flex; flex-direction:column; justify-content:center }
+  .hc-card__title{ margin:0 0 8px; font-size:clamp(22px, 3.4vw, 34px); line-height:1.08; font-weight:900; letter-spacing:-.01em; color:var(--hc-text) }
+  .hc-card__p{ margin:0 0 18px; color:var(--hc-muted); font-size:16px }
+  .hc-card__btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    height:44px; padding:0 16px; border-radius:12px; text-decoration:none; font-weight:900;
+    color:#fff; background:linear-gradient(90deg,#2563EB,#16A34A); box-shadow:0 8px 24px rgba(37,99,235,.25);
+    width:fit-content;
+  }
+  .hc-card__media{ display:grid; place-items:center }
+  /* Mocks visuels simples */
+  .mock{
+    width:min(520px, 100%); aspect-ratio: 16/9;
+    border-radius:20px; border:1px solid #E2E8F0; background:linear-gradient(180deg,#F8FAFC,#EFF6FF);
+    position:relative; overflow:hidden;
+  }
+  .mock__bubble{
+    position:absolute; left:6%; bottom:12%;
+    background:#fff; border:1px solid #E2E8F0; border-radius:14px; padding:12px 14px; max-width:70%;
+    box-shadow:0 12px 36px rgba(2,6,23,.10); color:#334155; font-weight:700; font-size:14px;
+  }
+  .mock__cta{
+    position:absolute; right:8%; bottom:10%;
+    width:42px; height:42px; border-radius:12px; display:grid; place-items:center; color:#fff; font-weight:900;
+    background:linear-gradient(90deg,#2563EB,#16A34A); box-shadow:0 12px 28px rgba(37,99,235,.28);
+  }
+  .mock__list{ list-style:none; margin:0; padding:22px; display:grid; gap:10px; font-weight:800; color:#334155 }
+  .mock__list .ok{ position:relative; padding-left:26px }
+  .mock__list .ok:before{
+    content:""; position:absolute; left:0; top:4px; width:16px; height:16px; border-radius:50%;
+    background:linear-gradient(90deg,#2563EB,#16A34A);
+    -webkit-mask: radial-gradient(circle at 45% 55%, transparent 45%, #000 46%) top left / 100% 100% no-repeat;
+  }
+  .mock--dash{ background:linear-gradient(180deg,#F8FAFC,#FEF3C7)}
+  .mock--dash .row{ display:flex; gap:10px; padding:16px }
+  .tile{ flex:1; background:#fff; border:1px solid #E2E8F0; border-radius:12px; padding:10px 12px; text-align:center }
+  .tile b{ display:block; color:#475569; font-size:12px }
+  .tile span{ display:block; font-weight:900; font-size:18px; color:#0F172A }
+  .ring{ height:140px; margin:12px; border-radius:14px; background:
+      conic-gradient(from 0deg, rgba(37,99,235,.35) 0 220deg, rgba(22,163,74,.35) 220deg 330deg, rgba(15,23,42,.12) 330deg 360deg) }
+  @media (max-width:980px){
+    .hc-card{ grid-template-columns:1fr }
+    .hc-card--alt .hc-card__media{ order:-1 }
+  }
+</style>
+
   <footer class="foot">Privé. Page de test non indexée.</footer>
 
   <script>
