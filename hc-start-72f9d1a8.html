@@ -536,6 +536,95 @@
   }
 </style>
 
+<!-- SECTION 4 — Pricing plans -->
+<section class="hc-pricing" id="pricing" aria-label="Tarifs HyperConvo">
+  <div class="hc-pricing__wrap">
+    <div class="hc-pricing__lead">
+      <h2 class="hc-pricing__title">Plans pour <span>chaque besoin</span></h2>
+      <p class="hc-pricing__sub">Évoluez à votre rythme avec des formules pensées pour la croissance.</p>
+    </div>
+
+    <div class="hc-pricing__cards">
+      <!-- Free / essai -->
+      <article class="hc-price">
+        <h3 class="hc-price__title">Commencez gratuitement.</h3>
+        <ul class="hc-price__list">
+          <li>Fonctionnalités cœur</li>
+          <li>Intégrations de base</li>
+          <li>Système d’authentification</li>
+          <li>Base “audits” incluse</li>
+        </ul>
+        <a class="hc-price__btn" href="#start">Start</a>
+      </article>
+
+      <!-- Paid -->
+      <article class="hc-price">
+        <h3 class="hc-price__title">Formules payantes dès <strong>19€</strong> / audit</h3>
+        <p class="hc-price__desc">Débloquez l’audit complet, le monitoring mensuel, et les modules Local/avis.</p>
+        <a class="hc-price__btn" href="/checkout">Voir les offres</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ===== Pricing ===== */
+  .hc-pricing{
+    background:#071B2F; /* bleu nuit */
+    padding:56px 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .hc-pricing:before{
+    content:""; position:absolute; inset:-20% -10% auto -10%; height:60%;
+    background:radial-gradient(800px 400px at 15% 10%, rgba(163,230,53,.18), transparent 60%),
+               radial-gradient(800px 400px at 85% 40%, rgba(37,99,235,.20), transparent 60%);
+    pointer-events:none;
+  }
+  .hc-pricing__wrap{
+    max-width:1200px; margin:0 auto; padding:0 18px;
+    display:grid; grid-template-columns: .9fr 1.1fr; gap:28px; align-items:center;
+  }
+  .hc-pricing__lead{ color:#DCE3EF }
+  .hc-pricing__title{
+    margin:0 0 8px; font-weight:900; letter-spacing:-.02em;
+    font-size:clamp(26px,4.8vw,46px); line-height:1.05;
+  }
+  .hc-pricing__title span{ color:#C8F169 } /* accent vert pastel */
+  .hc-pricing__sub{ margin:0; color:#9FB1C9 }
+
+  .hc-pricing__cards{
+    display:grid; grid-template-columns:1fr 1fr; gap:18px;
+  }
+  .hc-price{
+    background:#F7F7FB;
+    border-radius:20px;
+    border:1px solid #E5E7EB;
+    box-shadow: 0 10px 0 #B8C0CF inset; /* rebord façon Base44 */
+    padding:22px;
+  }
+  .hc-price__title{ margin:0 0 10px; font-size:22px; font-weight:900; color:#0F172A }
+  .hc-price__list{ margin:0 0 14px; padding:0; list-style:none; color:#334155 }
+  .hc-price__list li{ display:flex; gap:8px; align-items:center; margin:8px 0 }
+  .hc-price__list li:before{
+    content:""; width:10px; height:10px; border-radius:50%;
+    background:linear-gradient(90deg,#2563EB,#16A34A);
+    display:inline-block;
+  }
+  .hc-price__desc{ margin:0 0 16px; color:#334155 }
+  .hc-price__btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    height:46px; padding:0 16px; border-radius:12px; text-decoration:none;
+    color:#fff; font-weight:900;
+    background:#0F172A;
+  }
+
+  @media (max-width:980px){
+    .hc-pricing__wrap{ grid-template-columns:1fr; gap:20px }
+    .hc-pricing__cards{ grid-template-columns:1fr; }
+  }
+</style>
+
   <footer class="foot">Privé. Page de test non indexée.</footer>
 
   <script>
