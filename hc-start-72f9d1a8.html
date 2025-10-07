@@ -9,7 +9,7 @@
   <style>
     :root{
       --blue:#2563EB; --green:#16A34A; --text:#0F172A; --muted:#475569;
-      --line:#E2E8F0; --bg1:#F8FAFC; --bg2:#E8F0FF;
+      --line:#E2E8F0; --bg1:#F8FAFC; --bg2:#E8F0FF; --chip:#EEF2FF;
     }
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Arial,sans-serif;color:var(--text);background:linear-gradient(#FFFFFF,var(--bg1))}
@@ -31,7 +31,7 @@
     input[type="url"]{flex:1;height:56px;border:0;outline:none;padding:0 16px;font-size:16px;background:transparent}
     .go{height:44px;width:44px;border-radius:14px;border:0;cursor:pointer;color:#fff;background:linear-gradient(90deg,var(--blue),var(--green));font-weight:900;display:grid;place-items:center}
     .sugg{margin:12px auto 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:820px}
-    .chip{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 12px;border-radius:999px;background:#EEF2FF;border:1px solid var(--line);color:#334155;font-weight:700;font-size:13px;cursor:pointer}
+    .chip{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 12px;border-radius:999px;background:var(--chip);border:1px solid var(--line);color:#334155;font-weight:700;font-size:13px;cursor:pointer}
 
     /* CARTES */
     .hc-cards{max-width:1100px;margin:48px auto;padding:0 18px;display:grid;gap:26px}
@@ -41,8 +41,18 @@
     .hc-card__title{margin:0 0 8px;font-size:clamp(22px,3.4vw,34px);line-height:1.08;font-weight:900}
     .hc-card__p{margin:0 0 18px;color:var(--muted);font-size:16px}
     .hc-card__btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 16px;border-radius:12px;font-weight:900;color:#fff;background:linear-gradient(90deg,var(--blue),var(--green));box-shadow:0 8px 24px rgba(37,99,235,.25)}
+    .hc-card__media{display:grid;place-items:center}
     .mock{width:100%;aspect-ratio:16/9;border-radius:20px;border:1px solid #E2E8F0;background:linear-gradient(180deg,#F8FAFC,#EFF6FF);position:relative}
     .mock__bubble{position:absolute;left:6%;bottom:12%;background:#fff;border:1px solid #E2E8F0;border-radius:14px;padding:12px 14px;max-width:70%;box-shadow:0 12px 36px rgba(2,6,23,.1);font-weight:700;font-size:14px;color:#334155}
+    .mock__list{list-style:none;margin:0;padding:22px;display:grid;gap:10px;font-weight:800;color:#334155}
+    .mock__list .ok{position:relative;padding-left:26px}
+    .mock__list .ok:before{content:"";position:absolute;left:0;top:4px;width:16px;height:16px;border-radius:50%;background:linear-gradient(90deg,#2563EB,#16A34A)}
+    .mock--dash{background:linear-gradient(180deg,#F8FAFC,#FEF3C7)}
+    .mock--dash .row{display:flex;gap:10px;padding:16px}
+    .tile{flex:1;background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:10px 12px;text-align:center}
+    .tile b{display:block;color:#475569;font-size:12px}
+    .tile span{display:block;font-weight:900;font-size:18px;color:#0F172A}
+    .ring{height:140px;margin:12px;border-radius:14px;background:conic-gradient(from 0deg, rgba(37,99,235,.35) 0 220deg, rgba(22,163,74,.35) 220deg 330deg, rgba(15,23,42,.12) 330deg 360deg)}
 
     /* REVIEWS */
     .hc-reviews{max-width:1200px;margin:56px auto 0;padding:0 18px}
@@ -60,8 +70,8 @@
     .avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#2563EB22,#16A34A22),#F1F5F9;border:1px solid #E2E8F0;display:grid;place-items:center;font-weight:900;font-size:12px;color:#0F172A}
     .avatar::after{content:attr(data-i)}
 
-    /* PRICING */
-    .hc-pricing{background:#071B2F;position:relative;z-index:1;padding:80px 0 120px;margin-top:40px}
+    /* PRICING (avec correctif) */
+    .hc-pricing{background:#071B2F;position:relative;z-index:1;padding:80px 0 120px;margin-top:40px;border-bottom:1px solid rgba(226,232,240,.9)}
     .hc-pricing__wrap{max-width:1200px;margin:0 auto;padding:0 18px;display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:stretch}
     .hc-pricing__lead{color:#DCE3EF}
     .hc-pricing__title{margin:0 0 8px;font-weight:900;font-size:clamp(26px,4.8vw,46px)}
@@ -69,6 +79,11 @@
     .hc-pricing__sub{margin:0;color:#9FB1C9}
     .hc-pricing__cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
     .hc-price{background:#F7F7FB;border-radius:20px;border:1px solid #E5E7EB;box-shadow:0 10px 0 #B8C0CF inset;padding:22px;display:flex;flex-direction:column;justify-content:space-between}
+    .hc-price__title{margin:0 0 10px;font-size:22px;font-weight:900;color:#0F172A}
+    .hc-price__list{margin:0 0 14px;padding:0;list-style:none;color:#334155}
+    .hc-price__list li{display:flex;gap:8px;align-items:center;margin:8px 0}
+    .hc-price__list li:before{content:"";width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,#2563EB,#16A34A)}
+    .hc-price__desc{margin:0 0 16px;color:#334155}
     .hc-price__btn{display:inline-flex;align-items:center;justify-content:center;height:46px;padding:0 16px;border-radius:12px;color:#fff;font-weight:900;background:#0F172A}
 
     /* CTA */
@@ -84,7 +99,7 @@
     .hc-footer__top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;max-width:1200px;margin:0 auto;padding:0 20px 40px}
     .hc-footer__brand .logo{font-weight:900;font-size:22px;margin-bottom:8px}
     .hc-footer__brand p{max-width:260px;color:#F1F5F9;margin:0 0 12px}
-    .socials a{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:#fff;color:#0F172A;font-weight:800;margin-right:6px;text-decoration:none}
+    .socials a{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:#fff;color:#0F172A;font-weight:800;margin-right:6px}
     .hc-footer__cols{display:flex;flex-wrap:wrap;gap:40px}
     .hc-footer__cols h4{margin:0 0 10px;font-size:15px;font-weight:900}
     .hc-footer__cols a{display:block;margin:4px 0;color:#E2E8F0;font-size:14px}
@@ -99,6 +114,7 @@
   </style>
 </head>
 <body>
+  <!-- HEADER -->
   <header class="hdr">
     <div class="brand">HyperConvo</div>
     <nav class="actions">
@@ -107,6 +123,7 @@
     </nav>
   </header>
 
+  <!-- SECTION 1 — HERO -->
   <main class="hero" id="start">
     <div class="inner">
       <div class="eyebrow">Audit SEO local en 3 minutes</div>
@@ -125,17 +142,154 @@
     </div>
   </main>
 
-  <!-- sections 2/3/4/5 du précédent code -->
-  <!-- ... insère les cartes, reviews, pricing et CTA ici ... -->
+  <!-- SECTION 2 — CARTES -->
+  <section class="hc-cards" aria-label="Exemples et avantages">
+    <article class="hc-card">
+      <div class="hc-card__text">
+        <h2 class="hc-card__title">Créez à la vitesse de la pensée</h2>
+        <p class="hc-card__p">Décrivez votre site et lancez l’audit. Nous générons les composants essentiels : score global, 5 actions prioritaires et aperçu PageSpeed.</p>
+        <a class="hc-card__btn" href="#start">Commencer</a>
+      </div>
+      <div class="hc-card__media">
+        <div class="mock">
+          <div class="mock__bubble">“Vos balises Title semblent trop longues.”</div>
+        </div>
+      </div>
+    </article>
 
-  <footer class="hc-footer">
+    <article class="hc-card hc-card--alt">
+      <div class="hc-card__text">
+        <h2 class="hc-card__title">Le backend est déjà prêt</h2>
+        <p class="hc-card__p">Auth, base d’audits, webhooks Stripe, e-mails : tout est câblé en coulisses.</p>
+        <a class="hc-card__btn" href="#start">Découvrir</a>
+      </div>
+      <div class="hc-card__media">
+        <div class="mock">
+          <ul class="mock__list">
+            <li class="ok">Connexion utilisateur</li>
+            <li class="ok">Base “audits”</li>
+            <li class="ok">Notifications e-mail</li>
+            <li class="ok">Paiement Stripe</li>
+            <li class="ok">PDF rapport</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="hc-card">
+      <div class="hc-card__text">
+        <h2 class="hc-card__title">Prêt à l’emploi, instantanément</h2>
+        <p class="hc-card__p">Publiez, partagez et suivez vos scores dans le temps. Ajoutez des concurrents et gérez vos avis Google.</p>
+        <a class="hc-card__btn" href="#start">Voir un exemple</a>
+      </div>
+      <div class="hc-card__media">
+        <div class="mock mock--dash">
+          <div class="row">
+            <div class="tile"><b>Score</b><span>86</span></div>
+            <div class="tile"><b>Mobile</b><span>78</span></div>
+            <div class="tile"><b>Avis</b><span>4.6★</span></div>
+          </div>
+          <div class="row ring"></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- SECTION 3 — REVIEWS -->
+  <section class="hc-reviews" aria-label="Avis utilisateurs">
+    <div class="hc-reviews__head">
+      <h2>“HyperConvo m’a bluffé.”</h2>
+      <p>Et d’autres choses sympas que nos clients racontent.</p>
+      <a class="hc-rev__btn" href="#start">Commencer</a>
+    </div>
+
+    <!-- Row A -->
+    <div class="hc-rev__row dir-right" aria-hidden="false">
+      <div class="hc-rev__track">
+        <article class="hc-rev__card"><p>Audit en 3 min, recommandations claires. On a gagné du temps et des leads.</p><div class="hc-rev__meta"><span class="avatar" data-i="GK"></span><div><b>Gleb Konon</b><small>Freelance — Lyon</small></div></div></article>
+        <article class="hc-rev__card"><p>L’IA propose des Titles et metas prêts à coller. Score passé de 62 à 85.</p><div class="hc-rev__meta"><span class="avatar" data-i="RM"></span><div><b>Richard Manisa</b><small>PME B2B — Paris</small></div></div></article>
+        <article class="hc-rev__card"><p>Le module avis Google est top — on voit tout de suite quoi améliorer.</p><div class="hc-rev__meta"><span class="avatar" data-i="MI"></span><div><b>Masia Ighani</b><small>Commerce — Toulouse</small></div></div></article>
+        <article class="hc-rev__card"><p>Meilleur “aha moment” — la priorité des 5 actions est ultra utile.</p><div class="hc-rev__meta"><span class="avatar" data-i="EC"></span><div><b>Erel Cohen</b><small>Agence — Bordeaux</small></div></div></article>
+        <article class="hc-rev__card"><p>On compare nos concurrents locaux et on suit le score chaque mois.</p><div class="hc-rev__meta"><span class="avatar" data-i="AR"></span><div><b>Ariel ML</b><small>Services — Nice</small></div></div></article>
+        <article class="hc-rev__card"><p>Intégration Stripe propre — expérience pro de bout en bout.</p><div class="hc-rev__meta"><span class="avatar" data-i="LC"></span><div><b>Luc C.</b><small>Artisan — Nantes</small></div></div></article>
+
+        <!-- duplicate for loop -->
+        <article class="hc-rev__card"><p>Audit en 3 min, recommandations claires. On a gagné du temps et des leads.</p><div class="hc-rev__meta"><span class="avatar" data-i="GK"></span><div><b>Gleb Konon</b><small>Freelance — Lyon</small></div></div></article>
+        <article class="hc-rev__card"><p>L’IA propose des Titles et metas prêts à coller. Score passé de 62 à 85.</p><div class="hc-rev__meta"><span class="avatar" data-i="RM"></span><div><b>Richard Manisa</b><small>PME B2B — Paris</small></div></div></article>
+        <article class="hc-rev__card"><p>Le module avis Google est top — on voit tout de suite quoi améliorer.</p><div class="hc-rev__meta"><span class="avatar" data-i="MI"></span><div><b>Masia Ighani</b><small>Commerce — Toulouse</small></div></div></article>
+        <article class="hc-rev__card"><p>Meilleur “aha moment” — la priorité des 5 actions est ultra utile.</p><div class="hc-rev__meta"><span class="avatar" data-i="EC"></span><div><b>Erel Cohen</b><small>Agence — Bordeaux</small></div></div></article>
+        <article class="hc-rev__card"><p>On compare nos concurrents locaux et on suit le score chaque mois.</p><div class="hc-rev__meta"><span class="avatar" data-i="AR"></span><div><b>Ariel ML</b><small>Services — Nice</small></div></div></article>
+        <article class="hc-rev__card"><p>Intégration Stripe propre — expérience pro de bout en bout.</p><div class="hc-rev__meta"><span class="avatar" data-i="LC"></span><div><b>Luc C.</b><small>Artisan — Nantes</small></div></div></article>
+      </div>
+    </div>
+
+    <!-- Row B -->
+    <div class="hc-rev__row dir-left" aria-hidden="false">
+      <div class="hc-rev__track">
+        <article class="hc-rev__card"><p>Support réactif — le PDF marque blanche est nickel pour nos clients.</p><div class="hc-rev__meta"><span class="avatar" data-i="JP"></span><div><b>Julie P.</b><small>Agence — Lille</small></div></div></article>
+        <article class="hc-rev__card"><p>On a corrigé 3 points critiques en 24h. Trafic local en hausse.</p><div class="hc-rev__meta"><span class="avatar" data-i="TS"></span><div><b>Tom S.</b><small>Cabinet — Marseille</small></div></div></article>
+        <article class="hc-rev__card"><p>Les graphes d’évolution donnent une vision claire aux dirigeants.</p><div class="hc-rev__meta"><span class="avatar" data-i="AM"></span><div><b>Ana M.</b><small>PME — Bordeaux</small></div></div></article>
+        <article class="hc-rev__card"><p>L’ajout concurrents est hyper pratique pour se situer dans Google.</p><div class="hc-rev__meta"><span class="avatar" data-i="BD"></span><div><b>Ben D.</b><small>Retail — Lyon</small></div></div></article>
+        <article class="hc-rev__card"><p>UX simple — mes équipes non techniques s’en sortent très bien.</p><div class="hc-rev__meta"><span class="avatar" data-i="CC"></span><div><b>Chloé C.</b><small>Multi-sites — Nantes</small></div></div></article>
+        <article class="hc-rev__card"><p>Rapport livré en 3 min — conforme à la promesse. Reco solide.</p><div class="hc-rev__meta"><span class="avatar" data-i="PA"></span><div><b>Paul A.</b><small>Indépendant — Toulouse</small></div></div></article>
+
+        <!-- duplicate -->
+        <article class="hc-rev__card"><p>Support réactif — le PDF marque blanche est nickel pour nos clients.</p><div class="hc-rev__meta"><span class="avatar" data-i="JP"></span><div><b>Julie P.</b><small>Agence — Lille</small></div></div></article>
+        <article class="hc-rev__card"><p>On a corrigé 3 points critiques en 24h. Trafic local en hausse.</p><div class="hc-rev__meta"><span class="avatar" data-i="TS"></span><div><b>Tom S.</b><small>Cabinet — Marseille</small></div></div></article>
+        <article class="hc-rev__card"><p>Les graphes d’évolution donnent une vision claire aux dirigeants.</p><div class="hc-rev__meta"><span class="avatar" data-i="AM"></span><div><b>Ana M.</b><small>PME — Bordeaux</small></div></div></article>
+        <article class="hc-rev__card"><p>L’ajout concurrents est hyper pratique pour se situer dans Google.</p><div class="hc-rev__meta"><span class="avatar" data-i="BD"></span><div><b>Ben D.</b><small>Retail — Lyon</small></div></div></article>
+        <article class="hc-rev__card"><p>UX simple — mes équipes non techniques s’en sortent très bien.</p><div class="hc-rev__meta"><span class="avatar" data-i="CC"></span><div><b>Chloé C.</b><small>Multi-sites — Nantes</small></div></div></article>
+        <article class="hc-rev__card"><p>Rapport livré en 3 min — conforme à la promesse. Reco solide.</p><div class="hc-rev__meta"><span class="avatar" data-i="PA"></span><div><b>Paul A.</b><small>Indépendant — Toulouse</small></div></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 — PRICING -->
+  <section class="hc-pricing" id="pricing" aria-label="Tarifs HyperConvo">
+    <div class="hc-pricing__wrap">
+      <div class="hc-pricing__lead">
+        <h2 class="hc-pricing__title">Plans pour <span>chaque besoin</span></h2>
+        <p class="hc-pricing__sub">Évoluez à votre rythme avec des formules pensées pour la croissance.</p>
+      </div>
+      <div class="hc-pricing__cards">
+        <article class="hc-price">
+          <h3 class="hc-price__title">Commencez gratuitement.</h3>
+          <ul class="hc-price__list">
+            <li>Fonctionnalités cœur</li>
+            <li>Intégrations de base</li>
+            <li>Système d’authentification</li>
+            <li>Base “audits” incluse</li>
+          </ul>
+          <a class="hc-price__btn" href="#start">Start</a>
+        </article>
+        <article class="hc-price">
+          <h3 class="hc-price__title">Formules payantes dès <strong>19€</strong> / audit</h3>
+          <p class="hc-price__desc">Débloquez l’audit complet, le monitoring mensuel, et les modules Local/avis.</p>
+          <a class="hc-price__btn" href="/checkout">Voir les offres</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5 — CTA FINAL -->
+  <section class="hc-cta" id="cta" aria-label="Appel à l’action final">
+    <div class="hc-cta__wrap">
+      <h2>Prêt à découvrir votre score SEO local ?</h2>
+      <p>Entrez votre site et recevez un audit automatisé complet en 3 minutes.</p>
+      <form class="hc-cta__form js-url-form">
+        <input class="js-url-input" type="url" placeholder="https://www.votresite.fr" required />
+        <button type="submit">Lancer mon audit</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="hc-footer" aria-label="Pied de page">
     <div class="hc-footer__top">
       <div class="hc-footer__brand">
         <div class="logo">HyperConvo</div>
         <p>L’audit SEO automatisé en 3 minutes. Score clair, actions concrètes.</p>
-        <div class="socials">
-          <a href="#">in</a><a href="#">X</a><a href="#">☁︎</a>
-        </div>
+        <div class="socials"><a href="#">in</a><a href="#">X</a><a href="#">☁︎</a></div>
       </div>
       <div class="hc-footer__cols">
         <div><h4>Produit</h4><a href="#start">Audit rapide</a><a href="#pricing">Tarifs</a><a href="#">Roadmap</a></div>
@@ -151,19 +305,21 @@
     (function(){
       const KEY='hc_pending_url_v1';
       function isValidUrl(v){try{const u=new URL(v);return['http:','https:'].includes(u.protocol)}catch{return false}}
+      // chips -> remplir le champ
       document.querySelectorAll('.chip').forEach(c=>{
         const input=document.querySelector('.hero .js-url-input');
         c.addEventListener('click',()=>{input.value=c.dataset.url;input.focus()});
       });
+      // forms (hero + CTA)
       document.querySelectorAll('.js-url-form').forEach(form=>{
         form.addEventListener('submit',e=>{
           e.preventDefault();
           const input=form.querySelector('.js-url-input');
           const v=(input?.value||'').trim();
           const hp=form.querySelector('[name="company_name"]');
-          if(hp&&hp.value)return;
-          if(!isValidUrl(v))return alert('URL invalide');
-          localStorage.setItem(KEY,v);
+          if(hp&&hp.value) return; // bot
+          if(!isValidUrl(v)) return alert('URL invalide');
+          try{ localStorage.setItem(KEY,v) }catch(e){}
           location.href='/_auth/start.html?next=/checkout&url='+encodeURIComponent(v);
         });
       });
